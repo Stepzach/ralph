@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Landing Page</title>
-    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
      <link href="https://fonts.googleapis.com/css?family=Vollkorn:400,400i,700" rel="stylesheet">
     <style>
 
@@ -136,6 +136,7 @@ object-fit: cover;
              padding:0px;
             border-bottom: solid 1px white;
             
+            
         }
          .nav-links a {
         
@@ -150,8 +151,16 @@ object-fit: cover;
                 to {
                     transform: translateY(0%);
                 }
+               
+           
             }
-
+ .social-icons {
+                display: flex !important; /* Show on mobile */
+                margin-top: 10px; /* Add some spacing */
+                justify-content: center;
+                
+             
+            }
 
             .nav-links.show {
                 display: flex;
@@ -284,6 +293,20 @@ object-fit: cover;
         }
         
         }
+         .social-icons {
+            display: none; /* Initially hidden */
+            gap: 25px;
+           margin-top:20px; 
+            justify-content: center;
+            align-items: center;
+        }
+        .social-icons a { 
+            text-decoration: none;
+            font-size: 32px;
+            color: white;
+            transition: color 0.3s ease-in-out;
+        }
+
     </style>
 </head>
 <body>
@@ -303,7 +326,15 @@ object-fit: cover;
                 <li><a href="#">Gallery</a></li>
                 <li><a href="#">Music</a></li>
                 <li><a href="#">Contact</a></li>
+                <div class="social-icons">
+                <a href="#" class="icon" style="color:white;" ><i class="fab fa-facebook"></i></a>
+                <a href="#" class="icon" style="color:white;" ><i class="fab fa-twitter"></i></a>
+                <a href="#" class="icon" style="color:white;" ><i class="fab fa-instagram"></i></a>
+               
+                <a href="#" class="icon" style="color:white;" ><i class="fab fa-tiktok"></i></a>
+            </div>
             </ul>
+                       
         </div>
 
 
