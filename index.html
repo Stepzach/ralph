@@ -11,7 +11,7 @@
         body {
             font-family: 'Vollkorn', serif;
             margin: 0;
-           
+           background-color:black;
         
         }
        
@@ -22,6 +22,16 @@
             width: 100%;
             overflow: hidden; /* Ensure image stays within bounds */
         }
+        .hero::before { /* Create a pseudo-element for the fade effect */
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px; /* Adjust height of fade area */
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+            z-index: 0; /* Place below header */
+        }
 
         .hero-image {
             position: absolute;
@@ -29,6 +39,7 @@
             left: 0;
             width: 100%;
             height: 100%;
+             
             object-fit: cover;  /* Cover entire area */
             z-index: -1;        /* Place behind other content */
         }
@@ -38,16 +49,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 10px;
             position: relative; /* Needed for z-index */
             z-index: 1;           /* Place above background image */
-        }
+             background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); /* Gradient background */
+           padding-bottom:30px;
+        } 
 
         .logo {
           width: 650px;
 height: 100px;
 overflow: hidden;
 object-fit: cover;
+ z-index: 1000000;  
         }
 
         .nav-links {
@@ -72,8 +86,8 @@ object-fit: cover;
         .menu-toggle {
             display: none; /* Hide on larger screens */
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 45px;
+            right: 40px;
             cursor: pointer;
             z-index: 2;  /* Ensure it's above everything else */
         }
@@ -90,16 +104,44 @@ object-fit: cover;
             .nav-links {
                 display: none;
                 flex-direction: column;
-                background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+               
+                background-color: rgba(0, 0, 0, 1); /* Semi-transparent background */
                 position: absolute;
-                top: 60px; /* Adjust as needed */
+                top: 68px; /* Adjust as needed */
                 left: 0;
                 width: 100%;
-                padding: 20px;
+                padding: 0px;
+              
                 text-align: center;
-               animation: slideDown 0.5s ease-in-out;
+               animation: slideDown 0.2s ease-in-out;
 
             }
+            
+            .nav-links:before { /* Create a pseudo-element for the fade effect */
+            content: "";
+            position: absolute;
+            top: -500px;
+            left: 0;
+            width: 100%;
+            height: 3000px; /* Adjust height of fade area */
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+            z-index: -1; /* Place below header */
+           
+        }
+
+            .nav-links li {
+            margin-left: 0px !important;
+             padding-bottom:15px !important; 
+             margin-right: 0px;
+             padding:0px;
+            border-bottom: solid 1px white;
+            
+        }
+         .nav-links a {
+        
+         margin:Opx ;
+         font-size:40px !important;
+          }   
 
              @keyframes slideDown {
                 from {
@@ -123,6 +165,125 @@ object-fit: cover;
                 display: block;
             }
         }
+        
+        
+          @media (max-width: 950px) { 
+            .nav-links a {
+                font-size: 20px;
+
+            }
+             .nav-links li {
+            margin-left: 20px;
+        } 
+         }
+         
+          @media (max-width: 815px) { 
+            .header {
+                padding-left: 1px;
+                  padding-right: 1px;
+        } 
+         }
+         
+           @media (max-width: 701px) { 
+         .logo {
+          width: 550px;
+
+        } }
+        @media (max-width: 598px) { 
+         .logo {
+          width: 450px;
+
+        } 
+         .hero-image {
+         height:90%;
+         }
+         }
+        
+        
+        @media (max-width: 506px) { 
+         .logo {
+          width: 350px;
+          height:auto;
+
+        } 
+         .header {
+                padding-top: 0px;
+                 padding-bottom:40px;
+         }
+        
+        
+         .menu-toggle {
+           
+            top: 23px;
+            right: 40px;
+           
+        }
+        .hero-image {
+         height:80%;
+         top:30px;
+         }
+        }
+         @media (max-width: 423px) { 
+         .menu-toggle {
+           
+           
+            right: 30px;
+           
+        }
+        .hero-image {
+         height:70%;
+         }
+         }
+        @media (max-width: 405px) { 
+         .menu-toggle {
+           
+           
+            right: 20px;
+           
+        }
+        .hero-image {
+         height:60%;
+         }
+         }
+         
+         @media (max-width: 386px) { 
+         .logo {
+          width: 320px;
+        }
+        .menu-toggle { 
+           
+            top: 20.5px;
+            
+           
+        }
+        
+        }
+        
+        @media (max-width: 355px) { 
+         .logo {
+          width: 300px;
+        }
+        .menu-toggle { 
+           
+            top: 19px;
+            
+           
+        }
+        
+        }
+        
+         @media (max-width: 339px) { 
+         .logo {
+          width: 280px;
+        }
+        .menu-toggle { 
+           
+            top: 17.5px;
+            
+           
+        }
+        
+        }
     </style>
 </head>
 <body>
@@ -136,7 +297,7 @@ object-fit: cover;
                 <div class="bar"></div>
                 <div class="bar"></div>
             </div>
-            <img src="RH_Logo_White.png" alt="Logo" class="logo">
+            <img src="https://stepzach.github.io/ralph/RH_Logo_White.png" alt="Logo" class="logo">
             <ul class="nav-links" id="navLinks">
                 <li><a href="#">Mixes</a></li>
                 <li><a href="#">Gallery</a></li>
