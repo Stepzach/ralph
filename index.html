@@ -90,15 +90,19 @@ object-fit: cover;
             right: 40px;
             cursor: pointer;
             z-index: 2;  /* Ensure it's above everything else */
+             transition: transform 0.3s ease-in-out; /* Add transition for smooth animation */
+            transform-origin: center; /* Set rotation origin to center */
         }
         .bar {
-            width: 25px;
+            width: 20px;
             height: 3px;
             background-color: white; /* Or your desired color */
             margin: 5px 0;
         }
 
-
+ .menu-toggle.rotated { /* Add class for rotated state */
+            transform: rotate(90deg);
+        }
 
         @media (max-width: 768px) {  /* Adjust breakpoint as needed */
             .nav-links {
@@ -317,8 +321,8 @@ object-fit: cover;
         <div class="header">
              <div class="menu-toggle" onclick="toggleMenu()">
                 <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+                <div class="bar" style=" width: 15px;"></div>
+                <div class="bar"></div> 
             </div>
             <img src="https://stepzach.github.io/ralph/RH_Logo_White.png" alt="Logo" class="logo">
             <ul class="nav-links" id="navLinks">
@@ -342,9 +346,17 @@ object-fit: cover;
     </div>
 
     <script>
-        function toggleMenu() {
+       function toggleMenu() {
             const navLinks = document.getElementById("navLinks");
+            const menuToggle = document.querySelector(".menu-toggle"); // Select the menu toggle
+             
             navLinks.classList.toggle("show");
+
+           
+            menuToggle.classList.toggle("rotated");
+            
+           
+           
         }
     </script>
 
