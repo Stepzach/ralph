@@ -18,6 +18,8 @@
         font-family: 'NeueRemanSans', serif;
         margin: 0;
         background-color:black;
+         scroll-snap-type: y mandatory; /* Mandatory ensures a full snap */
+        overflow-y: scroll;  /* Enable vertical scrolling */
     }
 
     .hero {
@@ -57,6 +59,7 @@
         z-index: 1;           /* Place above background image */
         background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); /* Gradient background */
         padding-bottom:30px;
+        transition: background-color 0.3s ease;
     } 
 
     .logo {
@@ -65,7 +68,19 @@
         overflow: hidden;
         object-fit: cover;
         z-index: 1000000;  
+        transition: filter 0.3s ease;
     }
+    
+    .logo.inverted {
+        filter: invert(100%); /* Invert colors */
+    }
+
+
+    .header.transparent {
+        background: transparent;
+    }
+    
+
 
     .nav-links {
         display: flex;
@@ -82,6 +97,9 @@
         text-decoration: none;
         color: white; /* Or any other color */
         font-size: 25px;
+    }
+ .nav-links a.black {
+        color: black;
     }
 
     /* Mobile Menu Styles */
@@ -102,10 +120,18 @@
         background-color: white; /* Or your desired color */
         margin: 5px 0;
     }
+ .bar.black {
+        background-color: black;
+    }
 
     .menu-toggle.rotated { /* Add class for rotated state */
         transform: rotate(90deg);
     }
+      @media (min-width: 422px) { 
+        .snap-section {
+             top:-250px !important; 
+        }
+  }
 
     @media (max-width: 768px) {  /* Adjust breakpoint as needed */
         .nav-links {
@@ -121,7 +147,7 @@
             animation: slideDown 0.2s ease-in-out;
         }
         
-        .nav-links:before { /* Create a pseudo-element for the fade effect */
+        .nav-links.before { /* Create a pseudo-element for the fade effect */
             content: "";
             position: absolute;
             top: -500px;
@@ -130,6 +156,19 @@
             height: 3000px; /* Adjust height of fade area */
             background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
             z-index: -2; /* Place below header */
+        }
+       .nav-links.black-background {
+            background-color: rgba(255,255,255, 1);
+        }
+        
+        .nav-links:before.black-backgrounds {
+        background: white !important;
+         position: absolute;
+            background: linear-gradient(to bottom, white, white) !important;
+             width: 100% !important;
+            height: 3000px !important; /* Adjust height of fade area */
+             top: -500px !important;
+             z-index: -2; /* Place below header */
         }
 
         .nav-links li {
@@ -177,7 +216,7 @@
         .nav-links a {
             font-size: 20px;
         }
-        .nav-links li {
+        .nav-links li { 
             margin-left: 20px;
         } 
     }
@@ -238,11 +277,15 @@
         .text19 {
             top: -250px !important;  
         }
+         
     }
 
     @media (min-width: 507px) { 
         .text19 {
             top: -150px !important;  
+        }
+         .snap-section {
+            top:-160px !important; 
         }
     }
 
@@ -250,13 +293,23 @@
         .text19 {
             top: -100px !important;  
         }
+        .snap-section {
+            top:-100px !important; 
+        }
     }
 
     @media (min-width: 768px) { 
         .text19 {
             display:none !important;
         }
+        .snap-section {
+            
+            top:-20px !important; 
+        }
+        
     }
+    
+   
          
     @media (max-width: 405px) { 
         .menu-toggle {
@@ -311,21 +364,25 @@
 
     /* New Section Styles */
     .snap-section {
-        width: 100%;
+     position:relative;
+     top:-290px; 
+     z-index:-1;
+         width: 100%; 
         height: 100vh;
         background-color: white;  /* Example background */
         color: black;
-       
-        justify-content: center;
+        
+        
+        
+        justify-content: center; 
         align-items: center;
         scroll-snap-align: start; /* Key property for snap scrolling */
     }
 
-    /* Enable snap scrolling on the container (body in this case) */
-    body {
-        scroll-snap-type: y mandatory; /* Mandatory ensures a full snap */
-        overflow-y: scroll;  /* Enable vertical scrolling */
-    }
+    
+    
+    
+   
 </style>
 </head>
 <body>
@@ -333,13 +390,13 @@
     <div class="hero">
         <img src="https://static.wixstatic.com/media/cc3be5_52c2463023be4f8aa9dcb33f3504f978~mv2.jpg/v1/fill/w_592,h_394,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_4105_JPG.jpg" alt="Hero Image" class="hero-image">
         <div style="position: fixed; width:100%">
-            <div class="header">
+            <div class="header" id="mainHeader">
                 <div class="menu-toggle" onclick="toggleMenu()">
-                    <div class="bar"></div>
-                    <div class="bar" style=" width: 15px;"></div>
-                    <div class="bar"></div> 
+                    <div class="bar" id="bar1"></div>
+                    <div class="bar" id="bar2" style=" width: 15px;"></div>
+                    <div class="bar" id="bar3"></div> 
                 </div>
-                <img src="https://stepzach.github.io/ralph/RH_Logo_White.png" alt="Logo" class="logo">
+                <img src="https://stepzach.github.io/ralph/RH_Logo_White.png" alt="Logo" class="logo" id="logoImage">
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#">Mixes</a></li>
                     <li><a href="#">Gallery</a></li>
@@ -362,7 +419,7 @@
             <a href="#" class="icon" style="color:white;" ><i class="fab fa-tiktok"></i></a>
             <a href="#" class="icon" style="color:white;" ><i class="fab fa-soundcloud"></i></a>
             <a href="#" class="icon" style="color:white;" ><i class="fab fa-spotify"></i></a>
-        </div>
+        </div> 
     </div>
 
     <!-- New Section --> 
@@ -371,14 +428,74 @@
         <p style="padding-left:20px; padding-right:20px;" >Scroll down to snap to it!</p>
     </section>
 
-    <script>
+  <script>
         function toggleMenu() {
             const navLinks = document.getElementById("navLinks");
             const menuToggle = document.querySelector(".menu-toggle");
             navLinks.classList.toggle("show");
             menuToggle.classList.toggle("rotated");
         }
+
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainHeader');
+            const logo = document.getElementById('logoImage');
+            const snapSection = document.querySelector('.snap-section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const bar1 = document.getElementById('bar1');
+            const bar2 = document.getElementById('bar2');
+            const bar3 = document.getElementById('bar3');
+            const navLinksBefore = document.querySelector('.nav-links');
+            const navLinksBefores = document.querySelector('.nav-links:before');
+
+
+            // Get the vertical scroll position
+            const scrollPosition = window.scrollY;
+
+
+            // Get the top position of the snap section relative to the viewport
+            const snapSectionTop = snapSection.offsetTop;
+
+
+            // Check if the header is overlapping/scrolled past the snap-section
+
+            if (scrollPosition >= snapSectionTop) {
+                header.classList.add('transparent');
+                logo.classList.add('inverted'); // Add the inverted class
+
+                navLinks.forEach(link => {
+                    link.classList.add('black');
+                });
+
+                bar1.classList.add('black');
+                bar2.classList.add('black');
+                bar3.classList.add('black');
+
+                navLinksBefore.classList.add('black-background');
+                navLinksBefores.classList.add('black-backgrounds');
+
+
+            } else {
+                header.classList.remove('transparent');
+                logo.classList.remove('inverted'); // Remove the inverted class
+
+                navLinks.forEach(link => {
+                    link.classList.remove('black');
+                });
+
+                bar1.classList.remove('black');
+                bar2.classList.remove('black');
+                bar3.classList.remove('black');
+
+                navLinksBefore.classList.remove('black-background');
+                navLinksBefores.classList.remove('black-backgrounds');
+
+
+            }
+
+        });
     </script>
+
+
 
 </body>
 </html>
