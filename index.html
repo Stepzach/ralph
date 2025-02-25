@@ -4,131 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Landing Page</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-     <link href="https://fonts.googleapis.com/css?family=Vollkorn:400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Vollkorn:400,400i,700" rel="stylesheet">
     <style>
-
        @font-face {
-    font-family: 'NeueRemanSans';
-    src: url('NeueRemanSans-Regular.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
+        font-family: 'NeueRemanSans';
+        src: url('NeueRemanSans-Regular.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
 
+    body {
+        font-family: 'NeueRemanSans', serif;
+        margin: 0;
+        background-color:black;
+    }
 
-        body {
-            font-family: 'NeueRemanSans', serif;
-            margin: 0;
-           background-color:black;
-        
-        }
+    .hero {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden; /* Ensure image stays within bounds */
+    }
 
-        .hero {
-            position: relative;
-            height: 100vh;
-            width: 100%;
-            overflow: hidden; /* Ensure image stays within bounds */
-        }
-        .hero::before { /* Create a pseudo-element for the fade effect */
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100px; /* Adjust height of fade area */
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
-            z-index: 0; /* Place below header */
-        }
+    .hero::before { /* Create a pseudo-element for the fade effect */
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100px; /* Adjust height of fade area */
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+        z-index: 0; /* Place below header */
+    }
 
-        .hero-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-             
-            object-fit: cover;  /* Cover entire area */
-            z-index: -1;        /* Place behind other content */
-        }
+    .hero-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;  /* Cover entire area */
+        z-index: -1;        /* Place behind other content */
+    }
 
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; 
+        padding: 10px;
+        position: relative; /* Needed for z-index */
+        z-index: 1;           /* Place above background image */
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); /* Gradient background */
+        padding-bottom:30px;
+    } 
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center; 
-            padding: 10px;
-            position: relative; /* Needed for z-index */
-            z-index: 1;           /* Place above background image */
-             background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); /* Gradient background */
-           padding-bottom:30px;
-        } 
+    .logo {
+        width: 650px;
+        height: 100px;
+        overflow: hidden;
+        object-fit: cover;
+        z-index: 1000000;  
+    }
 
-        .logo {
-          width: 650px;
-height: 100px;
-overflow: hidden;
-object-fit: cover;
- z-index: 1000000;  
-        }
+    .nav-links {
+        display: flex;
+        list-style: none;
+        margin-right: 40px;
+        padding: 0;
+    }
 
+    .nav-links li {
+        margin-left: 40px;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: white; /* Or any other color */
+        font-size: 25px;
+    }
+
+    /* Mobile Menu Styles */
+    .menu-toggle {
+        display: none; /* Hide on larger screens */
+        position: absolute;
+        top: 45px;
+        right: 40px;
+        cursor: pointer;
+        z-index: 2;  /* Ensure it's above everything else */
+        transition: transform 0.3s ease-in-out; /* Add transition for smooth animation */
+        transform-origin: center; /* Set rotation origin to center */
+    }
+
+    .bar {
+        width: 20px;
+        height: 3px;
+        background-color: white; /* Or your desired color */
+        margin: 5px 0;
+    }
+
+    .menu-toggle.rotated { /* Add class for rotated state */
+        transform: rotate(90deg);
+    }
+
+    @media (max-width: 768px) {  /* Adjust breakpoint as needed */
         .nav-links {
-            display: flex;
-            list-style: none;
-          margin-right: 40px;
-            padding: 0;
-        }
-
-        .nav-links li {
-            margin-left: 40px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: white; /* Or any other color */
-            font-size: 25px;
-        }
-
-
-        /* Mobile Menu Styles */
-        .menu-toggle {
-            display: none; /* Hide on larger screens */
+            display: none;
+            flex-direction: column;
+            background-color: rgba(0, 0, 0, 1); /* Semi-transparent background */
             position: absolute;
-            top: 45px;
-            right: 40px;
-            cursor: pointer;
-            z-index: 2;  /* Ensure it's above everything else */
-             transition: transform 0.3s ease-in-out; /* Add transition for smooth animation */
-            transform-origin: center; /* Set rotation origin to center */
+            top: 68px; /* Adjust as needed */
+            left: 0;
+            width: 100%;
+            padding: 0px;
+            text-align: center;
+            animation: slideDown 0.2s ease-in-out;
         }
-        .bar {
-            width: 20px;
-            height: 3px;
-            background-color: white; /* Or your desired color */
-            margin: 5px 0;
-        }
-
- .menu-toggle.rotated { /* Add class for rotated state */
-            transform: rotate(90deg);
-        }
-
-        @media (max-width: 768px) {  /* Adjust breakpoint as needed */
-            .nav-links {
-                display: none;
-                flex-direction: column;
-               
-                background-color: rgba(0, 0, 0, 1); /* Semi-transparent background */
-                position: absolute;
-                top: 68px; /* Adjust as needed */
-                left: 0;
-                width: 100%;
-                padding: 0px;
-              
-                text-align: center;
-               animation: slideDown 0.2s ease-in-out;
-
-            }
-            
-            .nav-links:before { /* Create a pseudo-element for the fade effect */
+        
+        .nav-links:before { /* Create a pseudo-element for the fade effect */
             content: "";
             position: absolute;
             top: -500px;
@@ -137,310 +130,253 @@ object-fit: cover;
             height: 3000px; /* Adjust height of fade area */
             background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
             z-index: -2; /* Place below header */
-           
         }
 
-            .nav-links li {
+        .nav-links li {
             margin-left: 0px !important;
-             padding-bottom:15px !important; 
-             margin-right: 0px;
-             padding:0px;
+            padding-bottom:15px !important; 
+            margin-right: 0px;
+            padding:0px;
             border-bottom: solid 1px white;
-            
-            
         }
-         .nav-links a {
-        
-         margin:Opx ;
-         font-size:40px !important;
-          }   
 
-             @keyframes slideDown {
-                from {
-                    transform: translateY(-100%);
-                }
-                to {
-                    transform: translateY(0%);
-                }
-               
-           
-            }
- .social-icons {
-                display: flex !important; /* Show on mobile */
-                margin-top: 10px; /* Add some spacing */
-                justify-content: center;
-                
-             
-            }
+        .nav-links a {
+            margin:Opx ;
+            font-size:40px !important;
+        }   
 
-            .nav-links.show {
-                display: flex;
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
             }
-
-
-            .nav-links li {
-                margin: 10px 0;
-            }
-            .menu-toggle {
-                display: block;
+            to {
+                transform: translateY(0%);
             }
         }
-        
-        
-          @media (max-width: 950px) { 
-            .nav-links a {
-                font-size: 20px;
 
-            }
-             .nav-links li {
+        .social-icons {
+            display: flex !important; /* Show on mobile */
+            margin-top: 10px; /* Add some spacing */
+            justify-content: center;
+        }
+
+        .nav-links.show {
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 10px 0;
+        }
+
+        .menu-toggle {
+            display: block;
+        }
+    }
+        
+    @media (max-width: 950px) { 
+        .nav-links a {
+            font-size: 20px;
+        }
+        .nav-links li {
             margin-left: 20px;
         } 
-         }
+    }
          
-          @media (max-width: 815px) { 
-            .header {
-                padding-left: 1px;
-                  padding-right: 1px;
+    @media (max-width: 815px) { 
+        .header {
+            padding-left: 1px;
+            padding-right: 1px;
         } 
-         }
+    }
          
-           @media (max-width: 701px) { 
-         .logo {
-          width: 550px;
+    @media (max-width: 701px) { 
+        .logo {
+            width: 550px;
+        }
+    }
 
-        } }
-        @media (max-width: 598px) { 
-         .logo {
-          width: 450px;
- 
+    @media (max-width: 598px) { 
+        .logo {
+            width: 450px;
         } 
-         .hero-image {
-         height:90%;
-         }
-         }
+        .hero-image {
+            height:90%;
+        }
+    }
         
-        
-        @media (max-width: 506px) { 
-         .logo {
-          width: 350px;
-          height:auto;
-
+    @media (max-width: 506px) { 
+        .logo {
+            width: 350px;
+            height:auto;
         } 
-         .header {
-                padding-top: 0px;
-                 padding-bottom:60px;
-         }
-        
-        
-         .menu-toggle {
-           
+        .header {
+            padding-top: 0px;
+            padding-bottom:60px;
+        }
+    
+        .menu-toggle {
             top: 23px;
             right: 40px;
-           
         }
+
         .hero-image {
-         height:80%;
-         top:40px;
-         }
+            height:80%;
+            top:40px;
         }
-         @media (max-width: 423px) { 
-         .menu-toggle {
-           
-           
+    }
+
+    @media (max-width: 423px) { 
+        .menu-toggle {
             right: 40px;
-           
         }
         .hero-image {
-         height:70%;
-         }
+            height:70%;
+        }
+    }
          
+    @media (min-width: 422px) { 
+        .text19 {
+            top: -250px !important;  
+        }
+    }
+
+    @media (min-width: 507px) { 
+        .text19 {
+            top: -150px !important;  
+        }
+    }
+
+    @media (min-width: 567px) { 
+        .text19 {
+            top: -100px !important;  
+        }
+    }
+
+    @media (min-width: 768px) { 
+        .text19 {
+            display:none !important;
+        }
+    }
          
-         
-         
-         
-         }
-         
-          @media (min-width: 422px) { 
-          
-         .text19 {
-         
-          top: -250px !important;  
-          
-         
-          }
-         }
-          
-         
-          @media (min-width: 507px) { 
-          
-         .text19 {
-         
-          top: -150px !important;  
-          
-         
-          }
-         }
-          @media (min-width: 567px) { 
-          
-         .text19 {
-         
-          top: -100px !important;  
-          
-         
-          }
-         }
-           @media (min-width: 768px) { 
-          
-         .text19 {
-         
-         display:none !important;
-          
-         
-          }
-         }
-         
-         
-        @media (max-width: 405px) { 
-         .menu-toggle {
-           
-           
+    @media (max-width: 405px) { 
+        .menu-toggle {
             right: 20px;
-           
         }
         .hero-image {
-         height:60%;
-         }
-         }
-         
-         @media (max-width: 386px) { 
-         .logo {
-          width: 320px;
+            height:60%;
+        }
+    }
+
+    @media (max-width: 386px) { 
+        .logo {
+            width: 320px;
         }
         .menu-toggle { 
-           
             top: 20.5px;
-            
-           
         }
-        
-        }
+    }
          
-        @media (max-width: 355px) { 
-         .logo {
-          width: 300px;
+    @media (max-width: 355px) { 
+        .logo {
+            width: 300px;
         }
         .menu-toggle { 
-           
             top: 19px;
-            
-           
         }
+    }
         
-        }
-        
-         @media (max-width: 339px) { 
-         .logo {
-          width: 280px;
+    @media (max-width: 339px) { 
+        .logo {
+            width: 280px;
         }
         .menu-toggle { 
-           
             top: 17.5px;
-            
-           
         }
-        
-        }
-         .social-icons {
-           
-            gap: 25px;
-           margin-top:16px; 
-           margin-left:6px; 
-            justify-content: start;
-            align-items: center;
-        }
-        .social-icons a { 
-            text-decoration: none;
-            font-size: 22px;
-            color: white;
-            transition: color 0.3s ease-in-out;
-        }
+    }
 
+    .social-icons {
+        gap: 25px;
+        margin-top:16px; 
+        margin-left:6px; 
+        justify-content: start;
+        align-items: center;
+    }
 
+    .social-icons a { 
+        text-decoration: none;
+        font-size: 22px;
+        color: white;
+        transition: color 0.3s ease-in-out;
+    }
 
-    </style>
+    /* New Section Styles */
+    .snap-section {
+        width: 100%;
+        height: 100vh;
+        background-color: white;  /* Example background */
+        color: black;
+       
+        justify-content: center;
+        align-items: center;
+        scroll-snap-align: start; /* Key property for snap scrolling */
+    }
+
+    /* Enable snap scrolling on the container (body in this case) */
+    body {
+        scroll-snap-type: y mandatory; /* Mandatory ensures a full snap */
+        overflow-y: scroll;  /* Enable vertical scrolling */
+    }
+</style>
 </head>
 <body>
 
     <div class="hero">
         <img src="https://static.wixstatic.com/media/cc3be5_52c2463023be4f8aa9dcb33f3504f978~mv2.jpg/v1/fill/w_592,h_394,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_4105_JPG.jpg" alt="Hero Image" class="hero-image">
-<div style="position: fixed; width:100%">
-        <div class="header">
-             <div class="menu-toggle" onclick="toggleMenu()">
-                <div class="bar"></div>
-                <div class="bar" style=" width: 15px;"></div>
-                <div class="bar"></div> 
+        <div style="position: fixed; width:100%">
+            <div class="header">
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <div class="bar"></div>
+                    <div class="bar" style=" width: 15px;"></div>
+                    <div class="bar"></div> 
+                </div>
+                <img src="https://stepzach.github.io/ralph/RH_Logo_White.png" alt="Logo" class="logo">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#">Mixes</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Music</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
             </div>
-            <img src="https://stepzach.github.io/ralph/RH_Logo_White.png" alt="Logo" class="logo">
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#">Mixes</a></li>
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Music</a></li>
-                <li><a href="#">Contact</a></li>
-               
-            </ul>
-                       
         </div>
-
-
-
     </div>
 
-</div>
-<div class="text19" style="
-    z-index: -1;  
-    position: relative; 
-    top: -290px;  
-   background: linear-gradient(to bottom,  
-        rgba(0, 0, 0, 0) 0%,    /* Solid black at the top */ 
-        rgba(0, 0, 0, 0.4) 6%,
-        rgba(0, 0, 0, 0.7) 10%,
-         rgba(0, 0, 0, 0.9) 15%,
-       rgba(0, 0, 0, 1) 20%,
-        rgba(0, 0, 0, 1) 100%);   /* Fully transparent at the bottom */
-    padding: 10px;
-    padding-top: 20px;">
-    <p style="color: white; margin-top:30px;">
-   
-        Ralph Halkett is a 19-year-old DJ, producer, and event promoter with a decade of experience. 
-        Having played at top clubs, beach clubs, and luxury venues across Europe, he’s now taking 
-        international bookings for Summer 2025.
-    </p>
+    <div class="text19" style="z-index: -1; position: relative; top: -290px; background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 6%, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0.9) 15%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 100%); padding: 10px; padding-top: 20px;">
+        <p style="color: white; margin-top:30px;">
+            Ralph Halkett is a 19-year-old DJ, producer, and event promoter with a decade of experience. 
+            Having played at top clubs, beach clubs, and luxury venues across Europe, he’s now taking 
+            international bookings for Summer 2025.
+        </p> 
 
+        <div class="social-icons">
+            <a href="#" class="icon" style="color:white;" ><i class="fab fa-instagram"></i></a>
+            <a href="#" class="icon" style="color:white;" ><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="icon" style="color:white;" ><i class="fab fa-soundcloud"></i></a>
+            <a href="#" class="icon" style="color:white;" ><i class="fab fa-spotify"></i></a>
+        </div>
+    </div>
 
- <div class="social-icons">
-                 <a href="#" class="icon" style="color:white;" ><i class="fab fa-instagram"></i></a>
-                <a href="#" class="icon" style="color:white;" ><i class="fab fa-tiktok"></i></a>
-          
-                 
-                <a href="#" class="icon" style="color:white;" ><i class="fab fa-soundcloud"></i></a>
-                
-                <a href="#" class="icon" style="color:white;" ><i class="fab fa-spotify"></i></a>
-               
-            </div>
-</div>
+    <!-- New Section --> 
+    <section class="snap-section">
+        <h1 style="text-align:center; padding-top:20px;">Mixes</h1>
+        <p style="padding-left:20px; padding-right:20px;" >Scroll down to snap to it!</p>
+    </section>
 
     <script>
-       function toggleMenu() {
+        function toggleMenu() {
             const navLinks = document.getElementById("navLinks");
-            const menuToggle = document.querySelector(".menu-toggle"); // Select the menu toggle
-             
+            const menuToggle = document.querySelector(".menu-toggle");
             navLinks.classList.toggle("show");
-
-           
             menuToggle.classList.toggle("rotated");
-            
-           
-           
         }
     </script>
 
