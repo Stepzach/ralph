@@ -107,6 +107,7 @@
         display: none; /* Hide on larger screens */
         position: absolute;
         top: 45px;
+        
         right: 40px;
         cursor: pointer;
         z-index: 2;  /* Ensure it's above everything else */
@@ -139,10 +140,12 @@
             flex-direction: column;
             background-color: rgba(0, 0, 0, 1); /* Semi-transparent background */
             position: absolute;
-            top: 68px; /* Adjust as needed */
+           top: 0px;
+             padding-top: 68px; /* Adjust as needed */
+              padding-bottom: 968px; /* Adjust as needed */
             left: 0;
             width: 100%;
-            padding: 0px;
+           
             text-align: center;
             animation: slideDown 0.2s ease-in-out;
         }
@@ -283,7 +286,7 @@
     @media (min-width: 507px) { 
         .text19 {
             top: -150px !important;  
-        }
+        } 
          .snap-section {
             top:-160px !important; 
         }
@@ -450,15 +453,20 @@
 
             // Get the vertical scroll position
             const scrollPosition = window.scrollY;
-
+            
+ 
 
             // Get the top position of the snap section relative to the viewport
             const snapSectionTop = snapSection.offsetTop;
+            
+            
+           const offset = 50; // Adjust this value as needed (pixels)
+           const triggerPoint = snapSectionTop - offset;
 
 
             // Check if the header is overlapping/scrolled past the snap-section
 
-            if (scrollPosition >= snapSectionTop) {
+            if (scrollPosition >= triggerPoint) {
                 header.classList.add('transparent');
                 logo.classList.add('inverted'); // Add the inverted class
 
