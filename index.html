@@ -63,6 +63,7 @@
     } 
 
     .logo {
+    cursor: pointer; /* Make it look clickable */
         width: 650px;
         height: 100px;
         overflow: hidden;
@@ -393,7 +394,7 @@
 </head>
 <body>
 
-    <div class="hero">
+    <div class="hero" >
         <img src="https://static.wixstatic.com/media/cc3be5_52c2463023be4f8aa9dcb33f3504f978~mv2.jpg/v1/fill/w_592,h_394,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_4105_JPG.jpg" alt="Hero Image" class="hero-image">
         <div style="position: fixed; width:100%">
             <div class="header" id="mainHeader">
@@ -402,12 +403,12 @@
                     <div class="bar" id="bar2" style=" width: 15px;"></div>
                     <div class="bar" id="bar3"></div> 
                 </div>
-                <img src="https://stepzach.github.io/ralph/RH_Logo_White.png" alt="Logo" class="logo" id="logoImage">
+                <img src="https://stepzach.github.io/ralph/RH_Logo_White.png" alt="Logo" class="logo" id="logoImage" >
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="#">Mixes</a></li>
-                    <li><a href="#">Gallery</a></li>
-                    <li><a href="#">Music</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#mixes">Mixes</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#music">Music</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -429,8 +430,8 @@
     </div>
 
     <!-- New Section --> 
-    <section class="snap-section">
-        <h1 style="text-align:center; padding-top:20px;">Mixes</h1>
+    <section class="snap-section" id="mixes">
+        <h1 style="text-align:center; padding-top:20px; font-size:30px;">MIXES</h1>
         <p style="padding-left:20px; padding-right:20px;" >Some text , description ....</p>
         <div style="padding:10px;">
         
@@ -444,15 +445,65 @@ url=https%3A//api.soundcloud.com/tracks/1847643111&color=ff5500"></iframe><div s
         
         
         </div>
+        
     </section>
-
+  <!-- New Section --> 
+    <section class="snap-section" id="gallery" style="top:-370px !important;">
+        <h1 style="text-align:center; padding-top:20px; font-size:30px;">GALLERY</h1>
+        <p style="padding-left:20px; padding-right:20px;" >Some text , description ....</p>
+        <div style="padding:10px;">
+        
+       
+        </div>
+        
+    </section>
   <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById("navLinks");
-            const menuToggle = document.querySelector(".menu-toggle");
-            navLinks.classList.toggle("show");
-            menuToggle.classList.toggle("rotated");
-        }
+  function toggleMenu() {
+    const navLinks = document.getElementById("navLinks");
+    const menuToggle = document.querySelector(".menu-toggle");
+    navLinks.classList.toggle("show");
+    menuToggle.classList.toggle("rotated");
+}
+       document.addEventListener('DOMContentLoaded', function() {
+    // Scroll to Top on Logo Click
+    const logo = document.getElementById('logoImage');
+    logo.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Smooth Scrolling for Navigation Links
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                 // Optionally close the menu after clicking (if you're using toggleMenu)
+                 const navLinksElement = document.getElementById("navLinks");
+                 if (navLinksElement.classList.contains("show")) {
+                   // Assuming toggleMenu is defined elsewhere. You might need to import it or define it here.
+                   // Example:
+                   function toggleMenu() {
+                       const navLinks = document.getElementById("navLinks");
+                       navLinks.classList.toggle("show");
+                   }
+                   toggleMenu();
+                 }
+            }
+        });
+    });
+});
 
         window.addEventListener('scroll', function() {
             const header = document.getElementById('mainHeader');
