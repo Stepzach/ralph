@@ -1211,7 +1211,7 @@ const embeds = document.querySelectorAll('.soundcloud-embed');
 window.addEventListener("scroll", function() {
     let safeArea = document.querySelector(".safe-area");
 
-    if (window.scrollY > 200) {
+    if (window.scrollY > 600) {
         safeArea.style.backgroundColor = "white";
     } else {
         safeArea.style.backgroundColor = "black";
@@ -1219,7 +1219,7 @@ window.addEventListener("scroll", function() {
 });
 
 window.addEventListener("scroll", function() {
-    if (window.scrollY > 200) {
+    if (window.scrollY > 600) {
         document.querySelector("meta[name=theme-color]").setAttribute("content", "white");
     } else {
         document.querySelector("meta[name=theme-color]").setAttribute("content", "black");
