@@ -704,7 +704,7 @@ function initializeCarousel(container, track, items, itemsPerView) {
         track.scrollLeft = scrollLeft - walk;
     }
 
-   function dragEnd() {
+    function dragEnd() {
         if (!isDragging) {
             return;
         }
@@ -712,23 +712,54 @@ function initializeCarousel(container, track, items, itemsPerView) {
         track.classList.remove('dragging');
         track.style.scrollSnapType = 'x mandatory'; // Re-enable scroll snap after dragging
 
-        // Calculate which "page" we've landed on
         const currentScroll = track.scrollLeft;
-        const page = Math.round(currentScroll / itemWidth);
+        let page = Math.round(currentScroll / itemWidth); // Closest page
 
-        // Adjust the scroll position to simulate looping
+        const scrollDelta = currentScroll - scrollLeft; // How much we scrolled
+        const threshold = itemWidth * 0.1; // 10% of item width
 
+        if (Math.abs(scrollDelta) > threshold) {
+          // Significant scroll, snap to the next item
+          if (scrollDelta > 0) {
+            page = Math.floor(currentScroll / itemWidth) + 1; // Next item
+          } else {
+            page = Math.ceil(currentScroll / itemWidth) - 1;  // Previous item
+          }
+        }
+
+        //Adjust the scroll position to simulate looping
         if (page <= 0) {
-            // Scrolled past the beginning, go to the end
-            track.scrollLeft = itemWidth * itemCount; // Last "real" item
+            track.scrollLeft = itemWidth * itemCount;
         } else if (page > itemCount) {
-            // Scrolled past the end, go to the beginning
-            track.scrollLeft = itemWidth * itemsPerView; // First "real" item
+            track.scrollLeft = itemWidth * itemsPerView;
+        } else {
+            const snapTo = page * itemWidth;
+            animateToPosition(snapTo); // Use animation for smooth transition
         }
 
         startAutoScroll();
     }
 
+    function animateToPosition(position) {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      function smoothScroll() {
+        const currentScrollLeft = track.scrollLeft;
+        const scrollDifference = position - currentScrollLeft;
+        const scrollStep = scrollDifference / 10;
+
+        if (Math.abs(scrollDifference) > 0.5) {
+          track.scrollLeft += scrollStep;
+          animationFrame = requestAnimationFrame(smoothScroll);
+        } else {
+          track.scrollLeft = position;
+          isAnimating = false;
+        }
+      }
+
+      smoothScroll();
+    }
 
     container.addEventListener('mousedown', dragStart);
     container.addEventListener('touchstart', dragStart);
@@ -740,86 +771,81 @@ function initializeCarousel(container, track, items, itemsPerView) {
     container.addEventListener('mouseleave', dragEnd);
     container.addEventListener('touchend', dragEnd);
 
-
     track.addEventListener('scroll', () => {
       if (isAnimating) return;
 
       const scrollPosition = track.scrollLeft;
-      const beginningOffset = itemWidth * itemsPerView; // Offset for cloned items at the beginning
-      const endOffset = itemWidth * (itemCount + itemsPerView); // Offset for cloned items at the end
-
+      const beginningOffset = itemWidth * itemsPerView;
+      const endOffset = itemWidth * (itemCount + itemsPerView);
 
       if (scrollPosition <= 0) {
-
-          isAnimating = true;
-          track.scrollLeft = endOffset - beginningOffset;
-          requestAnimationFrame(() => isAnimating = false);
-
+        isAnimating = true;
+        track.scrollLeft = endOffset - beginningOffset;
+        requestAnimationFrame(() => isAnimating = false);
       } else if (scrollPosition >= endOffset) {
-
-          isAnimating = true;
-          track.scrollLeft = beginningOffset;
-           requestAnimationFrame(() => isAnimating = false);
+        isAnimating = true;
+        track.scrollLeft = beginningOffset;
+        requestAnimationFrame(() => isAnimating = false);
       }
-  });
+    });
 
-  // AUTOSCROLL FUNCTION
-  let autoScrollInterval;
+    // AUTOSCROLL FUNCTION
+    let autoScrollInterval;
 
-  function startAutoScroll() {
-       if (autoScrollInterval) {
-          clearInterval(autoScrollInterval); // Clear existing interval if any
-       }
-
-
-      function animateScroll() {
-          if (!isDragging && !isAnimating) {  // Only scroll if not dragging or animating
-
-              isAnimating = true;
-
-              const targetScrollLeft = track.scrollLeft + itemWidth;
-
-              function smoothScroll() {
-                  const currentScrollLeft = track.scrollLeft;
-                  const scrollDifference = targetScrollLeft - currentScrollLeft;
-                  const scrollStep = scrollDifference / 10; // Adjust divisor for speed
-
-                  if (Math.abs(scrollDifference) > 0.5) { // Stop if close enough
-
-                      track.scrollLeft += scrollStep;
-                      animationFrame = requestAnimationFrame(smoothScroll);
-                  } else {
-                      track.scrollLeft = targetScrollLeft;
-                      isAnimating = false;
-                  }
-              }
-
-              smoothScroll();
-
-              //Use a timeout to prevent animation conflict
-              setTimeout(()=> {
-                 isAnimating = false;
-              }, 300); // Adjust time to match CSS transition duration to avoid flickering.
-          }
-      }
+    function startAutoScroll() {
+         if (autoScrollInterval) {
+            clearInterval(autoScrollInterval); // Clear existing interval if any
+         }
 
 
+        function animateScroll() {
+            if (!isDragging && !isAnimating) {  // Only scroll if not dragging or animating
 
-      autoScrollInterval = setInterval(animateScroll, 6000); // Scroll every 6 seconds (6000 milliseconds)
-  }
+                isAnimating = true;
 
-  function stopAutoScroll() {
-      clearInterval(autoScrollInterval);
-      cancelAnimationFrame(animationFrame); // Also cancel any ongoing animation frame
-  }
+                const targetScrollLeft = track.scrollLeft + itemWidth;
 
-  startAutoScroll();
+                function smoothScroll() {
+                    const currentScrollLeft = track.scrollLeft;
+                    const scrollDifference = targetScrollLeft - currentScrollLeft;
+                    const scrollStep = scrollDifference / 10; // Adjust divisor for speed
 
-  // Stop auto scroll on hover or touch
-  container.addEventListener('mouseenter', stopAutoScroll);
-  container.addEventListener('mouseleave', startAutoScroll);
-  container.addEventListener('touchstart', stopAutoScroll);
-  container.addEventListener('touchend', startAutoScroll);
+                    if (Math.abs(scrollDifference) > 0.5) { // Stop if close enough
+
+                        track.scrollLeft += scrollStep;
+                        animationFrame = requestAnimationFrame(smoothScroll);
+                    } else {
+                        track.scrollLeft = targetScrollLeft;
+                        isAnimating = false;
+                    }
+                }
+
+                smoothScroll();
+
+                //Use a timeout to prevent animation conflict
+                setTimeout(()=> {
+                   isAnimating = false;
+                }, 300); // Adjust time to match CSS transition duration to avoid flickering.
+            }
+        }
+
+
+
+        autoScrollInterval = setInterval(animateScroll, 6000); // Scroll every 6 seconds (6000 milliseconds)
+    }
+
+    function stopAutoScroll() {
+        clearInterval(autoScrollInterval);
+        cancelAnimationFrame(animationFrame); // Also cancel any ongoing animation frame
+    }
+
+    startAutoScroll();
+
+    // Stop auto scroll on hover or touch
+    container.addEventListener('mouseenter', stopAutoScroll);
+    container.addEventListener('mouseleave', startAutoScroll);
+    container.addEventListener('touchstart', stopAutoScroll);
+    container.addEventListener('touchend', startAutoScroll);
 }
 
 // Initialize the carousels
