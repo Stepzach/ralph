@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Landing Page</title>
+    <meta name="theme-color" content="black">
+    <title>Ralph Halkett</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css?family=Vollkorn:400,400i,700" rel="stylesheet">
     <style>
@@ -698,10 +699,31 @@
 
 }
 
+   :root {
+    --safe-area-bg: black; /* Default background */
+}
+
+
+
+
+.safe-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: env(safe-area-inset-top, 30px); /* Covers the iPhone notch */
+    background-color: var(--safe-area-bg);
+    z-index: 9999;
+    transition: background-color 0.3s ease;
+}
+
+   
    
 </style>
 </head>
 <body>
+<div class="safe-area"></div>
+
 <div style="background-color: black; z-index: -4; height: 100px; width: 100%; position: absolute; top: 0; left: 0;"></div>
 
 <div style="height:80cm; overflow: hidden !important" >
@@ -1168,8 +1190,27 @@ const embeds = document.querySelectorAll('.soundcloud-embed');
       });
   });
 
+window.addEventListener("scroll", function() {
+    let safeArea = document.querySelector(".safe-area");
+
+    if (window.scrollY > 200) {
+        safeArea.style.backgroundColor = "white";
+    } else {
+        safeArea.style.backgroundColor = "black";
+    }
+});
+
+window.addEventListener("scroll", function() {
+    if (window.scrollY > 200) {
+        document.querySelector("meta[name=theme-color]").setAttribute("content", "white");
+    } else {
+        document.querySelector("meta[name=theme-color]").setAttribute("content", "black");
+    }
+});
         </script>
      
+
+
 
 
 
