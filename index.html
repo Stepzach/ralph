@@ -644,7 +644,7 @@ url=https%3A//api.soundcloud.com/tracks/1847643111&color=ff5500"></iframe><div s
 
         });
         
-     const carouselContainer = document.querySelector('.carousel-container');
+    const carouselContainer = document.querySelector('.carousel-container');
 const carouselTrack = document.querySelector('.carousel-track');
 const carouselItems = document.querySelectorAll('.carousel-item');
 const doubleCarouselContainer = document.querySelector('.double-carousel-container');
@@ -682,9 +682,10 @@ function initializeCarousel(container, track, items, itemsPerView) {
     let isDragging = false;
     let isAnimating = false; // Prevent multiple animations
     let animationFrame;
+    let currentItemIndex = itemsPerView; // Start at the first "real" item, accounting for cloned items
 
-    // START ON 5th IMAGE
-    const initialPosition = itemWidth * (5 + itemsPerView -1);  // Adjusted for itemsPerView
+    // START ON 5th IMAGE -- Corrected Logic
+    const initialPosition = itemWidth * currentItemIndex; // Adjusted for itemsPerView
     track.scrollLeft = initialPosition;
 
 
@@ -715,29 +716,42 @@ function initializeCarousel(container, track, items, itemsPerView) {
         const currentScroll = track.scrollLeft;
         let page = Math.round(currentScroll / itemWidth); // Closest page
 
+
         const scrollDelta = currentScroll - scrollLeft; // How much we scrolled
-        const threshold = itemWidth * 0.1; // 10% of item width
+        const threshold = itemWidth * 0.00000001; // 10% of item width
 
         if (Math.abs(scrollDelta) > threshold) {
           // Significant scroll, snap to the next item
           if (scrollDelta > 0) {
-            page = Math.floor(currentScroll / itemWidth) + 1; // Next item
+            //Scrolling RIGHT
+            currentItemIndex++;
           } else {
-            page = Math.ceil(currentScroll / itemWidth) - 1;  // Previous item
+            //Scrolling LEFT
+            currentItemIndex--;
           }
-        }
-
-        //Adjust the scroll position to simulate looping
-        if (page <= 0) {
-            track.scrollLeft = itemWidth * itemCount;
-        } else if (page > itemCount) {
-            track.scrollLeft = itemWidth * itemsPerView;
         } else {
-            const snapTo = page * itemWidth;
-            animateToPosition(snapTo); // Use animation for smooth transition
+             // No significant scroll, stay on the current item (or adjust slightly towards it)
+            const targetPosition = currentItemIndex * itemWidth;
+            animateToPosition(targetPosition);
+            startAutoScroll();
+            return; //Early return, don't snap in this case
+
         }
 
+         // Keep currentItemIndex within bounds. This is CRITICAL.
+        if (currentItemIndex < itemsPerView) {
+            currentItemIndex = itemCount + itemsPerView - 1; // Jump to the equivalent item on the right side
+            track.scrollLeft = itemWidth * currentItemIndex;
+        } else if (currentItemIndex >= itemCount + itemsPerView) {
+            currentItemIndex = itemsPerView;  //Jump to the equivalent item on the left side
+            track.scrollLeft = itemWidth * currentItemIndex;
+
+        }
+
+        const snapTo = currentItemIndex * itemWidth; // Snap to the corrected index
+        animateToPosition(snapTo); // Use animation for smooth transition
         startAutoScroll();
+
     }
 
     function animateToPosition(position) {
@@ -771,6 +785,7 @@ function initializeCarousel(container, track, items, itemsPerView) {
     container.addEventListener('mouseleave', dragEnd);
     container.addEventListener('touchend', dragEnd);
 
+
     track.addEventListener('scroll', () => {
       if (isAnimating) return;
 
@@ -778,16 +793,19 @@ function initializeCarousel(container, track, items, itemsPerView) {
       const beginningOffset = itemWidth * itemsPerView;
       const endOffset = itemWidth * (itemCount + itemsPerView);
 
-      if (scrollPosition <= 0) {
-        isAnimating = true;
-        track.scrollLeft = endOffset - beginningOffset;
-        requestAnimationFrame(() => isAnimating = false);
-      } else if (scrollPosition >= endOffset) {
-        isAnimating = true;
-        track.scrollLeft = beginningOffset;
-        requestAnimationFrame(() => isAnimating = false);
-      }
+        if (scrollPosition <= 0) {
+           //Quickly adjust currentItemIndex *before* setting scrollLeft.
+           currentItemIndex = itemCount + itemsPerView - 1;
+           track.scrollLeft = itemWidth * currentItemIndex;
+
+       } else if (scrollPosition >= endOffset) {
+
+           currentItemIndex = itemsPerView;
+           track.scrollLeft = itemWidth * currentItemIndex;
+       }
     });
+
+
 
     // AUTOSCROLL FUNCTION
     let autoScrollInterval;
@@ -803,7 +821,16 @@ function initializeCarousel(container, track, items, itemsPerView) {
 
                 isAnimating = true;
 
-                const targetScrollLeft = track.scrollLeft + itemWidth;
+                currentItemIndex++;
+
+               // Handle the looping of currentItemIndex for auto scroll as well
+               if (currentItemIndex >= itemCount + itemsPerView) {
+                   currentItemIndex = itemsPerView;
+
+               }
+
+                const targetScrollLeft = itemWidth * currentItemIndex;
+
 
                 function smoothScroll() {
                     const currentScrollLeft = track.scrollLeft;
