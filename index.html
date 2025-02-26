@@ -644,7 +644,7 @@ url=https%3A//api.soundcloud.com/tracks/1847643111&color=ff5500"></iframe><div s
 
         });
         
-        const carouselContainer = document.querySelector('.carousel-container');
+     const carouselContainer = document.querySelector('.carousel-container');
 const carouselTrack = document.querySelector('.carousel-track');
 const carouselItems = document.querySelectorAll('.carousel-item');
 const doubleCarouselContainer = document.querySelector('.double-carousel-container');
@@ -681,6 +681,7 @@ function initializeCarousel(container, track, items, itemsPerView) {
     let scrollLeft = 0;
     let isDragging = false;
     let isAnimating = false; // Prevent multiple animations
+    let animationFrame;
 
     // START ON 5th IMAGE
     const initialPosition = itemWidth * (5 + itemsPerView -1);  // Adjusted for itemsPerView
@@ -689,15 +690,16 @@ function initializeCarousel(container, track, items, itemsPerView) {
 
     function dragStart(event) {
         isDragging = true;
-        startX = (event.clientX || event.touches[0].clientX) - track.offsetLeft;
+        startX = (event.clientX || (event.touches && event.touches[0].clientX)) - track.offsetLeft;
         scrollLeft = track.scrollLeft;
         track.classList.add('dragging');
         track.style.scrollSnapType = 'none'; // Disable scroll snap during dragging
+        cancelAnimationFrame(animationFrame); // Stop auto-scroll animation if dragging starts
     }
 
     function dragMove(event) {
         if (!isDragging) return;
-        const currentX = (event.clientX || event.touches[0].clientX) - track.offsetLeft;
+        const currentX = (event.clientX || (event.touches && event.touches[0].clientX)) - track.offsetLeft;
         const walk = (currentX - startX) * 1; //scroll-fast speed
         track.scrollLeft = scrollLeft - walk;
     }
@@ -723,6 +725,8 @@ function initializeCarousel(container, track, items, itemsPerView) {
             // Scrolled past the end, go to the beginning
             track.scrollLeft = itemWidth * itemsPerView; // First "real" item
         }
+
+        startAutoScroll();
     }
 
 
@@ -763,22 +767,50 @@ function initializeCarousel(container, track, items, itemsPerView) {
   let autoScrollInterval;
 
   function startAutoScroll() {
-      autoScrollInterval = setInterval(() => {
+       if (autoScrollInterval) {
+          clearInterval(autoScrollInterval); // Clear existing interval if any
+       }
+
+
+      function animateScroll() {
           if (!isDragging && !isAnimating) {  // Only scroll if not dragging or animating
 
               isAnimating = true;
-              track.scrollLeft += itemWidth; // Scroll by one item width
+
+              const targetScrollLeft = track.scrollLeft + itemWidth;
+
+              function smoothScroll() {
+                  const currentScrollLeft = track.scrollLeft;
+                  const scrollDifference = targetScrollLeft - currentScrollLeft;
+                  const scrollStep = scrollDifference / 10; // Adjust divisor for speed
+
+                  if (Math.abs(scrollDifference) > 0.5) { // Stop if close enough
+
+                      track.scrollLeft += scrollStep;
+                      animationFrame = requestAnimationFrame(smoothScroll);
+                  } else {
+                      track.scrollLeft = targetScrollLeft;
+                      isAnimating = false;
+                  }
+              }
+
+              smoothScroll();
 
               //Use a timeout to prevent animation conflict
               setTimeout(()=> {
                  isAnimating = false;
               }, 300); // Adjust time to match CSS transition duration to avoid flickering.
           }
-      }, 6000); // Scroll every 6 seconds (6000 milliseconds)
+      }
+
+
+
+      autoScrollInterval = setInterval(animateScroll, 6000); // Scroll every 6 seconds (6000 milliseconds)
   }
 
   function stopAutoScroll() {
       clearInterval(autoScrollInterval);
+      cancelAnimationFrame(animationFrame); // Also cancel any ongoing animation frame
   }
 
   startAutoScroll();
@@ -793,7 +825,6 @@ function initializeCarousel(container, track, items, itemsPerView) {
 // Initialize the carousels
 initializeCarousel(carouselContainer, carouselTrack, carouselItems, 1);
 initializeCarousel(doubleCarouselContainer, doubleCarouselTrack, doubleCarouselItems, 2);
-
     </script>
 
 
