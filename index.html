@@ -447,9 +447,9 @@
 }
 
 .double-carousel-item img {
-  max-width: 100%; /* Leave some margin around the images */
-  min-width: 100%;
-  height: 300px;
+  max-width: 183px; /* Leave some margin around the images */
+  
+  height: 280px;
   object-fit: cover;
   display: block;
   border-radius: 5px;
@@ -511,7 +511,7 @@
     <!-- New Section --> 
     <section class="snap-section" id="mixes">
        
-        <p style="padding-left:20px; padding-right:20px;padding-top:20px;" >Some text , description ....</p>
+        <p style="padding-left:20px; padding-right:20px;padding-top:20px;" >New Mixes</p>
         <div style="padding:10px;">
         
         <iframe width="100%" height="130" scrolling="no" frameborder="no"  src="https://w.soundcloud.com/player/?
@@ -526,9 +526,9 @@ url=https%3A//api.soundcloud.com/tracks/1847643111&color=ff5500"></iframe><div s
         </div>
         
     </section>
- <section class="snap-section" id="gallery" style="top:-370px !important;">
+ <section class="snap-section" id="gallery" style="top:-400px !important;">
        
-        <p style="padding-left:20px; padding-right:20px;" >Some text , description ....</p>
+        <p style="padding-left:20px; padding-right:20px; padding-bottom:20px;" >Gallery</p>
       <div style="width: 100%; margin-left: auto; margin-right: auto;">
  
   <div class="carousel-container">
@@ -578,7 +578,7 @@ url=https%3A//api.soundcloud.com/tracks/1847643111&color=ff5500"></iframe><div s
     // Define custom offsets for each section
     const sectionOffsets = {
         "mixes": 55, // Offset for Section 1
-        "gallery": 80,  // Offset for Section 2
+        "gallery": 25,  // Offset for Section 2
         "music": 120, // Offset for Section 3
         "contact": 60   // Offset for Section 4
     };
@@ -695,260 +695,26 @@ function toggleMenu() {
             }
 
         });
-        </script>
-       <script> 
         
-       const carouselContainer = document.querySelector('.carousel-container');
-const carouselTrack = document.querySelector('.carousel-track');
-const carouselItems = document.querySelectorAll('.carousel-item');
-const doubleCarouselContainer = document.querySelector('.double-carousel-container');
-const doubleCarouselTrack = document.querySelector('.double-carousel-track');
-const doubleCarouselItems = document.querySelectorAll('.double-carousel-item');
+        document.addEventListener("DOMContentLoaded", function () {
+    const carouselTrack = document.querySelector(".carousel-track");
+    const doubleCarouselTrack = document.querySelector(".double-carousel-track");
 
-function initializeCarousel(container, track, items, itemsPerView) {
-    const itemCount = items.length;
-    let itemWidth; // Declare itemWidth here, it needs to be recalculated after layout
-    let currentItemIndex = itemsPerView; // Start at the first "real" item after cloned items
+    // Set initial scroll position (adjust value as needed)
+    const initialPosition = 1120; // Adjust to your preferred starting point
+     const initialPosition2 = 1116; // Adjust to your preferred starting point
 
-    // Function to calculate and set item width.  Call it whenever the layout changes
-    function updateItemWidth() {
-      itemWidth = container.offsetWidth / itemsPerView;
-      items.forEach(item => {
-        item.style.width = `${itemWidth}px`;
-      });
+    if (carouselTrack) {
+        carouselTrack.scrollLeft = initialPosition;
     }
 
-
-    // Clone the items to create a loop
-    const firstItems = Array.from(items).slice(0, itemsPerView);
-    const lastItems = Array.from(items).slice(items.length - itemsPerView);
-
-    firstItems.forEach(item => {
-        const clone = item.cloneNode(true);
-        track.appendChild(clone);
-    });
-
-    lastItems.forEach(item => {
-        const clone = item.cloneNode(true);
-        track.insertBefore(clone, track.firstChild);
-    });
-
-    //Update items NodeList
-    const updatedItems = track.querySelectorAll(items[0].tagName);
-
-    let startX = 0;
-    let scrollLeft = 0;
-    let isDragging = false;
-    let isAnimating = false; // Prevent multiple animations
-    let animationFrame;
-
-
-
-
-    function dragStart(event) {
-        isDragging = true;
-        startX = (event.clientX || (event.touches && event.touches[0].clientX)) - track.offsetLeft;
-        scrollLeft = track.scrollLeft;
-        track.classList.add('dragging');
-        track.style.scrollSnapType = 'none'; // Disable scroll snap during dragging
-        cancelAnimationFrame(animationFrame); // Stop auto-scroll animation if dragging starts
+    if (doubleCarouselTrack) {
+        doubleCarouselTrack.scrollLeft = initialPosition2;
     }
+});
 
-    function dragMove(event) {
-        if (!isDragging) return;
-        const currentX = (event.clientX || (event.touches && event.touches[0].clientX)) - track.offsetLeft;
-        const walk = (currentX - startX) * 1; //scroll-fast speed
-        track.scrollLeft = scrollLeft - walk;
-    }
-
-    function dragEnd() {
-        if (!isDragging) {
-            return;
-        }
-        isDragging = false;
-        track.classList.remove('dragging');
-        track.style.scrollSnapType = 'x mandatory'; // Re-enable scroll snap after dragging
-
-        const currentScroll = track.scrollLeft;
-        let page = Math.round(currentScroll / itemWidth); // Closest page
-
-
-        const scrollDelta = currentScroll - scrollLeft; // How much we scrolled
-        const threshold = itemWidth * 0.1; // 10% of item width
-
-        if (Math.abs(scrollDelta) > threshold) {
-          // Significant scroll, snap to the next item
-          if (scrollDelta > 0) {
-            //Scrolling RIGHT
-            currentItemIndex++;
-          } else {
-            //Scrolling LEFT
-            currentItemIndex--;
-          }
-        } else {
-             // No significant scroll, stay on the current item (or adjust slightly towards it)
-            const targetPosition = currentItemIndex * itemWidth;
-            animateToPosition(targetPosition);
-            startAutoScroll();
-            return; //Early return, don't snap in this case
-
-        }
-
-         // Keep currentItemIndex within bounds. This is CRITICAL.
-        if (currentItemIndex < itemsPerView) {
-            currentItemIndex = itemCount + itemsPerView - 1; // Jump to the equivalent item on the right side
-            track.scrollLeft = itemWidth * currentItemIndex;
-        } else if (currentItemIndex >= itemCount + itemsPerView) {
-            currentItemIndex = itemsPerView;  //Jump to the equivalent item on the left side
-            track.scrollLeft = itemWidth * currentItemIndex;
-
-        }
-
-        const snapTo = currentItemIndex * itemWidth; // Snap to the corrected index
-        animateToPosition(snapTo); // Use animation for smooth transition
-        startAutoScroll();
-
-    }
-
-    function animateToPosition(position) {
-      if (isAnimating) return;
-      isAnimating = true;
-
-      function smoothScroll() {
-        const currentScrollLeft = track.scrollLeft;
-        const scrollDifference = position - currentScrollLeft;
-        const scrollStep = scrollDifference / 10;
-
-        if (Math.abs(scrollDifference) > 0.5) {
-          track.scrollLeft += scrollStep;
-          animationFrame = requestAnimationFrame(smoothScroll);
-        } else {
-          track.scrollLeft = position;
-          isAnimating = false;
-        }
-      }
-
-      smoothScroll();
-    }
-
-    container.addEventListener('mousedown', dragStart);
-    container.addEventListener('touchstart', dragStart);
-
-    container.addEventListener('mousemove', dragMove);
-    container.addEventListener('touchmove', dragMove);
-
-    container.addEventListener('mouseup', dragEnd);
-    container.addEventListener('mouseleave', dragEnd);
-    container.addEventListener('touchend', dragEnd);
-
-
-    track.addEventListener('scroll', () => {
-      if (isAnimating) return;
-
-      const scrollPosition = track.scrollLeft;
-      const beginningOffset = itemWidth * itemsPerView;
-      const endOffset = itemWidth * (itemCount + itemsPerView);
-
-        if (scrollPosition <= 0) {
-           //Quickly adjust currentItemIndex *before* setting scrollLeft.
-           currentItemIndex = itemCount + itemsPerView - 1;
-           track.scrollLeft = itemWidth * currentItemIndex;
-
-       } else if (scrollPosition >= endOffset) {
-
-           currentItemIndex = itemsPerView;
-           track.scrollLeft = itemWidth * currentItemIndex;
-       }
-    });
-
-
-
-    // AUTOSCROLL FUNCTION
-    let autoScrollInterval;
-
-    function startAutoScroll() {
-         if (autoScrollInterval) {
-            clearInterval(autoScrollInterval); // Clear existing interval if any
-         }
-
-
-        function animateScroll() {
-            if (!isDragging && !isAnimating) {  // Only scroll if not dragging or animating
-
-                isAnimating = true;
-
-                currentItemIndex++;
-
-               // Handle the looping of currentItemIndex for auto scroll as well
-               if (currentItemIndex >= itemCount + itemsPerView) {
-                   currentItemIndex = itemsPerView;
-
-               }
-
-                const targetScrollLeft = itemWidth * currentItemIndex;
-
-
-                function smoothScroll() {
-                    const currentScrollLeft = track.scrollLeft;
-                    const scrollDifference = targetScrollLeft - currentScrollLeft;
-                    const scrollStep = scrollDifference / 10; // Adjust divisor for speed
-
-                    if (Math.abs(scrollDifference) > 0.5) { // Stop if close enough
-
-                        track.scrollLeft += scrollStep;
-                        animationFrame = requestAnimationFrame(smoothScroll);
-                    } else {
-                        track.scrollLeft = targetScrollLeft;
-                        isAnimating = false;
-                    }
-                }
-
-                smoothScroll();
-
-                //Use a timeout to prevent animation conflict
-                setTimeout(()=> {
-                   isAnimating = false;
-                }, 300); // Adjust time to match CSS transition duration to avoid flickering.
-            }
-        }
-
-
-
-        autoScrollInterval = setInterval(animateScroll, 6000); // Scroll every 6 seconds (6000 milliseconds)
-    }
-
-    function stopAutoScroll() {
-        clearInterval(autoScrollInterval);
-        cancelAnimationFrame(animationFrame); // Also cancel any ongoing animation frame
-    }
-
-    startAutoScroll();
-
-    // Stop auto scroll on hover or touch
-    container.addEventListener('mouseenter', stopAutoScroll);
-    container.addEventListener('mouseleave', stopAutoScroll);
-    container.addEventListener('touchstart', stopAutoScroll);
-    container.addEventListener('touchend', stopAutoScroll);
-
-    //Recalculate item width on window resize
-    window.addEventListener('resize', () => {
-        updateItemWidth();
-         // Adjust the scroll position to the current image.
-        track.scrollLeft = itemWidth * currentItemIndex;
-    });
-
-
-    // Initial calculation and positioning.
-    updateItemWidth();
-    track.scrollLeft = itemWidth * currentItemIndex;
-
-
-}
-
-// Initialize the carousels
-initializeCarousel(carouselContainer, carouselTrack, carouselItems, 1);
-initializeCarousel(doubleCarouselContainer, doubleCarouselTrack, doubleCarouselItems, 2);
-    </script>
+        </script>
+     
 
 
 
