@@ -416,12 +416,13 @@
    
     flex-shrink: 0; /* Prevent items from shrinking */
     /* Add other styling like margin, padding, etc. */
+     width: 90%; 
    
 }
 .carousel-item img {
      max-width: 100%; /* Leave some margin around the images */
   min-width: 100%;
-  height: 250px;
+  height: 260px;
   object-fit: cover;
   display: block;
   border-radius: 5px;
@@ -444,12 +445,13 @@
     scroll-snap-align: start; /* Snap to the start of each item */
     flex-shrink: 0; /* Prevent items from shrinking */
     /* Add other styling like margin, padding, etc. */
+    width: 49%;
 }
 
 .double-carousel-item img {
-  max-width: 183px; /* Leave some margin around the images */
-  
-  height: 280px;
+  max-width: 100%; /* Leave some margin around the images */
+  min-width: 100%;
+  height: 290px;
   object-fit: cover;
   display: block;
   border-radius: 5px;
@@ -701,7 +703,7 @@ function toggleMenu() {
     const doubleCarouselTrack = document.querySelector(".double-carousel-track");
 
     // Set initial scroll position (adjust value as needed)
-    const initialPosition = 1120; // Adjust to your preferred starting point
+    const initialPosition = 960; // Adjust to your preferred starting point
      const initialPosition2 = 1116; // Adjust to your preferred starting point
 
     if (carouselTrack) {
