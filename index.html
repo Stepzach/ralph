@@ -484,10 +484,10 @@
                 </div>
                 <img src="https://stepzach.github.io/ralph/RH_Logo_White.png" alt="Logo" class="logo" id="logoImage">
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="#">Mixes</a></li>
-                    <li><a href="#">Gallery</a></li>
-                    <li><a href="#">Music</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#mixes">Mixes</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#music">Music</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -509,9 +509,9 @@
     </div>
 
     <!-- New Section --> 
-    <section class="snap-section">
+    <section class="snap-section" id="mixes">
        
-        <p style="padding-left:20px; padding-right:20px;" >Some text , description ....</p>
+        <p style="padding-left:20px; padding-right:20px;padding-top:20px;" >Some text , description ....</p>
         <div style="padding:10px;">
         
         <iframe width="100%" height="130" scrolling="no" frameborder="no"  src="https://w.soundcloud.com/player/?
@@ -574,12 +574,66 @@ url=https%3A//api.soundcloud.com/tracks/1847643111&color=ff5500"></iframe><div s
         
     </section>
   <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById("navLinks");
-            const menuToggle = document.querySelector(".menu-toggle");
-            navLinks.classList.toggle("show");
-            menuToggle.classList.toggle("rotated");
-        }
+    document.addEventListener('DOMContentLoaded', function() {
+    // Define custom offsets for each section
+    const sectionOffsets = {
+        "mixes": 55, // Offset for Section 1
+        "gallery": 80,  // Offset for Section 2
+        "music": 120, // Offset for Section 3
+        "contact": 60   // Offset for Section 4
+    };
+
+    // Scroll to Top on Logo Click
+    const logo = document.getElementById('logoImage');
+    logo.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Smooth Scrolling for Navigation Links with Different Offsets
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                // Get the specific offset for the section, default to 80px if not found
+                const offset = sectionOffsets[targetId] || 80;
+
+                const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                const offsetPosition = elementPosition - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+
+                // Close the menu after clicking if it's open
+                const navLinksElement = document.getElementById("navLinks");
+                if (navLinksElement.classList.contains("show")) {
+                    toggleMenu();
+                }
+            }
+        });
+    });
+});
+
+// Toggle Menu Function
+function toggleMenu() {
+    const navLinks = document.getElementById("navLinks");
+    const menuToggle = document.querySelector(".menu-toggle");
+    navLinks.classList.toggle("show");
+    menuToggle.classList.toggle("rotated");
+}
+
+
+
 
         window.addEventListener('scroll', function() {
             const header = document.getElementById('mainHeader');
@@ -592,8 +646,7 @@ url=https%3A//api.soundcloud.com/tracks/1847643111&color=ff5500"></iframe><div s
             const navLinksBefore = document.querySelector('.nav-links');
             const navLinksBefores = document.querySelector('.nav-links:before');
 
-
-            // Get the vertical scroll position
+ // Get the vertical scroll position
             const scrollPosition = window.scrollY;
             
  
@@ -602,7 +655,7 @@ url=https%3A//api.soundcloud.com/tracks/1847643111&color=ff5500"></iframe><div s
             const snapSectionTop = snapSection.offsetTop;
             
             
-           const offset = 50; // Adjust this value as needed (pixels)
+           const offset = 60; // Adjust this value as needed (pixels)
            const triggerPoint = snapSectionTop - offset;
 
 
@@ -623,8 +676,7 @@ url=https%3A//api.soundcloud.com/tracks/1847643111&color=ff5500"></iframe><div s
                 navLinksBefore.classList.add('black-background');
                 navLinksBefores.classList.add('black-backgrounds');
 
-
-            } else {
+   } else {
                 header.classList.remove('transparent');
                 logo.classList.remove('inverted'); // Remove the inverted class
 
@@ -643,6 +695,9 @@ url=https%3A//api.soundcloud.com/tracks/1847643111&color=ff5500"></iframe><div s
             }
 
         });
+        </script>
+       <script> 
+        
        const carouselContainer = document.querySelector('.carousel-container');
 const carouselTrack = document.querySelector('.carousel-track');
 const carouselItems = document.querySelectorAll('.carousel-item');
@@ -871,9 +926,9 @@ function initializeCarousel(container, track, items, itemsPerView) {
 
     // Stop auto scroll on hover or touch
     container.addEventListener('mouseenter', stopAutoScroll);
-    container.addEventListener('mouseleave', startAutoScroll);
+    container.addEventListener('mouseleave', stopAutoScroll);
     container.addEventListener('touchstart', stopAutoScroll);
-    container.addEventListener('touchend', startAutoScroll);
+    container.addEventListener('touchend', stopAutoScroll);
 
     //Recalculate item width on window resize
     window.addEventListener('resize', () => {
