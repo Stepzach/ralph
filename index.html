@@ -470,6 +470,132 @@
     padding-right: 7px;
 }  
     
+    
+    .soundcloud-embed {
+  width: 100%;
+  height: 120px;
+ 
+  border: 1.5px solid black;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  margin-bottom:10px;
+  border-radius:5px;
+}
+
+.soundcloud-embed.expanded {
+  height: 200px;
+}
+
+.soundcloud-artwork {
+  width: 112px;
+  height: 112px;
+  object-fit: cover;
+  margin-right: 10px;
+  flex-shrink: 0;
+  margin-top:-6px;
+}
+
+.soundcloud-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+}
+
+.soundcloud-title {
+  font-size: 19px;
+  font-weight: bold;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #333;
+}
+
+.soundcloud-artist {
+  font-size: 16px;
+  color: #777;
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.soundcloud-progress {
+  width: 100%;
+  height: 5px;
+  background-color: #ddd;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.soundcloud-progress-bar {
+  height: 100%;
+  background-color: #f50;
+  width: 0%;
+}
+
+.additional-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+
+}
+
+.additional-buttons button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 5px;
+  margin-right:10px;
+}
+
+.additional-buttons button:hover {
+  background-color: #d44600;
+}
+
+.play-pause-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.play-pause-text {
+  font-size: 12px;
+  color: #777;
+  margin-right:10px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.soundcloud-button-container { /* Added this class */
+ background-color: #f50;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100px;
+  margin-top: 0px; /* Optional: Add some spacing */
+  border-radius:4px;
+
+}
+
    
 </style>
 </head>
@@ -515,20 +641,102 @@
        
         <p style="padding-left:20px; padding-right:20px;padding-top:20px;" >New Mixes</p>
         <div style="padding:10px;">
-        
-        <iframe width="100%" height="130" scrolling="no" frameborder="no"  src="https://w.soundcloud.com/player/?
-url=https%3A//api.soundcloud.com/tracks/1847643111&color=ff5500"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/ralphhalkett" title="Ralph Halkett" target="_blank" style="color: #cccccc; text-decoration: none;">Ralph Halkett</a> · <a href="https://soundcloud.com/ralphhalkett/the-2024-incendio-summer-mini-mix-by-ralphhalkett" title="The 2024 Incendio Summer Mini Mix by @ralphhalkett" target="_blank" style="color: #cccccc; text-decoration: none;">The 2024 Incendio Summer Mini Mix by @ralphhalkett</a></div>
-         
-        
-       <iframe width="100%" height="130" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1953059559&color=%23ff5500&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=flase"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/casalocomusic" title="LOCO" target="_blank" style="color: #cccccc; text-decoration: none;">LOCO</a> · <a href="https://soundcloud.com/casalocomusic/episode-17-ralph-halkett" title="EPISODE #17 - RALPH HALKETT" target="_blank" style="color: #cccccc; text-decoration: none;">EPISODE #17 - RALPH HALKETT</a></div>
-        
-        <iframe width="100%" height="130" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1617350424&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/ralphhalkett" title="Ralph Halkett" target="_blank" style="color: #cccccc; text-decoration: none;">Ralph Halkett</a> · <a href="https://soundcloud.com/ralphhalkett/freshers23" title="@ralphhalkett - Freshers Mix 2023" target="_blank" style="color: #cccccc; text-decoration: none;">@ralphhalkett - Freshers Mix 2023</a></div>
-        
-        
+       <div class="soundcloud-embed" id="embed-1">
+  <div class="soundcloud-progress">
+    <div class="soundcloud-progress-bar"></div>
+  </div>
+  <img class="soundcloud-artwork" src="https://i1.sndcdn.com/artworks-3ytZDfo5e0EQpT6B-eMhOdw-t1080x1080.jpg" alt="Artwork">
+  <div class="soundcloud-info">
+    <h3 class="soundcloud-title">Incendio Summer</h3>
+    <p class="soundcloud-artist">2024 Mini Mix</p>
+    <div class="soundcloud-button-container">
+      <button class="openSoundCloudButton" style="color: white; padding: 4px 4px; background-color: #f50;border: solid 1px transparent; border-radius:4px; overflow: hidden; !important" data-soundcloud-url="https://soundcloud.com/ralphhalkett/the-2024-incendio-summer-mini-mix-by-ralphhalkett">SoundCloud</button>
+    </div>
+  </div>
+
+  <div class="additional-buttons">
+    <div class="button-container">
+      <button class="previewButton"><i class="playPauseIcon fa fa-play"></i></button>
+      <span class="play-pause-text">Preview</span>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="soundcloud-embed" id="embed-2">
+  <div class="soundcloud-progress">
+    <div class="soundcloud-progress-bar"></div>
+  </div>
+  <img class="soundcloud-artwork" src="https://i1.sndcdn.com/avatars-NdP5y28ogslsZ4zH-A2t94Q-t1080x1080.jpg" alt="Artwork">
+  <div class="soundcloud-info">
+    <h3 class="soundcloud-title">EPISODE #17</h3>
+    <p class="soundcloud-artist">LOCO</p>
+    <div class="soundcloud-button-container">
+      <button class="openSoundCloudButton" style="color: white; padding: 4px 4px; background-color: #f50;border: solid 1px transparent; border-radius:4px; overflow: hidden; !important" data-soundcloud-url="https://soundcloud.com/casalocomusic/episode-17-ralph-halkett">SoundCloud</button>
+    </div>
+  </div>
+
+  <div class="additional-buttons">
+    <div class="button-container">
+      <button class="previewButton"><i class="playPauseIcon fa fa-play"></i></button>
+      <span class="play-pause-text">Preview</span>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="soundcloud-embed" id="embed-3">
+  <div class="soundcloud-progress">
+    <div class="soundcloud-progress-bar"></div>
+  </div>
+  <img class="soundcloud-artwork" src="https://i1.sndcdn.com/artworks-zfw69GGdoyW1I2y0-bZIglQ-t1080x1080.jpg" alt="Artwork">
+  <div class="soundcloud-info">
+    <h3 class="soundcloud-title">Freshers Mix</h3>
+    <p class="soundcloud-artist">2023</p>
+    <div class="soundcloud-button-container">
+      <button class="openSoundCloudButton" style="color: white; padding: 4px 4px; background-color: #f50;border: solid 1px transparent; border-radius:4px; overflow: hidden; !important" data-soundcloud-url="https://soundcloud.com/ralphhalkett/freshers23">SoundCloud</button>
+    </div>
+  </div>
+
+  <div class="additional-buttons">
+    <div class="button-container">
+      <button class="previewButton"><i class="playPauseIcon fa fa-play"></i></button>
+      <span class="play-pause-text">Preview</span>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="soundcloud-embed" id="embed-4">
+  <div class="soundcloud-progress">
+    <div class="soundcloud-progress-bar"></div>
+  </div>
+  <img class="soundcloud-artwork" src="https://i1.sndcdn.com/artworks-ibMGnGhbmMwwQjAA-sSPbJA-t1080x1080.jpg" alt="Artwork">
+  <div class="soundcloud-info">
+    <h3 class="soundcloud-title">The Fibre Classic Mix</h3>
+    <p class="soundcloud-artist">With James Horne </p>
+    <div class="soundcloud-button-container">
+      <button class="openSoundCloudButton" style="color: white; padding: 4px 4px; background-color: #f50;border: solid 1px transparent; border-radius:4px; overflow: hidden; !important" data-soundcloud-url="https://soundcloud.com/james-horne/the-fibre-classic-mix-james-horne">SoundCloud</button>
+    </div>
+  </div>
+
+  <div class="additional-buttons">
+    <div class="button-container">
+      <button class="previewButton"><i class="playPauseIcon fa fa-play"></i></button>
+      <span class="play-pause-text">Preview</span>
+    </div>
+
+  </div>
+
+</div>
+
         </div>
         
     </section>
- <section class="snap-section" id="gallery" style="top:-400px !important;">
+ <section class="snap-section" id="gallery" style="top:-370px !important;">
        
         <p style="padding-left:20px; padding-right:20px; padding-bottom:20px;" >Gallery</p>
       <div style="width: 100%; margin-left: auto; margin-right: auto;">
@@ -579,7 +787,7 @@ url=https%3A//api.soundcloud.com/tracks/1847643111&color=ff5500"></iframe><div s
     document.addEventListener('DOMContentLoaded', function() {
     // Define custom offsets for each section
     const sectionOffsets = {
-        "mixes": 55, // Offset for Section 1
+        "mixes": 15, // Offset for Section 1
         "gallery": 25,  // Offset for Section 2
         "music": 120, // Offset for Section 3
         "contact": 60   // Offset for Section 4
@@ -714,6 +922,76 @@ function toggleMenu() {
         doubleCarouselTrack.scrollLeft = initialPosition2;
     }
 });
+
+
+const embeds = document.querySelectorAll('.soundcloud-embed');
+
+  embeds.forEach((embed, index) => {
+    const audio = new Audio('http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/theme_01.mp3'); // Replace with your actual audio URL
+    let isPlaying = false;
+    const progressBar = embed.querySelector('.soundcloud-progress-bar');
+    const previewButton = embed.querySelector('.previewButton');
+    const playPauseIcon = embed.querySelector('.playPauseIcon');
+    const openSoundCloudButton = embed.querySelector('.openSoundCloudButton');
+    const progress = embed.querySelector('.soundcloud-progress');
+
+    // Event listeners for audio
+    audio.addEventListener('loadedmetadata', updateProgressBar);
+    audio.addEventListener('timeupdate', updateProgressBar);
+    audio.addEventListener('ended', resetPlayback);
+
+    // Play/Pause Functionality on Preview Button
+    previewButton.addEventListener('click', () => {
+      if (isPlaying) {
+        audio.pause();
+        playPauseIcon.classList.remove('fa-pause');
+        playPauseIcon.classList.add('fa-play');
+      } else {
+        audio.play();
+        playPauseIcon.classList.remove('fa-play');
+        playPauseIcon.classList.add('fa-pause');
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // Seek Functionality
+    progress.addEventListener('click', seek);
+
+    // Open in SoundCloud Button
+    openSoundCloudButton.addEventListener('click', () => {
+      window.open(openSoundCloudButton.dataset.soundcloudUrl, '_blank'); // Replace with your SoundCloud track URL
+    });
+
+    // Update progress bar function
+    function updateProgressBar() {
+      const percentage = (audio.currentTime / audio.duration) * 100;
+      progressBar.style.width = `${percentage}%`;
+    }
+
+    // Seek function
+    function seek(e) {
+      const progressWidth = progress.offsetWidth;
+      const clickedOffset = e.offsetX;
+      audio.currentTime = (clickedOffset / progressWidth) * audio.duration;
+    }
+
+    // Reset playback function
+    function resetPlayback() {
+      isPlaying = false;
+      playPauseIcon.classList.remove('fa-pause');
+      playPauseIcon.classList.add('fa-play');
+      progressBar.style.width = "0%";
+      audio.currentTime = 0;
+    }
+
+      // Optional: Expand on click functionality
+    embed.addEventListener("click", function(event) {
+          // Only expand if the click is NOT inside the controls or buttons
+          if (!event.target.closest(".soundcloud-controls") && !event.target.closest(".additional-buttons")) {
+              this.classList.toggle("expanded");
+          }
+      });
+  });
 
         </script>
      
