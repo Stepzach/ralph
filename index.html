@@ -70,15 +70,18 @@
        
       
     }
-
+ 
     .hero-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;  /* Cover entire area */
-        z-index: -1;        /* Place behind other content */
+       position: absolute;
+top: 0;
+left: 50%;
+transform: translateX(-50%);
+width: 100%;
+max-width: 1122px;
+height: 100%;
+object-fit: cover;  /* Cover entire area */
+z-index: -1;        /* Place behind other content */
+
         
     }
 
@@ -401,20 +404,9 @@
           
         
     
-         #mixes {
+       
         
-            display:none !important;  
-        }
-        
-         #music {
-        
-             display:none !important;  
-        }
-        
-         #contact {
-        
-             display:none !important;  
-        }
+       
 
         
           }
@@ -645,128 +637,132 @@
 }  
     
     
-    .soundcloud-embed { 
-  width: 100%;
-  height: 120px;
- background-color:white;
-  border: 1.5px solid black;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-  margin-bottom:10px;
-  border-radius:5px;
-}
+ /* Existing styles */
+  .soundcloud-embed {
+    width: 100%;
+    height: 120px;
+    background-color: white;
+    border: 1.5px solid black;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
 
-.soundcloud-embed.expanded {
-  height: 200px;
-}
+  .soundcloud-embed.expanded {
+    height: 200px;
+  }
 
-.soundcloud-artwork {
-  width: 112px;
-  height: 112px;
-  object-fit: cover;
-  margin-right: 10px;
-  flex-shrink: 0;
-  margin-top:-6px;
-}
+  .soundcloud-artwork {
+    width: 112px;
+    height: 112px;
+    object-fit: cover;
+    margin-right: 10px;
+    flex-shrink: 0;
+    margin-top: -6px;
+  }
 
-.soundcloud-info {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  overflow: hidden;
-}
+  .soundcloud-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden;
+  }
 
-.soundcloud-title {
-  font-size: 19px;
-  font-weight: bold;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #333;
-}
+  .soundcloud-title {
+    font-size: 19px;
+    font-weight: bold;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #333;
+  }
 
-.soundcloud-artist {
-  font-size: 16px;
-  color: #777;
-  margin-top: 3px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+  .soundcloud-artist {
+    font-size: 16px;
+    color: #777;
+    margin-top: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-.soundcloud-progress {
-  width: 100%;
-  height: 5px;
-  background-color: #ddd;
-  cursor: pointer;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
+  .soundcloud-progress {
+    width: 100%;
+    height: 5px;
+    background-color: #ddd;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 
-.soundcloud-progress-bar {
-  height: 100%;
-  background-color: #f50;
-  width: 0%;
-}
+  .soundcloud-progress-bar {
+    height: 100%;
+    background-color: #f50;
+    width: 0%;
+  }
 
-.additional-buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
+  .additional-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
 
-}
+  }
 
-.additional-buttons button {
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 12px 16px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 16px;
-  margin-bottom: 5px;
-  margin-right:10px;
-}
+  .additional-buttons button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+  }
 
 
 
-.play-pause-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  .play-pause-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-}
+  }
 
-.play-pause-text {
-  font-size: 12px;
-  color: #777;
-  margin-right:10px;
-}
+  .play-pause-text {
+    font-size: 12px;
+    color: #777;
+    margin-right: 10px;
+  }
 
-.button-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-}
+  }
 
-.soundcloud-button-container { /* Added this class */
- background-color: #f50;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  width: 100px;
-  margin-top: 0px; /* Optional: Add some spacing */
-  border-radius:4px;
+  .soundcloud-button-container {
+    /* Added this class */
+    background-color: #f50;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 100px;
+    margin-top: 0px;
+    /* Optional: Add some spacing */
+    border-radius: 4px;
 
-}
+  }
+
 
    :root {
     --safe-area-bg: black; /* Default background */
@@ -786,13 +782,124 @@
     transition: background-color 0.3s ease;
 }
 
+ @media (min-width: 768px) { 
+       #music { 
+      margin-top: 100px; 
+       
+       }  
+       
+        #contact {
+      margin-top: 200px; 
+       
+       }  
+       
+       
+       .soundcloud-embed {
+     height: auto !important;
+     margin-top: 0 !important;
+        }  
+        
+       .soundcloud-artwork {
+    width: 100% !important;
+    height: auto !important;
+        }  
+        
+         #contact {
+   color: white;
+        }  
+       
+       }
+    
+
     @media (min-width: 768px) { 
        .snap-section { 
        background-color: black !important;
        
        }  
        }
+    
    
+   
+    @media (min-width: 769px) {
+
+.ugand {
+color:white;
+text-align:center;
+
+margin-top:130px;
+
+}
+
+
+    .soundcloud-container {
+      display: flex;
+      /* Arrange embeds in a row */
+      justify-content: center;
+      gap:10px;
+      /* Optional: Space them out */
+    }
+
+
+    .soundcloud-embed {
+      width: 32%;
+      max-width:300px;
+      /* Adjust as needed for spacing */
+      margin-bottom: 0;
+      /* Remove bottom margin */ 
+      flex-direction: column;
+      /* Stack items vertically */
+      align-items: stretch;
+      /* Stretch items to fill width */
+      height: auto;
+      /* Adjust height as needed */
+    }
+
+    .soundcloud-artwork {
+      width: 100%;
+      /* Artwork takes full width */
+      height: auto;
+      /* Maintain aspect ratio */
+      margin-right: 0;
+      /* Remove right margin */
+      margin-bottom: 10px;
+      /* Add bottom margin for spacing */
+    }
+
+    .soundcloud-info {
+      height: auto;
+       margin-left: 10px;
+      /* Adjust height */
+    }
+
+    .soundcloud-title, 
+    .soundcloud-artist {
+  
+      white-space: normal;
+      /* Allow wrapping */
+    }
+
+    .additional-buttons {
+      flex-direction: row;
+      /* Arrange buttons horizontally */
+      justify-content: center;
+      
+      /* Center buttons */
+    }
+
+    .additional-buttons button {
+      margin-bottom: 0;
+      
+      /* Remove bottom margin */
+      margin-right: 5px;
+      /* Space between buttons */
+    }
+
+    .soundcloud-progress {
+      position: relative;
+      
+      /* Adjust position */
+    }
+  }
 </style>
 </head>
 <body>
@@ -884,91 +991,106 @@
     </div>
   </div>
 </div>
-        
+         
     </section>
     
-     <section class="snap-section" id="mixes">
-       
-        <p style="padding-left:20px; padding-right:20px;padding-top:20px; font-size:24px;" >Mixes</p>
-        <div style="padding:10px;">
-       <div class="soundcloud-embed" id="embed-1">
-  <div class="soundcloud-progress">
-    <div class="soundcloud-progress-bar"></div>
-  </div>
-  <img class="soundcloud-artwork" src="https://i1.sndcdn.com/artworks-3ytZDfo5e0EQpT6B-eMhOdw-t1080x1080.jpg" alt="Artwork">
-  <div class="soundcloud-info">
-    <h3 class="soundcloud-title">Incendio Summer</h3>
-    <p class="soundcloud-artist">2024 Mini Mix</p>
-    <div class="soundcloud-button-container">
-      <button class="openSoundCloudButton" style="color: white; padding: 4px 4px; background-color: #f50;border: solid 1px transparent; border-radius:4px; overflow: hidden; !important" data-soundcloud-url="https://soundcloud.com/ralphhalkett/the-2024-incendio-summer-mini-mix-by-ralphhalkett">SoundCloud</button>
-    </div>
-  </div>
+    <section class="snap-section" id="mixes">
 
-  <div class="additional-buttons">
-    <div class="button-container">
-      <button class="previewButton"><i class="playPauseIcon fa fa-play"></i></button>
-      <span class="play-pause-text">Preview</span>
-    </div>
+  <p class="ugand" style="padding-left:20px; padding-right:20px;padding-top:20px; font-size:24px;">Mixes</p>
+  <div style="padding:10px;">
+    <div class="soundcloud-container">
+      <div class="soundcloud-embed" id="embed-1">
+        <div class="soundcloud-progress">
+          <div class="soundcloud-progress-bar"></div>
+        </div>
+        <img class="soundcloud-artwork" src="https://i1.sndcdn.com/artworks-3ytZDfo5e0EQpT6B-eMhOdw-t1080x1080.jpg"
+          alt="Artwork">
+        <div class="soundcloud-info">
+          <h3 class="soundcloud-title">Incendio Summer</h3>
+          <p class="soundcloud-artist">2024 Mini Mix</p>
+          <div class="soundcloud-button-container">
+            <button class="openSoundCloudButton"
+              style="color: white; padding: 4px 4px; background-color: #f50;border: solid 1px transparent; border-radius:4px; overflow: hidden; !important"
+              data-soundcloud-url="https://soundcloud.com/ralphhalkett/the-2024-incendio-summer-mini-mix-by-ralphhalkett">SoundCloud</button>
+          </div>
+        </div>
 
-  </div>
-
-</div>
-
-<div class="soundcloud-embed" id="embed-2">
-  <div class="soundcloud-progress">
-    <div class="soundcloud-progress-bar"></div>
-  </div>
-  <img class="soundcloud-artwork" src="https://i1.sndcdn.com/avatars-NdP5y28ogslsZ4zH-A2t94Q-t1080x1080.jpg" alt="Artwork">
-  <div class="soundcloud-info">
-    <h3 class="soundcloud-title">EPISODE #17</h3>
-    <p class="soundcloud-artist">LOCO</p>
-    <div class="soundcloud-button-container">
-      <button class="openSoundCloudButton" style="color: white; padding: 4px 4px; background-color: #f50;border: solid 1px transparent; border-radius:4px; overflow: hidden; !important" data-soundcloud-url="https://soundcloud.com/casalocomusic/episode-17-ralph-halkett">SoundCloud</button>
-    </div>
-  </div>
-
-  <div class="additional-buttons">
-    <div class="button-container">
-      <button class="previewButton"><i class="playPauseIcon fa fa-play"></i></button>
-      <span class="play-pause-text">Preview</span>
-    </div>
-
-  </div>
-
-</div>
-
-<div class="soundcloud-embed" id="embed-3">
-  <div class="soundcloud-progress">
-    <div class="soundcloud-progress-bar"></div>
-  </div>
-  <img class="soundcloud-artwork" src="https://i1.sndcdn.com/artworks-zfw69GGdoyW1I2y0-bZIglQ-t1080x1080.jpg" alt="Artwork">
-  <div class="soundcloud-info">
-    <h3 class="soundcloud-title">Freshers Mix</h3>
-    <p class="soundcloud-artist">2023</p>
-    <div class="soundcloud-button-container">
-      <button class="openSoundCloudButton" style="color: white; padding: 4px 4px; background-color: #f50;border: solid 1px transparent; border-radius:4px; overflow: hidden; !important" data-soundcloud-url="https://soundcloud.com/ralphhalkett/freshers23">SoundCloud</button>
-    </div>
-  </div>
-
-  <div class="additional-buttons">
-    <div class="button-container">
-      <button class="previewButton"><i class="playPauseIcon fa fa-play"></i></button>
-      <span class="play-pause-text">Preview</span>
-    </div>
-
-  </div>
-
-</div>
-
-
+        <div class="additional-buttons">
+          <div class="button-container">
+            <button class="previewButton"><i class="playPauseIcon fa fa-play"></i></button>
+            <span class="play-pause-text">Preview</span>
+          </div>
 
         </div>
-        
-    </section>
+
+      </div>
+
+      <div class="soundcloud-embed" id="embed-2">
+        <div class="soundcloud-progress">
+          <div class="soundcloud-progress-bar"></div>
+        </div>
+        <img class="soundcloud-artwork" src="https://i1.sndcdn.com/avatars-NdP5y28ogslsZ4zH-A2t94Q-t1080x1080.jpg"
+          alt="Artwork">
+        <div class="soundcloud-info">
+          <h3 class="soundcloud-title">EPISODE #17</h3>
+          <p class="soundcloud-artist">LOCO</p>
+          <div class="soundcloud-button-container">
+            <button class="openSoundCloudButton"
+              style="color: white; padding: 4px 4px; background-color: #f50;border: solid 1px transparent; border-radius:4px; overflow: hidden; !important"
+              data-soundcloud-url="https://soundcloud.com/casalocomusic/episode-17-ralph-halkett">SoundCloud</button>
+          </div>
+        </div>
+
+        <div class="additional-buttons">
+          <div class="button-container">
+            <button class="previewButton"><i class="playPauseIcon fa fa-play"></i></button>
+            <span class="play-pause-text">Preview</span>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="soundcloud-embed" id="embed-3">
+        <div class="soundcloud-progress">
+          <div class="soundcloud-progress-bar"></div>
+        </div>
+        <img class="soundcloud-artwork" src="https://i1.sndcdn.com/artworks-zfw69GGdoyW1I2y0-bZIglQ-t1080x1080.jpg"
+          alt="Artwork">
+        <div class="soundcloud-info">
+          <h3 class="soundcloud-title">Freshers Mix</h3>
+          <p class="soundcloud-artist">2023</p>
+          <div class="soundcloud-button-container">
+            <button class="openSoundCloudButton"
+              style="color: white; padding: 4px 4px; background-color: #f50;border: solid 1px transparent; border-radius:4px; overflow: hidden; !important"
+              data-soundcloud-url="https://soundcloud.com/ralphhalkett/freshers23">SoundCloud</button>
+          </div>
+        </div>
+
+        <div class="additional-buttons">
+          <div class="button-container">
+            <button class="previewButton"><i class="playPauseIcon fa fa-play"></i></button>
+            <span class="play-pause-text">Preview</span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+  
+</section>
       <section class="snap-section" id="music" style="top:-500px;">
        
-        <p style="padding-left:20px; padding-right:20px;padding-top:20px; font-size:24px;" >Music</p>
+        <p class="ugand" style="padding-left:20px; padding-right:20px;padding-top:20px; font-size:24px;" >Music</p>
         <div style="padding:10px;">
+        
+        
+        
+        <div class="soundcloud-container">
+        
        <div class="soundcloud-embed" id="embed-1">
   <div class="soundcloud-progress">
     <div class="soundcloud-progress-bar"></div>
@@ -988,8 +1110,8 @@
       <span class="play-pause-text">Preview</span>
     </div>
 
-  </div>
-
+  
+</div>
 </div>
 
 <div class="soundcloud-embed" style="height: 130px; margin-top: 15px;" id="embed-2">
@@ -1013,7 +1135,7 @@
     </div>
 
   </div>
-
+</div>
 </div>
 
 
