@@ -37,8 +37,17 @@
         font-family: 'NeueRemanSans', serif;
         margin: 0;
         background-color:white;
-        
+         
     }
+    
+       @media (min-width: 768px) { 
+       body { 
+       background-color: black !important;
+       
+       }  
+       }
+
+
 
     .hero {
    
@@ -96,18 +105,19 @@
         transition: filter 0.3s ease;
     }
     
+     @media (max-width: 768px) { 
     .logo.inverted {
         filter: invert(100%); /* Invert colors */
     }
 
-
+ 
     .header.transparent {
         
         padding-bottom:0px;
         background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 80%, 
         rgba(255, 255, 255, 0) 81% ); /* Gradient background */
     }
-    
+    }
 
 
     .nav-links {
@@ -126,9 +136,12 @@
         color: white; /* Or any other color */
         font-size: 25px;
     }
+    
+     @media (max-width: 768px) { 
  .nav-links a.black {
         color: black;
     }
+     }
 
     /* Mobile Menu Styles */
     .menu-toggle {
@@ -385,10 +398,7 @@
         
          @media (min-width: 1030px) { 
          
-          #gallery {
-        
-            display:none !important;  
-        }
+          
         
     
          #mixes {
@@ -569,7 +579,48 @@
     flex-shrink: 0; /* Prevent items from shrinking */
     /* Add other styling like margin, padding, etc. */
     width: 49%;
+} 
+
+   @media (min-width: 768px) { 
+   
+      .double-carousel-item img {
+  max-width: 100%; /* Leave some margin around the images */
+  min-width: 100%;
+  height: 320px !important;
+  object-fit: cover;
+  display: block;
+  border-radius: 5px;
 }
+
+.double-carousel-item {
+    scroll-snap-align: start; /* Snap to the start of each item */
+    flex-shrink: 0; /* Prevent items from shrinking */
+    /* Add other styling like margin, padding, etc. */
+    width: 20% !important;
+}
+
+
+.carousel-item {
+   
+    flex-shrink: 0; /* Prevent items from shrinking */
+    /* Add other styling like margin, padding, etc. */
+     width: 49%; 
+   
+}
+.carousel-item img {
+     max-width: 100%; /* Leave some margin around the images */
+  min-width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+  border-radius: 5px;
+}
+
+       }   
+      
+
+
+
 
 .double-carousel-item img {
   max-width: 100%; /* Leave some margin around the images */
@@ -594,10 +645,10 @@
 }  
     
     
-    .soundcloud-embed {
+    .soundcloud-embed { 
   width: 100%;
   height: 120px;
- 
+ background-color:white;
   border: 1.5px solid black;
   display: flex;
   align-items: center;
@@ -735,7 +786,12 @@
     transition: background-color 0.3s ease;
 }
 
-   
+    @media (min-width: 768px) { 
+       .snap-section { 
+       background-color: black !important;
+       
+       }  
+       }
    
 </style>
 </head>
@@ -1080,7 +1136,7 @@ function toggleMenu() {
             const snapSectionTop = snapSection.offsetTop;
             
             
-           const offset = 60; // Adjust this value as needed (pixels)
+           const offset = 130; // Adjust this value as needed (pixels)
            const triggerPoint = snapSectionTop - offset;
 
 
