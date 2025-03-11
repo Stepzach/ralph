@@ -49,7 +49,7 @@
        }  
        }
 
-
+ 
 
     .hero {
   
@@ -89,6 +89,17 @@ z-index: -1;        /* Place behind other content */
         
     }
 
+
+@media (min-width: 768px) { 
+
+.hero-image {
+  
+  
+  
+        display:none;
+        
+    }}
+    
     .header {
      
         display: flex;
@@ -437,9 +448,7 @@ z-index: -1;        /* Place behind other content */
     }
 
     @media (min-width: 768px) { 
-        .text19 {
-            display:none !important;
-        }
+       
         .snap-section {
             
             top:-20px !important; 
@@ -653,7 +662,7 @@ z-index: -1;        /* Place behind other content */
   .soundcloud-embed {
     width: 100%;
     height: 120px;
-    background-color: white;
+    background-color: RGB(255, 255, 255, 0.3)    ;
     border: 1.5px solid black;
     display: flex;
     align-items: center;
@@ -662,7 +671,7 @@ z-index: -1;        /* Place behind other content */
     margin-bottom: 10px;
     border-radius: 5px;
   }
-
+ 
   .soundcloud-embed.expanded {
     height: 200px;
   }
@@ -694,7 +703,20 @@ z-index: -1;        /* Place behind other content */
     text-overflow: ellipsis;
     color: #333;
   }
-
+  
+   @media (min-width: 768px) { 
+  .soundcloud-title { 
+  color: white;
+  }
+ .soundcloud-artist { 
+  color: white !important;
+ }
+ 
+ .play-pause-text { 
+  color: white !important;
+ }
+  }
+  
   .soundcloud-artist {
     font-size: 16px;
     color: #777;
@@ -802,7 +824,7 @@ z-index: -1;        /* Place behind other content */
        
         #contact {
       margin-top: 200px; 
-       
+        color: white;
        }  
        
        
@@ -816,9 +838,7 @@ z-index: -1;        /* Place behind other content */
     height: auto !important;
         }  
         
-         #contact {
-   color: white;
-        }  
+       
        
        }
     
@@ -912,6 +932,26 @@ margin-top:130px;
       /* Adjust position */
     }
   }
+  
+  
+   @media (min-width: 768px) {
+   #gallery {
+      position: relative;
+     margin-top:-400px !important;
+      
+      /* Adjust position */
+    }
+    .text19 p {
+     color: white !important;
+      width: 80%;
+      
+      /* Adjust position */
+    }
+  }
+   
+   
+   
+
 </style>
 </head>
 <body>
@@ -1195,7 +1235,7 @@ margin-top:130px;
         "mixes": 70, // Offset for Section 1
         "gallery": 25,  // Offset for Section 2
         "music": 62, // Offset for Section 3
-        "contact": 60   // Offset for Section 4
+        "contact": 120   // Offset for Section 4
     };
 
     // Scroll to Top on Logo Click
