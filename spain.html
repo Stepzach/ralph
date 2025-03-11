@@ -193,13 +193,6 @@ z-index: -1;        /* Place behind other content */
         }
   }
 
-        @media (min-width: 768px) {
-   #gallery {
-      position: relative;
-     margin-top:-550px !important;
-      
-      /* Adjust position */
-    }
     @media (max-width: 768px) {  /* Adjust breakpoint as needed */
         .nav-links {
             display: none;
@@ -228,6 +221,7 @@ z-index: -1;        /* Place behind other content */
         opacity: 1;
     }
 }
+
 
         
         .nav-links.before { /* Create a pseudo-element for the fade effect */
@@ -958,18 +952,33 @@ margin-top:130px;
    @media (min-width: 768px) {
    #gallery {
       position: relative;
-      margin-top:-550px !important;
+     margin-top:-550px !important;
       
       /* Adjust position */
     }
     .text19 p {
      color: white !important;
-      width: 80%;
+      width: 70%;
+      max-width:700px;
+      text-align: center;
+      margin-left:auto;
+      margin-right:auto;
       
-      /* Adjust position */
+     
     }
-         .flag-container {
+    
+    
+    .flag-container {
      display: none !important;
+      
+     
+    }
+    .fringe {
+     color: white !important;
+      width: 80%;
+      text-align: center;
+      margin-left:auto;
+      margin-right:auto;
       
      
     }
@@ -996,6 +1005,8 @@ margin-top:130px;
                     <div class="bar" id="bar3"></div> 
                 </div>
                 <img src="https://stepzach.github.io/ralph/RH_Logo_White.png" alt="Logo" class="logo" id="logoImage">
+                
+                
                 <ul class="nav-links" id="navLinks">
                     
                     <li><a href="#gallery">Galería</a></li>
@@ -1003,9 +1014,10 @@ margin-top:130px;
                     <li><a href="#music">Música</a></li>
                     <li><a href="#contact">Contacto</a></li>
                     
+                    <li>
                      <div class="flag-container" style="display: flex; justify-content: center; gap: 20px; margin-top: 50px;">
     <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" 
-         alt="Bandera del Reino Unido" 
+         alt="Bandera del Reino Unido"  
          class="flag" 
          style="width: 50px; height: 18px; cursor: pointer;"
         onclick="window.location.assign('https://stepzach.github.io/ralph')">
@@ -1016,6 +1028,8 @@ margin-top:130px;
          style="width: 50px; height: 19px; cursor: pointer;"
          onclick="window.location.href='https://stepzach.github.io/ralph/'; window.location.reload();">
 </div>
+
+    </li>
                 </ul>
                
             </div>
@@ -1239,7 +1253,7 @@ margin-top:130px;
     </section>
       <section class="snap-section" id="contact" style="top:-800px;">
        
-        <p style="padding-left:20px; padding-right:20px;padding-top:20px; font-size:24px;" >Reservas y Consultas</p>
+        <p class="fringe" style="padding-left:20px; padding-right:20px;padding-top:20px; font-size:24px;" >Reservas y Consultas</p>
         <div style="padding:10px;">
        
  <div class="text19" style=" padding: 10px; padding-top: 10px;">
