@@ -37,7 +37,9 @@
         font-family: 'NeueRemanSans', serif;
         margin: 0;
         background-color:white;
-         
+         overflow-x: hidden; /* Prevent horizontal scrollbar */
+    position: relative; /* Needed for calculating full content height */
+    min-height: 100vh; /* Ensure body is at least the viewport height */
     }
     
        @media (min-width: 768px) { 
@@ -50,7 +52,9 @@
 
 
     .hero {
-   
+  
+  
+  
         position: relative;
         height: 100vh;
         width: 100%;
@@ -498,6 +502,14 @@ z-index: -1;        /* Place behind other content */
 
     /* New Section Styles */
     .snap-section {
+    
+    
+  
+   
+   
+    
+    
+    
      position:relative;
      top:-290px; 
      z-index:1;
@@ -907,7 +919,7 @@ margin-top:130px;
 
 <div style="background-color: black; z-index: -4; height: 100px; width: 100%; position: absolute; top: 0; left: 0;"></div>
 
-<div style="height:80cm; overflow: hidden !important" >
+<div style="height:auto; overflow: hidden !important" >
     <div class="hero">
         <img src="https://static.wixstatic.com/media/cc3be5_52c2463023be4f8aa9dcb33f3504f978~mv2.jpg/v1/fill/w_592,h_394,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_4105_JPG.jpg" alt="Hero Image" class="hero-image">
         <div style="position: fixed; width:100%; z-index: 1000;">
