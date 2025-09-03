@@ -25,7 +25,7 @@
     body, html {
       height: auto;
       font-family: 'Helvetica Neue', sans-serif;
-      background-color: white;
+      background-color: whitesmoke;
     }
 
     .pill-banner {
@@ -72,7 +72,7 @@
         content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%), linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 0%, transparent 25%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 70%), linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 0%, transparent 25%);
     z-index: 1;
     pointer-events: none;
 }
@@ -122,13 +122,23 @@
     .menu-tabs {
      justify-content: center;
   }
+   .bottom-right span {
+     
+        
+        line-height:60px !important;
+       
+    }
+     .bottom-right p {
+     
+        margin-left:15px;
+    }
 }
-
+ 
     .top-row {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      color: white;
+      color: whitesmoke;
       font-weight: bold;
       font-size: 1.25rem;
     }
@@ -141,17 +151,19 @@
     }
 
     .bottom-right {
-      align-self: flex-end;
-      text-align: right;
+      align-self: flex-start;
+      text-align: left;
       color: white;
       max-width: 90%;
     }
 
     .bottom-right p {
-      margin-bottom: 12px;
-        font-size: 2rem;
+     
+        font-size: 1.4rem;
+        line-height:1.35rem !important;
         max-width:400px;
     }
+    
 
     .bottom-right button {
       padding: 10px 20px;
@@ -187,7 +199,8 @@
       }
 
       .bottom-right p {
-         font-size: 1.8rem;
+         font-size: 1.2rem;
+         line-height:1.1rem !important;
       }
 
       .bottom-right button {
@@ -241,7 +254,7 @@
       }
 
       .bottom-right p {
-        font-size: 1.5rem;
+        font-size: 1.05rem;
        
        
       }
@@ -251,13 +264,21 @@
     }
         .bottom-right button {
         width: 100%;
-        max-width: 170px;
+        max-width: 175px;
         padding: 10px 0px;
          font-size: 0.9rem;
       }
        .title {
         font-size: 1.5rem;
       }
+      
+      .hero-section {
+   
+       height: calc(var(--vh, 1vh) * 90 - 80px);
+     
+     
+     
+    }
     }
    .footer {
   
@@ -349,7 +370,7 @@ text-decoration: underline;
   border-radius:14px;
   pointer-events: none;
   display: flex;
-  justify-content: center;
+ 
  
 }
 
@@ -1093,11 +1114,7 @@ pill-link {
     margin-left: auto;
     margin-right: auto;">
 
-  <div class="pill-banner">
-  <p>
-    BUY TICKETS TO MY NEXT SET: <u>FULL FAT THURSDAY 14/09</u >
-    </p>
-  </div>
+
 
   <div class="hero-section">
   
@@ -1107,8 +1124,9 @@ pill-link {
 
     <div class="overlay">
      <div class="top-row"> 
+      <div class="title" onclick="window.location.href='https://zacharystephens.info'" style="cursor:pointer">Ralph Halkett</div>
   <div class="menu" id="menuButton" aria-haspopup="true" aria-expanded="false">☰</div>
-  <div class="title" onclick="window.location.href='https://zacharystephens.info'" style="cursor:pointer">Ralph Halkett</div>
+ 
 
   <!-- Desktop Navigation -->
   <div class="desktop-nav">
@@ -1151,14 +1169,12 @@ pill-link {
 
 </div>
 
+        <div class="bottom-right">
+        <p style="line-height:1.08rem; margin-bottom:0px; color: #f1f0ed;">Based in Leeds and Essex in England, and Sotogrande in Spain. I cater to all event types such as clubs, festivals, corporate events, birthdays, proms...<br><span onclick="window.open('https://zacharystephens.info/radicaldesignPART2.pdf', '_blank')" style="cursor: pointer; line-height:40px;"><u>Bookings & Enquiries <img decoding="async" src="https://stepzach.github.io/thegryph/arrow-up-right-icon-lg.png" width="22px" style="position: relative; bottom:-6px; left: 4px; filter:invert(1)"></u></span></p>
        
-      <div class="bottom-right">
-        <p><b>Latest:</b><br> Example mix name - 2025</p>
-       <button onclick="window.open('https://zacharystephens.info/radicaldesignPART2.pdf', '_blank')">
-  LISTEN NOW <span class="icon" style="margin-left:5px"><i class="fa fa-soundcloud"></i></span>
-</button>
 
       </div>
+     
     </div>
   </div>
  <div class="carousel-container">
