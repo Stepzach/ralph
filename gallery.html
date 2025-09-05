@@ -1,0 +1,1139 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title data-lang-key="meta_title">Ralph Halkett | International DJ & Producer</title>
+    <meta name="description" content="Ralph Halkett is an international DJ based in the UK and Spain, available for clubs, festivals, corporate events, and private parties worldwide. Listen to his mixes and get in touch to book." data-lang-key="meta_description">
+    <meta name="keywords" content="DJ, Ralph Halkett, Leeds DJ, Essex DJ, Sotogrande DJ, International DJ, Club DJ, Festival DJ, Corporate Events, Birthday DJ">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- CSS (Internal Stylesheet) -->
+    <style>
+        /* 1. General & Root Styles */
+        :root {
+            --bg-color: #f4f4f4;
+            --main-color: #ffffff;
+            --text-color: #1a1a1a;
+            --accent-color: #888888;
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2_ {
+            font-weight: 600;
+        }
+
+        p {
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        section {
+            padding: 5% 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--text-color);
+            color: var(--main-color);
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* 2. Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--text-color);
+            transition: width 0.3s ease-in-out;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .lang-switcher {
+           position: relative;
+        }
+        
+        .lang-switcher select {
+            background: transparent;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 30px;
+            font-weight:500;
+        }
+
+        #mobile-menu-icon {
+            display: none;
+            cursor: pointer;
+        }
+        
+        #mobile-menu-icon .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--text-color);
+            transition: all 0.3s ease-in-out;
+        }
+
+        #mobile-menu-icon.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        #mobile-menu-icon.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        #mobile-menu-icon.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .mobile-nav {
+            display: none; /* gets activated by JS */
+            position: fixed;
+            top: var(--header-height);
+            left: 100%; /* Start off-screen */
+            width: 100%;
+            height: calc(100vh - var(--header-height));
+            background: var(--main-color);
+            z-index: 999;
+            transition: left 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+        .mobile-nav.active {
+            left: 0; /* Slide in */
+        }
+        
+        .mobile-nav ul {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            padding-left: 5%;
+            justify-content: start;
+            height: 100%;
+        }
+
+        .mobile-nav ul li {
+            margin: 16px 0;
+        }
+
+        .mobile-nav ul li a {
+            font-size: 1.55rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .desktop-nav {
+            display:flex; 
+            align-items: center;
+        }
+
+        /* 3. Hero Section (Instagram) */
+        #home {
+            background: var(--main-color);
+        }
+        
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .insta-post {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+            
+        .insta-post img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            transition: transform 0.4s ease-in-out;
+        }
+            
+       
+
+        .insta-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+            
+       
+        
+        .insta-caption {
+            font-size: 0.9rem;
+            margin-bottom:10px;
+        }
+
+        .insta-likes {
+             font-weight: 600;
+        }
+            
+        .insta-likes svg {
+            width: 16px;
+            height: 16px;
+            fill: #fff;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+.insta-title {
+           background-color: #5d5d5d7a;
+    padding: 2px 3px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom:0;
+    color:white;
+     font-size: 0.8rem;
+        }
+
+       
+      .lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; /* makes caption go below */
+}
+
+.lightbox-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 90%;
+  max-height: 80%;
+}
+
+.lightbox-content {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 5px;
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 1100;
+}
+.close-lightbox:hover { color: #bbb; }
+
+
+
+.prev { left: -60px; }
+.next { right: -60px; }
+
+.prev:hover, .next:hover { color: #bbb; }
+
+.caption {
+  color: #fff;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 1rem;
+  padding: 0 20px;
+  max-width: 80%;
+}
+
+
+        /* 5. Music Section */
+        #music { background: var(--main-color); }
+
+        .music-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 50px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .music-embed iframe {
+            width: 100%;
+            border-radius: 12px;
+            border: 0;
+        }
+
+        /* 6. Contact & EPK Section */
+        #contact {
+             background: var(--bg-color);
+             text-align: center;
+        }
+            
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+         
+        .contact-content p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: #444;
+        }
+
+        .contact-buttons > a {
+            margin: 10px;
+        }
+        
+         .button-secondary {
+            background: #fff;
+            color: var(--text-color);
+            border: 1px solid #ccc;
+        }
+
+         .button-secondary:hover {
+            background-color: #f0f0f0;
+        }
+        
+
+        /* 7. Footer */
+        footer {
+            padding: 12px 5%;
+             text-align: center;
+            border-top: solid 1.5px #e0e0e0;
+        }
+        
+        footer p {
+             font-size: 0.85rem;
+        }
+
+        /* 8. Responsiveness */
+        @media screen and (max-width: 992px) {
+            .gallery-item.item-wide { grid-column: span 1; }
+            .gallery-item.item-tall { grid-row: span 1; }
+        
+        }
+        @media screen and (max-width: 768px) {
+            .section-title { font-size: 2rem; }
+            .desktop-nav { display: none; }
+            .mobile-nav { display: block; }
+            #mobile-menu-icon { display: block; }
+            .instagram-grid { grid-template-columns: repeat(2, 1fr);  gap: 15px;}
+        }
+}
+}
+}
+}
+       
+       .insta-title {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.lightbox-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  font-size: 2rem;
+  color: white;
+  user-select: none;
+  transition: 0.3s;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+.prev:hover, .next:hover {
+  color: #bbb;
+}
+
+.caption {
+  color: #fff;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
+#home {
+ margin:0;
+ padding:0;
+  margin-top: var(--header-height) !important;
+  color: #fff;
+  position: relative;
+  height:0px;
+  
+
+ 
+}
+
+
+#home p {
+  line-height:1.1rem;
+  max-width:500px;
+}
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="#home" class="logo">RALPH HALKETT</a>
+        <div class="desktop-nav">
+             <nav>
+                <ul>
+                    <li><a href="/home" data-lang-key="nav_home">Home</a></li>
+                    <li><a href="/gallery" data-lang-key="nav_gallery"><u>Gallery</u></a></li>
+                    <li><a href="/music" data-lang-key="nav_music">Music</a></li>
+                    <li><a href="/contact" data-lang-key="nav_contact">Contact / EPK</a></li>
+                </ul>
+            </nav>
+            <div class="lang-switcher">
+                <select id="languageSelector">
+                    <option value="en">EN</option>
+                    <option value="es">ES</option>
+                </select>
+            </div>
+        </div>
+        
+        <div id="mobile-menu-icon">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNavMenu">
+         <ul>
+            <li><a href="/home" data-lang-key="nav_home">Home</a></li>
+            <li><a href="/gallery" data-lang-key="nav_gallery"><u>Gallery</u></a></li>
+            <li><a href="/music" data-lang-key="nav_music">Music</a></li>
+            <li><a href="/contact" data-lang-key="nav_contact">Contact / EPK</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Home Section (Instagram) -->
+   <section id="home">
+  
+</section>
+
+
+
+   
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h3 style="padding-bottom:20px;">Gallery</h3>
+       
+        <div class="instagram-grid">
+            <!-- POST 1 -->
+           <div class="insta-post" data-caption="Better Days Festival - 2025 - BeaverWorks, Leeds">
+  <div class="insta-title">Better Days Festival</div>
+
+  <!-- The thumbnail -->
+  <img src="https://github.com/Stepzach/ralph/blob/main/@betterdaysfestival%2010%20!@buckland_visuals%20and%20@ksvm__%20on%20camera.jpg?raw=true" alt="DJ at the club">
+
+  <!-- Hidden gallery images -->
+  <div class="gallery-images" style="display:none;">
+    <img src="https://github.com/Stepzach/ralph/blob/main/@betterdaysfestival%2010%20!@buckland_visuals%20and%20@ksvm__%20on%20camera.jpg?raw=true" alt="">
+     <img src="https://github.com/Stepzach/ralph/blob/main/503045397_18506058220049885_4300089605774085051_n.jpeg?raw=true" alt="">
+    <img src="https://github.com/Stepzach/ralph/blob/main/503144232_18506058238049885_741058905654998247_n.jpeg?raw=true" alt="">
+    <img src="https://github.com/Stepzach/ralph/blob/main/@betterdaysfestival%2010%20!@buckland_visuals%20and%20@ksvm__%20on%20camera%20(1).jpg?raw=true" alt="">
+     <img src="https://github.com/Stepzach/ralph/blob/main/@betterdaysfestival%2010%20!@buckland_visuals%20and%20@ksvm__%20on%20camera%20(2).jpg?raw=true" alt="">
+    
+  </div>
+  
+</div>
+
+            <!-- POST 2 -->
+             <div class="insta-post" tabindex="0">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=cropc" 
+                alt="DJ setup close up" data-lang-key="img_alt_2">
+                 <div class="insta-overlay">
+                    <p class="insta-caption" data-lang-key="insta_cap_2">Locked in. New mix coming soon.</p>
+                      <p class="insta-likes">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                        892
+                    </p>
+                </div>
+            </div>
+             <!-- POST 3 -->
+             <div class="insta-post" tabindex="0">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=cropc" 
+                alt="Festival crowd" data-lang-key="img_alt_3">
+                 <div class="insta-overlay">
+                    <p class="insta-caption" data-lang-key="insta_cap_3">Leeds festival... what a vibe!</p>
+                      <p class="insta-likes">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                        2,110
+                    </p>
+                </div>
+            </div>
+             <!-- POST 4 -->
+            <div class="insta-post" tabindex="0">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=cropc" 
+                alt="DJ pressing a button on the decks" data-lang-key="img_alt_4">
+                 <div class="insta-overlay">
+                    <p class="insta-caption" data-lang-key="insta_cap_4">In the zone.</p>
+                      <p class="insta-likes">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                       978
+                    </p>
+                </div>
+            </div>
+            <!-- POST 5 -->
+             <div class="insta-post" tabindex="0">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=cropc"
+                 alt="Portrait black and white of ralph halkett" data-lang-key="img_alt_5">
+                 <div class="insta-overlay">
+                    <p class="insta-caption"data-lang-key="insta_cap_5" >New press shots.</p>
+                      <p class="insta-likes">
+                       <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg> 
+                        651
+                    </p>
+                </div>
+            </div>
+               <!-- POST 6 -->
+             <div class="insta-post" tabindex="0">
+                 <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=cropc" 
+                 alt="People dancing at a live show, lasers" data-lang-key="img_alt_6">
+                 <div class="insta-overlay">
+                    <p class="insta-caption"data-lang-key="insta_cap_6" >What a night this was 🎉 Next up: Essex.</p>
+                       <p class="insta-likes">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                        1,532
+                    </p>
+                </div>
+             </div>
+              <!-- POST 7 -->
+           
+
+  <div class="insta-post" tabindex="0">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=cropc" 
+                alt="DJ setup close up" data-lang-key="img_alt_2">
+                 <div class="insta-overlay">
+                    <p class="insta-caption" data-lang-key="insta_cap_2">Locked in. New mix coming soon.</p>
+                      <p class="insta-likes">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                        892
+                    </p>
+                </div>
+            </div>
+
+              <div class="insta-post" tabindex="0">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=cropc" 
+                alt="DJ setup close up" data-lang-key="img_alt_2">
+                 <div class="insta-overlay">
+                    <p class="insta-caption" data-lang-key="insta_cap_2">Locked in. New mix coming soon.</p>
+                      <p class="insta-likes">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                        892
+                    </p>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
+                
+        </div>
+
+    </section>  
+
+
+        <!-- Contact & EPK -->
+    <section id="contact" style="text-align:left; padding-bottom:5px;">
+        <h3>Links</h3>
+
+       <div class="contact-content">
+  <p data-lang-key="contact_text" class="contact-list">
+   
+      <a href="#" class="contact-link">&gt; Backrooms Leeds</a>
+      <a href="#" class="contact-link">&gt; Skye Leeds</a>
+      <a href="#" class="contact-link">&gt; Missing in Action</a>
+      <a href="#" class="contact-link">&gt; Fresh2Death</a>
+    
+  </p>
+</div>
+
+<style>
+  .contact-list {
+    margin: 0;
+    padding: 0;
+  }
+
+  .contact-link {
+    text-decoration: none;
+    color: inherit;
+    margin-right: 1.5rem;
+  }
+
+  /* Small screens: stacked */
+  .contact-list a {
+    display: block;
+    padding: 0;
+    margin: 0;
+    text-decoration: underline;
+  }
+
+  /* Large screens: inline */
+  @media (min-width: 768px) {
+    .contact-list a {
+      display: inline;
+      padding: 1px 10px;
+    }
+    .contact-list br {
+      display: none;
+    }
+    #contact {
+    padding-top:2%;
+    
+  }
+  }
+</style>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Ralph Halkett. All Rights Reserved.</p>
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Language Translation Data
+            const translations = {
+                en: {
+                    meta_title: 'Ralph Halkett | International DJ & Producer',
+                    meta_description: 'Ralph Halkett is an international DJ based in the UK and Spain, available for clubs, festivals, corporate events, and private parties worldwide. Listen to his mixes and get in touch to book.',
+                    
+                    nav_home: 'Home',
+                    nav_gallery: 'Gallery',
+                    nav_music: 'Music',
+                    nav_contact: 'Contact / EPK',
+
+                    home_title: 'Latest Posts',
+                    insta_cap_1: 'Amazing night at sotogrande beach club! 🔥', insta_cap_2: 'Locked in. New mix coming soon.', 
+                    insta_cap_3: 'Leeds festival... what a vibe!', insta_cap_4: 'In the zone.', insta_cap_5: 'New press shots.', 
+                    insta_cap_6: 'What a night this was 🎉 Next up: Essex.',
+                    img_alt_1: 'DJ Ralph Halkett performing at a beach club', img_alt_2: 'DJ setup close up',
+                     img_alt_3: 'Festival crowd', img_alt_4:'DJ pressing a button on the decks',
+                    img_alt_5: 'Portrait black and white of ralph halkett',   img_alt_6: 'People dancing at a live show, lasers',
+
+                    gallery_title: 'Gallery',
+                    music_title: 'Music',
+                    contact_title: 'Contact & Press Kit',
+                    contact_text: 'I am based in both Leeds and Essex in England and Sotogrande in Spain, but I take national/international bookings too. I cater to all event types such as but not limited to clubs, festivals, corporate events, birthdays, proms, and much more.',
+                    contact_btn_epk: 'Download EPK',
+                    contact_btn_email: 'Email for Bookings',
+                    contact_btn_dm: 'Send Instagram DM'
+                },
+                es: {
+                    meta_title: 'Ralph Halkett | DJ Internacional y Productor',
+                    meta_description: 'Ralph Halkett es un DJ internacional con sede en el Reino Unido y España, disponible para discotecas, festivales, eventos corporativos y fiestas privadas en todo el mundo. Escucha sus mezclas y ponte en contacto para reservar.',
+                    
+                    nav_home: 'Inicio',
+                    nav_gallery: 'Galería',
+                    nav_music: 'Música',
+                    nav_contact: 'Contacto / EPK',
+                    
+                     home_title: 'Últimos Posts',
+                    insta_cap_1: '¡Noche increíble en el club de playa de Sotogrande! 🔥', insta_cap_2:'Enfocado. Nueva mezcla próximamente.',
+                    insta_cap_3:'Festival de Leeds... ¡qué ambiente!', insta_cap_4:'En la zona.', insta_cap_5: 'Nuevas fotos de prensa.',
+                    insta_cap_6: '¡Qué noche fue esta! 🎉 Próxima parada: Essex.',
+
+                    img_alt_1: 'DJ Ralph Halkett actuando in un club de playa', img_alt_2: 'Primer plano del equipo de DJ', 
+                    img_alt_3: 'Público del festival',  img_alt_4: 'DJ pulsando un botón en los platos',
+                    img_alt_5: 'Retrato en blanco y negro de Ralph Halkett',   img_alt_6:'Gente bailando en un show en vivo, láseres',
+
+
+                    gallery_title: 'Galería',
+                    music_title: 'Música',
+                    contact_title: 'Contacto y Kit de Prensa',
+                    contact_text: 'Tengo mi sede tanto en Leeds y Essex en Inglaterra como en Sotogrande en España, pero también acepto reservas nacionales/internacionales. Me adapto a todo tipo de eventos, como discotecas, festivales, eventos corporativos, cumpleaños, bailes de graduación, y mucho más.',
+                    contact_btn_epk: 'Descargar EPK',
+                    contact_btn_email:'Email para Contratar',
+                    contact_btn_dm: 'Enviar DM de Instagram',
+                }
+            };
+            
+            // ---------------------------------------------
+            // 1. Mobile Menu Toggle
+            // ---------------------------------------------
+            const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+            const mobileNav = document.getElementById('mobileNavMenu');
+            
+            mobileMenuIcon.addEventListener('click', () => {
+                mobileMenuIcon.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+            });
+            
+            // Close mobile menu when a link is clicked
+             const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuIcon.classList.remove('active');
+                     mobileNav.classList.remove('active');
+                })
+            });
+
+
+            // ---------------------------------------------
+            // 2. Language Switcher
+            // ---------------------------------------------
+            const languageSelector = document.getElementById('languageSelector');
+
+            function A(lang) {
+                const elements = document.querySelectorAll('[data-lang-key]');
+                elements.forEach(el => {
+                    const key = el.getAttribute('data-lang-key');
+                    if(translations[lang] && translations[lang][key]){
+                         // Check for specific attribute types (like 'alt') versus innerHTML
+                         if(key.startsWith('img_alt')) {
+                            el.alt = translations[lang][key]; 
+                        }
+                       else if (key.startsWith('meta_')){ 
+                            el.content = translations[lang][key]
+                        }
+                        else {
+                            el.innerHTML = translations[lang][key];
+                        }
+                    }
+                });
+                document.documentElement.lang = lang; // update the html lang attribute              
+            };
+            
+            languageSelector.addEventListener('change', (e) => {
+               A(e.target.value)
+            });
+
+
+             // ---------------------------------------------
+            // 3. Gallery Lightbox
+            // ---------------------------------------------
+           const lightbox = document.getElementById('lightbox-modal');
+const lightboxImg = document.getElementById('lightbox-image');
+const captionText = document.getElementById('lightbox-caption');
+const closeBtn = document.getElementById('close-btn');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+
+let currentIndex = 0;
+let images = [];
+
+// Attach to posts
+document.querySelectorAll('.insta-post').forEach(post => {
+  post.addEventListener('click', () => {
+    images = post.dataset.images.split(","); // get array of 6 images
+    captionText.textContent = post.dataset.caption || "";
+    currentIndex = 0;
+    openLightbox();
+  });
+});
+
+function openLightbox() {
+  lightbox.style.display = 'flex';
+  showImage(currentIndex);
+}
+
+function closeLightbox() {
+  lightbox.style.display = 'none';
+}
+
+function showImage(index) {
+  lightboxImg.src = images[index];
+}
+
+function nextImage() {
+  currentIndex = (currentIndex + 1) % images.length;
+  showImage(currentIndex);
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  showImage(currentIndex);
+}
+
+// Events
+closeBtn.addEventListener('click', closeLightbox);
+nextBtn.addEventListener('click', nextImage);
+prevBtn.addEventListener('click', prevImage);
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) closeLightbox();
+});
+
+
+
+            // ---------------------------------------------
+            // 4. Update Copyright Year Dynamically
+            // ---------------------------------------------
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        })
+    </script>
+    <!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+  <span id="lightbox-close" class="close-lightbox">&times;</span>
+  <div class="lightbox-inner">
+    <span id="lightbox-prev" class="nav prev">&#10094;</span>
+    <img id="lightbox-img" class="lightbox-content" alt="">
+    <span id="lightbox-next" class="nav next">&#10095;</span>
+  </div>
+  <p id="lightbox-caption" class="caption"></p>
+  <div id="lightbox-thumbnails" class="lightbox-thumbnails"></div>
+
+</div>
+
+<style>
+lightbox-inner {
+  position: relative;
+  max-width: 90%;
+  max-height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+
+.lightbox-content {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 2100;
+}
+
+.nav {
+  position: fixed; /* instead of absolute */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.6rem;
+  color: #fff;
+  cursor: pointer;
+  padding: 12px;
+  user-select: none;
+ background: #313131b3;
+ width:35px;
+ height:35px;
+  border-radius: 100%;
+  transition: background 0.3s;
+  z-index: 2100; /* make sure they sit above */
+  line-height:1rem;
+  letter-spacing:0;
+}
+
+.prev { left: 30px; }
+.next { right: 30px; }
+
+
+.caption {
+  margin-top: 15px;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  max-width: 80%;
+}
+
+ @media (min-width: 768px) {
+ 
+ .nav {
+  position: fixed; /* instead of absolute */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  padding: 12px;
+  user-select: none;
+ background: #313131b3;
+ width:45px;
+ height:45px;
+  border-radius: 100%;
+  transition: background 0.3s;
+  z-index: 2100; /* make sure they sit above */
+  line-height:1rem;
+  letter-spacing:0;
+}
+
+.prev { left: 40px; }
+.next { right: 40px; }
+ }
+ 
+ .lightbox-thumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+  max-width: 90%;
+}
+
+.lightbox-thumbnails img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.2s;
+}
+
+.lightbox-thumbnails img.active {
+  opacity: 1;
+  outline: 2px solid white;
+  transform: scale(1.05);
+}
+
+.lightbox-thumbnails img:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 440px) {
+.lightbox-thumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+  max-width: 90%;
+}
+
+.lightbox-thumbnails img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.2s;
+}
+}
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const lightbox = document.getElementById('lightbox');
+  const imgEl = document.getElementById('lightbox-img');
+  const captionEl = document.getElementById('lightbox-caption');
+  const closeBtn = document.getElementById('lightbox-close');
+  const prevBtn = document.getElementById('lightbox-prev');
+  const nextBtn = document.getElementById('lightbox-next');
+  const thumbnailsEl = document.getElementById('lightbox-thumbnails');
+
+  let currentIndex = 0;
+  let images = [];
+
+  document.querySelectorAll('.insta-post').forEach(post => {
+    post.addEventListener('click', () => {
+      const hiddenImgs = post.querySelectorAll('.gallery-images img');
+      images = hiddenImgs.length > 0 
+        ? Array.from(hiddenImgs).map(img => img.src) 
+        : [post.querySelector('img').src];
+
+      captionEl.textContent = post.dataset.caption 
+        || post.querySelector('.insta-caption')?.textContent 
+        || '';
+
+      currentIndex = 0;
+      openLightbox();
+    });
+  });
+
+  function openLightbox() {
+    lightbox.style.display = 'flex';
+    generateThumbnails();
+    showImage(currentIndex);
+  }
+  function closeLightbox() { lightbox.style.display = 'none'; }
+  function showImage(i) {
+    imgEl.src = images[i];
+    highlightThumbnail(i);
+  }
+  function nextImage() { currentIndex = (currentIndex + 1) % images.length; showImage(currentIndex); }
+  function prevImage() { currentIndex = (currentIndex - 1 + images.length) % images.length; showImage(currentIndex); }
+
+  function generateThumbnails() {
+    thumbnailsEl.innerHTML = '';
+    images.forEach((src, i) => {
+      const thumb = document.createElement('img');
+      thumb.src = src;
+      thumb.addEventListener('click', () => {
+        currentIndex = i;
+        showImage(i);
+      });
+      thumbnailsEl.appendChild(thumb);
+    });
+  }
+
+  function highlightThumbnail(i) {
+    thumbnailsEl.querySelectorAll('img').forEach((thumb, idx) => {
+      thumb.classList.toggle('active', idx === i);
+    });
+  }
+
+  closeBtn.addEventListener('click', closeLightbox);
+  nextBtn.addEventListener('click', nextImage);
+  prevBtn.addEventListener('click', prevImage);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (lightbox.style.display === 'flex') {
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'Escape') closeLightbox();
+    }
+  });
+});
+
+</script>
+
+</body>
+
+</html>
