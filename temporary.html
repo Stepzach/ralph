@@ -193,17 +193,18 @@
         .mobile-nav ul {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            align-items: left;
+            padding-left: 5%;
+            justify-content: start;
             height: 100%;
         }
 
         .mobile-nav ul li {
-            margin: 30px 0;
+            margin: 16px 0;
         }
 
         .mobile-nav ul li a {
-            font-size: 1.8rem;
+            font-size: 1.55rem;
             text-decoration: none;
             color: var(--text-color);
             font-weight: 500;
@@ -407,13 +408,13 @@
 
         /* 7. Footer */
         footer {
-            padding: 30px 5%;
+            padding: 12px 5%;
              text-align: center;
-            background-color: #e0e0e0;
+            border-top: solid 1.5px #e0e0e0;
         }
         
         footer p {
-             font-size: 0.9rem;
+             font-size: 0.85rem;
         }
 
         /* 8. Responsiveness */
@@ -479,24 +480,38 @@
 }
 
 #home {
-  min-height: calc(100vh - var(--header-height)) !important;
+  min-height: calc(100vh - var(--header-height));
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 5%; /* only side padding */
-  background: var(--main-color);
-  padding-top: var(--header-height);
+  align-items: flex-end; /* keeps text near bottom */
+  padding: 0 5% 5% 5%;
+  margin-top: var(--header-height) !important;
+  color: #fff;
+  position: relative;
+
+  /* Background image with black gradient fade */
+  background: 
+    linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%),
+    url("https://github.com/Stepzach/ralph/blob/main/503045397_18506058220049885_4300089605774085051_n.jpeg?raw=true")
+    center/cover no-repeat;
 }
+
+
+#home p {
+  line-height:1.1rem;
+  max-width:500px;
+}
+
+
 
 #home img {
   max-height: calc(70vh) !important;
   object-fit: cover;
  }
 
-@media screen and (min-width: 479px) {
+@media screen and (min-width: 679px) {
 #home {
 padding-top: calc(2% + var(--header-height));
-padding-bottom: calc(2%);
+padding-bottom: calc(3%);
 }
 }
 
@@ -545,178 +560,74 @@ padding-bottom: calc(2%);
 
     <!-- Home Section (Instagram) -->
    <section id="home">
-   <img src="https://static.wixstatic.com/media/cc3be5_7e1af58985154468b05d06e014d9ed7c~mv2.jpg/v1/fill/w_590,h_394,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/_MG_0139.jpg" 
-        width="100%"
-        alt="People dancing at a live show, lasers" 
-        data-lang-key="img_alt_6">
-   <br>
-   <p>
-      I am based in both Leeds and Essex in England and Sotogrande in Spain, but I take national/international bookings too. I cater to all event types such as but not limited to clubs, festivals, corporate events, birthdays, proms, and much more.
-   </p>
-   <div style="margin-top:10px;">
-      <i class="fa fa-instagram" style="text-decoration: underline;">
-         <span style="font-family: 'Poppins', sans-serif; font-weight: 300; line-height: .7;">ralphhalkett</span>
-      </i>
+   <div class="home-content">
+      <p>
+         I am based in both Leeds and Essex in England and Sotogrande in Spain, but I take national/international bookings too. I cater to all event types such as but not limited to clubs, festivals, corporate events, birthdays, proms, and much more.
+      </p>
+      <div style="margin-top:10px;">
+         <i class="fa fa-instagram" style="text-decoration: underline;">
+            <span style="font-family: 'Poppins', sans-serif; font-weight: 300; line-height: .7;">ralphhalkett</span>
+         </i>
+      </div>
    </div>
 </section>
 
 
 
-    <!-- Gallery Section -->
-    <section id="gallery">
-        <h2 class="section-title" data-lang-key="gallery_title">Gallery</h2>
-       
-        <div class="instagram-grid">
-            <!-- POST 1 -->
-            <div class="insta-post" tabindex="0">
-                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=cropc" 
-                alt="DJ Ralph Halkett performing at a beach club"  data-lang-key="img_alt_1">
-                <div class="insta-overlay">
-                    <p class="insta-caption" data-lang-key="insta_cap_1">Amazing night at sotogrande beach club! 🔥</p>
-                    <p class="insta-likes">
-                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
-                        1,245
-                    </p>
-                </div>
-            </div>
-            <!-- POST 2 -->
-             <div class="insta-post" tabindex="0">
-                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=cropc" 
-                alt="DJ setup close up" data-lang-key="img_alt_2">
-                 <div class="insta-overlay">
-                    <p class="insta-caption" data-lang-key="insta_cap_2">Locked in. New mix coming soon.</p>
-                      <p class="insta-likes">
-                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
-                        892
-                    </p>
-                </div>
-            </div>
-             <!-- POST 3 -->
-             <div class="insta-post" tabindex="0">
-                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=cropc" 
-                alt="Festival crowd" data-lang-key="img_alt_3">
-                 <div class="insta-overlay">
-                    <p class="insta-caption" data-lang-key="insta_cap_3">Leeds festival... what a vibe!</p>
-                      <p class="insta-likes">
-                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
-                        2,110
-                    </p>
-                </div>
-            </div>
-             <!-- POST 4 -->
-            <div class="insta-post" tabindex="0">
-                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=cropc" 
-                alt="DJ pressing a button on the decks" data-lang-key="img_alt_4">
-                 <div class="insta-overlay">
-                    <p class="insta-caption" data-lang-key="insta_cap_4">In the zone.</p>
-                      <p class="insta-likes">
-                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
-                       978
-                    </p>
-                </div>
-            </div>
-            <!-- POST 5 -->
-             <div class="insta-post" tabindex="0">
-                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=cropc"
-                 alt="Portrait black and white of ralph halkett" data-lang-key="img_alt_5">
-                 <div class="insta-overlay">
-                    <p class="insta-caption"data-lang-key="insta_cap_5" >New press shots.</p>
-                      <p class="insta-likes">
-                       <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg> 
-                        651
-                    </p>
-                </div>
-            </div>
-               <!-- POST 6 -->
-             <div class="insta-post" tabindex="0">
-                 <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=cropc" 
-                 alt="People dancing at a live show, lasers" data-lang-key="img_alt_6">
-                 <div class="insta-overlay">
-                    <p class="insta-caption"data-lang-key="insta_cap_6" >What a night this was 🎉 Next up: Essex.</p>
-                       <p class="insta-likes">
-                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
-                        1,532
-                    </p>
-                </div>
-             </div>
-              <!-- POST 7 -->
-            <div class="insta-post" 
-            
-     data-images="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=cropc,https://static.wixstatic.com/media/cc3be5_9f54ddb7e3b94ddd8c436afb536fa258~mv2.jpg," 
-     data-caption="Sotogrande Beach Club">
-<div class="insta-title">Sotogrande Beach Club</div>
-
-  <img src="https://static.wixstatic.com/media/cc3be5_565a5aeacfde4aac81ba5c59c385bd8e~mv2.jpg/v1/fill/w_296,h_446,q_90,enc_avif,quality_auto/cc3be5_565a5aeacfde4aac81ba5c59c385bd8e~mv2.jpg," alt="DJ performing at the club">
- 
-</div>
-
-                 <!-- POST 8 -->
-             <div class="insta-post" tabindex="0">
-              <div class="insta-title">Sotogrande Beach Club</div>
-                 <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=cropc" 
-                 alt="People dancing at a live show, lasers" data-lang-key="img_alt_6">
-                 <div class="insta-overlay">
-                    <p class="insta-caption"data-lang-key="insta_cap_6" >What a night this was 🎉 Next up: Essex.</p>
-                       <p class="insta-likes">
-                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
-                        1,532
-                    </p>
-                </div>
-                </div>
-                
-        </div>
-
-    </section>
-
-    <!-- Lightbox Modal -->
-   <div id="lightbox-modal" class="lightbox">
-  <span class="close-lightbox" id="close-btn">&times;</span>
-  
-  <div class="lightbox-inner">
-    <span class="prev">&#10094;</span>
-    <img class="lightbox-content" id="lightbox-image">
-    <span class="next">&#10095;</span>
-  </div>
-  
-  <p id="lightbox-caption" class="caption"></p>
-</div>
-
-
-
-    <!-- Music Section -->
-    <section id="music">
-         <h2 class="section-title" data-lang-key="music_title">Music</h2>
-        <div class="music-container">
-            <div class="music-embed">
-                <!-- Spotify Embed -->
-               <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/0Bog0W5DWIgTUUQkessxYh?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            </div>
-            <div class="music-embed">
-                <!-- SoundCloud Embed -->
-                 <iframe width="100%" height="200" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2136542223&color=%237494c4&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"></div>
-                 <iframe width="100%" height="200" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2034535612&color=%237494c4&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"></div>
-            </div>
-        </div>
-    </section>
+   
 
 
         <!-- Contact & EPK -->
-    <section id="contact">
-        <h2 class="section-title" data-lang-key="contact_title">Contact & Press Kit</h2>
+    <section id="contact" style="text-align:left; padding-bottom:5px;">
+        <h3>Links</h3>
 
-        <div class="contact-content">
-             <p data-lang-key="contact_text">
-                I am based in both Leeds and Essex in England and Sotogrande in Spain, but I take national/international bookings too.
-                I cater to all event types such as but not limited to clubs, festivals, corporate events, birthdays, proms, and much more.
-            </p>
+       <div class="contact-content">
+  <p data-lang-key="contact_text" class="contact-list">
+   
+      <a href="#" class="contact-link">&gt; Backrooms Leeds</a>
+      <a href="#" class="contact-link">&gt; Skye Leeds</a>
+      <a href="#" class="contact-link">&gt; Missing in Action</a>
+      <a href="#" class="contact-link">&gt; Fresh2Death</a>
+    
+  </p>
+</div>
 
-            <div class="contact-buttons">
-                <!-- NOTE: add a a link to your EPK file below ("a href=file.zip...) -->
-                <a href="#" class="cta-button" download data-lang-key="contact_btn_epk">Download EPK</a>
-                <a href="mailto:booking@ralphhalkett.com" class="cta-button button-secondary"data-lang-key="contact_btn_email">Email for Bookings</a>
-                <a href="https://www.instagram.com/direct/t/17846561138885141/" target="_blank" class="cta-button button-secondary" data-lang-key="contact_btn_dm">Send Instagram DM</a>
-            </div>
-        </div>
+<style>
+  .contact-list {
+    margin: 0;
+    padding: 0;
+  }
+
+  .contact-link {
+    text-decoration: none;
+    color: inherit;
+    margin-right: 1.5rem;
+  }
+
+  /* Small screens: stacked */
+  .contact-list a {
+    display: block;
+    padding: 0;
+    margin: 0;
+    text-decoration: underline;
+  }
+
+  /* Large screens: inline */
+  @media (min-width: 768px) {
+    .contact-list a {
+      display: inline;
+      padding: 1px 10px;
+    }
+    .contact-list br {
+      display: none;
+    }
+    #contact {
+    padding-top:2%;
+    
+  }
+  }
+</style>
+
     </section>
 
 
