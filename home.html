@@ -810,6 +810,21 @@ lightbox.addEventListener('click', (e) => {
             document.getElementById('currentYear').textContent = new Date().getFullYear();
 
         })
+        
+        
+        // ---------------------------------------------
+// 5. Adjust #home height on page load
+// ---------------------------------------------
+window.addEventListener('load', () => {
+  const homeSection = document.getElementById('home');
+  const viewportHeight = window.innerHeight; // excludes browser chrome
+  const headerHeight = document.querySelector('header').offsetHeight;
+
+  // Force home to fill viewport (minus header)
+  homeSection.style.minHeight = (viewportHeight - headerHeight) + "px";
+});
+
     </script>
+    
 </body>
 </html>
