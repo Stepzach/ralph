@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -53,7 +53,7 @@
         }
 
         section {
-            padding: 100px 5%;
+            padding: 5% 5%;
         }
 
         .section-title {
@@ -478,6 +478,28 @@
   font-size: 1rem;
 }
 
+#home {
+  min-height: calc(100vh - var(--header-height)) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 5%; /* only side padding */
+  background: var(--main-color);
+  padding-top: var(--header-height);
+}
+
+#home img {
+  max-height: calc(70vh) !important;
+  object-fit: cover;
+ }
+
+@media screen and (min-width: 479px) {
+#home {
+padding-top: calc(2% + var(--header-height));
+padding-bottom: calc(2%);
+}
+}
+
     </style>
 </head>
 <body>
@@ -522,24 +544,23 @@
 
 
     <!-- Home Section (Instagram) -->
-    <section id="home">
-       
-        <!-- 
-            NOTE: A live Instagram feed requires server-side code and API access.
-            This is a styled, static representation for this template.
-            Replace these placeholders with your actual post content.
-        -->
-         <img src="https://static.wixstatic.com/media/cc3be5_7e1af58985154468b05d06e014d9ed7c~mv2.jpg/v1/fill/w_590,h_394,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/_MG_0139.jpg" width=100%;
-                 alt="People dancing at a live show, lasers" data-lang-key="img_alt_6">
-       <br><br><p>
-I am based in both Leeds and Essex in England and Sotogrande in Spain, but I take national/international bookings too. I cater to all event types such as but not limited to clubs, festivals, corporate events, birthdays, proms, and much more.</p>
-<div style="margin-top:10px;">
-<i class="fa fa-instagram" style="text-decoration: underline;">
-<span style="font-family: 'Poppins', sans-serif;  font-weight: 300;
-            line-height: .7;">ralphhalkett</span></i>
+   <section id="home">
+   <img src="https://static.wixstatic.com/media/cc3be5_7e1af58985154468b05d06e014d9ed7c~mv2.jpg/v1/fill/w_590,h_394,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/_MG_0139.jpg" 
+        width="100%"
+        alt="People dancing at a live show, lasers" 
+        data-lang-key="img_alt_6">
+   <br>
+   <p>
+      I am based in both Leeds and Essex in England and Sotogrande in Spain, but I take national/international bookings too. I cater to all event types such as but not limited to clubs, festivals, corporate events, birthdays, proms, and much more.
+   </p>
+   <div style="margin-top:10px;">
+      <i class="fa fa-instagram" style="text-decoration: underline;">
+         <span style="font-family: 'Poppins', sans-serif; font-weight: 300; line-height: .7;">ralphhalkett</span>
+      </i>
+   </div>
+</section>
 
-</div>
-    </section>
+
 
     <!-- Gallery Section -->
     <section id="gallery">
@@ -668,11 +689,12 @@ I am based in both Leeds and Essex in England and Sotogrande in Spain, but I tak
         <div class="music-container">
             <div class="music-embed">
                 <!-- Spotify Embed -->
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZEVXbMDoHDwVN2tF?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+               <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/0Bog0W5DWIgTUUQkessxYh?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
             <div class="music-embed">
                 <!-- SoundCloud Embed -->
-                 <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1149999661&color=%231a1a1a&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                 <iframe width="100%" height="200" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2136542223&color=%237494c4&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"></div>
+                 <iframe width="100%" height="200" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2034535612&color=%237494c4&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"></div>
             </div>
         </div>
     </section>
