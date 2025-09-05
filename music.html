@@ -637,6 +637,27 @@
   
   <div class="music-grid">
 
+
+  <div class="track-card">
+      <div class="badge">
+         New
+      </div>
+      <div class="track-content">
+        <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/31/ab/6c/31ab6ce6-0369-b5c1-2e10-176bd94a6532/artwork.jpg/632x632bb.webp" alt="Song 2 Cover" class="cover">
+        <div class="track-info">
+          <h4>Want You Alone</h4>
+          <div class="meta">
+            <span class="length">3:19</span>
+            <div class="links">
+              <a href="https://open.spotify.com/track/3K9uHMq4fiRY2G0jR8b0k5?si=b7fb546be1794758" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+              <a href="https://music.apple.com/us/album/want-you-alone-single/1826866622" target="_blank" aria-label="Apple Music"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Apple_Music_icon.svg" width=23px;></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
     <!-- 1 - Spotify / Apple -->
     <div class="track-card">
       <div class="badge">
@@ -658,7 +679,7 @@
     </div>
 
     <!-- 2 - Spotify / Apple -->
-    <div class="track-card">
+    <div class="track-card" id="hidesmoll">
       <div class="badge">
         <i class="fa-solid fa-play"></i> 38.4k
       </div>
@@ -676,6 +697,34 @@
         </div>
       </div>
     </div>
+    
+    
+    
+    
+    <div class="track-card" id="hidesmoll">
+      <div class="badge">
+        <i class="fa-solid fa-play"></i> 19.4k
+      </div>
+      <div class="track-content">
+        <img src="https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/80/1a/a9/801aa974-f2df-82a9-fdeb-cd041722f8f1/artwork.jpg/632x632bb.webp" alt="Song 2 Cover" class="cover">
+        <div class="track-info">
+          <h4>Beautiful Life</h4>
+          <div class="meta">
+            <span class="length">2:12</span>
+            <div class="links">
+              <a href="https://open.spotify.com/track/5vp10eRLKMZM9ExS6A4QaX?si=393325b92b954031" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+              <a href="https://music.apple.com/us/song/beautiful-life/1552225595" target="_blank" aria-label="Apple Music"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Apple_Music_icon.svg" width=23px;></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+   
+    
+    
+    
 </div>
  <h3 style="padding-bottom:20px; padding-top:20px;">Mixes</h3>
    <div class="music-grid">
@@ -717,6 +766,44 @@
       </div>
     </div>
     
+    
+     <div class="track-card">
+      <div class="badge">
+        <i class="fa-solid fa-heart"></i> 34
+      </div>
+      <div class="track-content">
+        <img src="https://i1.sndcdn.com/artworks-zfw69GGdoyW1I2y0-bZIglQ-t1080x1080.jpg" alt="SC Track 2" class="cover">
+        <div class="track-info">
+          <h4>@ralphhalkett - Freshers Mix 2023</h4>
+          <div class="meta">
+            <span class="length">57:54</span>
+            <div class="links">
+              <a href="https://soundcloud.com/ralphhalkett/freshers23" target="_blank" aria-label="SoundCloud"><i class="fa-brands fa-soundcloud"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+     <div class="track-card">
+      <div class="badge">
+        <i class="fa-solid fa-heart"></i> 33
+      </div>
+      <div class="track-content">
+        <img src="https://i1.sndcdn.com/artworks-nXMn7wFJphjoMrGR-u34Qwg-t1080x1080.jpg" alt="SC Track 2" class="cover">
+        <div class="track-info">
+          <h4>Funky, Deep & Tech House Mix (March 2023)</h4>
+          <div class="meta">
+            <span class="length">1:00:18</span>
+            <div class="links">
+              <a href="https://soundcloud.com/ralphhalkett/fdt3" target="_blank" aria-label="SoundCloud"><i class="fa-brands fa-soundcloud"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
    
 
     <!-- You can repeat the same badge pattern for mixes -->
@@ -732,7 +819,7 @@
 
   .music-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
   }
 
@@ -850,6 +937,12 @@
     }
     .links i { font-size: 26px; }
     .links a { padding: 8px; }
+    
+    
+    #hidesmoll {
+      display: none;
+    }
+    
   }
 </style>
 
