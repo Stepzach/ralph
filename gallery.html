@@ -729,8 +729,8 @@
     <img src="https://github.com/Stepzach/ralph/blob/main/@betterdaysfestival%2010%20!@buckland_visuals%20and%20@ksvm__%20on%20camera.jpg?raw=true" alt="">
      <img src="https://github.com/Stepzach/ralph/blob/main/503045397_18506058220049885_4300089605774085051_n.jpeg?raw=true" alt="">
      
-      <video controls playsinline 
-  webkit-playsinline  muted style="aspect-ratio: 1 / 1 !important; object-fit: cover;">
+      <video controls poster playsinline 
+  webkit-playsinline muted style="aspect-ratio: 1 / 1 !important; object-fit: cover;">
       <source style="aspect-ratio: 1 / 1 !important; object-fit: cover;" src="/ralph/SnapInsta.to_AQNqm6rrfsRpk2ThIHcxmoLDF69wLrVc-krUvHgm1-Hbw8rayM6MclZmCWgpEQkak-kRKg6BzgwgN0J-TnmiJzSHRFoWhyHV66Uv_Es.mp4" type="video/mp4">
     </video>
     
@@ -1426,9 +1426,28 @@ document.addEventListener('DOMContentLoaded', () => {
     return { type: 'img', src: el.src };
   } else if (el.tagName.toLowerCase() === 'video') {
     const source = el.querySelector('source');
-    return { type: 'video', src: source ? source.src : '' };
+    
+    // Create a canvas to capture first frame
+    const video = document.createElement('video');
+    video.src = source ? source.src : '';
+    video.muted = true;
+    video.crossOrigin = "anonymous"; // if video is hosted elsewhere
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    return new Promise(resolve => {
+      video.addEventListener('loadeddata', () => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const thumbnailSrc = canvas.toDataURL('image/jpeg');
+        resolve({ type: 'video', src: source.src, thumb: thumbnailSrc });
+      });
+    });
   }
 });
+
 
 
       captionEl.textContent = post.dataset.caption 
@@ -1476,16 +1495,16 @@ document.addEventListener('DOMContentLoaded', () => {
   function nextImage() { currentIndex = (currentIndex + 1) % images.length; showImage(currentIndex); }
   function prevImage() { currentIndex = (currentIndex - 1 + images.length) % images.length; showImage(currentIndex); }
 
-  function generateThumbnails() {
-    thumbnailsEl.innerHTML = '';
-    images.forEach((item, i) => {
-      const thumb = document.createElement('img');
-      thumb.src = item.src;
-      if (item.type === 'video') thumb.style.border = '';
-      thumb.addEventListener('click', () => { currentIndex = i; showImage(i); });
-      thumbnailsEl.appendChild(thumb);
-    });
-  }
+ function generateThumbnails() {
+  thumbnailsEl.innerHTML = '';
+  images.forEach((item, i) => {
+    const thumb = document.createElement('img');
+    thumb.src = item.type === 'video' && item.thumb ? item.thumb : item.src;
+    thumb.addEventListener('click', () => { currentIndex = i; showImage(i); });
+    thumbnailsEl.appendChild(thumb);
+  });
+}
+
 
  function highlightThumbnail(i) {
   thumbnailsEl.querySelectorAll('img').forEach((thumb, idx) => {
