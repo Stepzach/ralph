@@ -1426,28 +1426,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return { type: 'img', src: el.src };
   } else if (el.tagName.toLowerCase() === 'video') {
     const source = el.querySelector('source');
-    
-    // Create a canvas to capture first frame
-    const video = document.createElement('video');
-    video.src = source ? source.src : '';
-    video.muted = true;
-    video.crossOrigin = "anonymous"; // if video is hosted elsewhere
-
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-
-    return new Promise(resolve => {
-      video.addEventListener('loadeddata', () => {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        const thumbnailSrc = canvas.toDataURL('image/jpeg');
-        resolve({ type: 'video', src: source.src, thumb: thumbnailSrc });
-      });
-    });
+    return { type: 'video', src: source ? source.src : '' };
   }
 });
-
 
 
       captionEl.textContent = post.dataset.caption 
@@ -1495,16 +1476,16 @@ document.addEventListener('DOMContentLoaded', () => {
   function nextImage() { currentIndex = (currentIndex + 1) % images.length; showImage(currentIndex); }
   function prevImage() { currentIndex = (currentIndex - 1 + images.length) % images.length; showImage(currentIndex); }
 
- function generateThumbnails() {
-  thumbnailsEl.innerHTML = '';
-  images.forEach((item, i) => {
-    const thumb = document.createElement('img');
-    thumb.src = item.type === 'video' && item.thumb ? item.thumb : item.src;
-    thumb.addEventListener('click', () => { currentIndex = i; showImage(i); });
-    thumbnailsEl.appendChild(thumb);
-  });
-}
-
+  function generateThumbnails() {
+    thumbnailsEl.innerHTML = '';
+    images.forEach((item, i) => {
+      const thumb = document.createElement('img');
+      thumb.src = item.src;
+      if (item.type === 'video') thumb.style.border = '';
+      thumb.addEventListener('click', () => { currentIndex = i; showImage(i); });
+      thumbnailsEl.appendChild(thumb);
+    });
+  }
 
  function highlightThumbnail(i) {
   thumbnailsEl.querySelectorAll('img').forEach((thumb, idx) => {
