@@ -717,13 +717,24 @@
     <div class="contact-wrapper">
         <!-- Text content -->
         <div class="contact-content">
-            <p data-lang-key="contact_text1">
+        
+            <p data-lang-key="contact_text1" class=hidelargg>
                 If you have any enquiries about who I am and what I do, feel free to contact me
             </p>
-
+<div class="contact-wrapper-mobile">
+    <div class="contact-text">
+      
+        <p data-lang-key="contact_text1">
+            If you have any enquiries about who I am and what I do, feel free to contact me
+        </p>
+    </div>
+    <div class="contact-image-mobile">
+        <img src="https://i1.sndcdn.com/avatars-2VpO4pE73vCwiyxk-FAsHHw-t500x500.jpg" alt="DJ Ralph Halkett" />
+    </div>
+</div>
             <div class="contact-buttons">
                
-                <a href="mailto:booking@ralphhalkett.com" class="cta-button button-secondary" data-lang-key="contact_btn_email">
+                <a href="mailto:ralphhalkettdj@gmail.com" class="cta-button button-secondary" data-lang-key="contact_btn_email">
                     <i class="fa fa-envelope"></i> Email for Bookings
                 </a>
                 <a href="https://www.instagram.com/ralphhalkett/" target="_blank" class="cta-button button-secondary" data-lang-key="contact_btn_dm">
@@ -737,8 +748,11 @@
 
         <!-- Image for large screens only -->
         <div class="contact-image">
-            <img src="https://github.com/Stepzach/ralph/blob/main/@betterdaysfestival%2010%20!@buckland_visuals%20and%20@ksvm__%20on%20camera%20(1).jpg?raw=true" alt="DJ Ralph Halkett" />
+            <img src="https://i1.sndcdn.com/avatars-2VpO4pE73vCwiyxk-FAsHHw-t500x500.jpg" alt="DJ Ralph Halkett" />
         </div>
+       
+
+
     </div>
 </section>
 
@@ -773,6 +787,9 @@
         flex: 1;
         text-align: left !important;
     }
+    
+     
+     
     .contact-image {
         display: block;
         flex: 1;
@@ -787,6 +804,53 @@
 .contact-buttons a i {
     margin-right: 8px;
 }
+.contact-content p {
+       
+        text-align: left !important;
+    }
+
+/* Mobile flex layout: text left, image right */
+.contact-wrapper-mobile {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 10px;
+    
+}
+
+.contact-wrapper-mobile .contact-text {
+    flex: 1;
+}
+
+.contact-wrapper-mobile .contact-image-mobile img {
+    max-width: 120px;      /* compact */
+    border-radius: 50%;    /* circular */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    margin-top:-30px;
+}
+
+.contact-wrapper-mobile .contact-image-mobile img:hover {
+    transform: scale(1.05);
+}
+
+/* Only show on small screens */
+@media (min-width: 992px) {
+    .contact-wrapper-mobile {
+        display: none;
+    }
+}
+@media (min-width: 643px) {
+    .contact-wrapper-mobile img {
+        display: none;
+    }
+}
+@media (max-width: 991px) {
+.hidelargg {
+        display: none;
+    }
+ }
+
 </style>
 
 
