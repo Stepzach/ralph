@@ -1,11 +1,11 @@
  <!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title data-lang-key="meta_title">Ralph Halkett | International DJ & Producer</title>
+    <title data-lang-key="meta_title">Ralph Halkett | DJ & Producer</title>
     <meta name="description" content="Ralph Halkett is an international DJ based in the UK and Spain, available for clubs, festivals, corporate events, and private parties worldwide. Listen to his mixes and get in touch to book." data-lang-key="meta_description">
     <meta name="keywords" content="DJ, Ralph Halkett, Leeds DJ, Essex DJ, Sotogrande DJ, International DJ, Club DJ, Festival DJ, Corporate Events, Birthday DJ">
 
@@ -491,6 +491,135 @@
 
 
 
+.lang-select {
+  margin-left: 20px;      /* keeps space from "Contact" */
+  width: 50px;            /* just enough for a flag + arrow */
+  height: 32px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  background-size: 22px auto;
+  padding-left: 35px;     /* space so arrow doesn’t overlap flag */
+  font-size: 0;           /* hide text */
+  
+  /* ✅ keep default arrows */
+  appearance: auto;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+}
+
+.lang-select option {
+  font-size: 0; /* ensures no text shows in dropdown */
+  padding-left: 30px;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  background-size: 22px auto;
+}
+
+
+.custom-lang-select {
+  position: relative;
+  width: 60px;        /* give enough room for flag + arrow */
+  margin-left: 20px;  /* keeps spacing from "Contact" */
+  cursor: pointer;
+  font-size: 0;       /* hide stray text spacing */
+}
+
+.custom-lang-select .selected {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 4px 8px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* flag on left, arrow on right */
+}
+
+.custom-lang-select .selected img {
+  width: 24px;
+  height: auto;
+}
+
+.custom-lang-select .arrow {
+  width: 0; 
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #333; /* little ▼ arrow */
+  margin-left: 6px;
+}
+.custom-lang-select .options {
+  display: none;
+  position: absolute;
+  top: 100%;      /* sits just under selected */
+  left: 0;
+  width: 100%;    /* match button width */
+  min-width: 60px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  list-style: none;
+  padding: 5px 0;
+  margin: 4px 0 0;
+  z-index: 100;
+}
+
+.custom-lang-select .options li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0;
+  cursor: pointer;
+}
+
+.custom-lang-select .options li:hover {
+  background: #f0f0f0;
+}
+
+.custom-lang-select .options img {
+  width: 24px;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  .custom-lang-select {
+    width: 50px;
+  }
+  .custom-lang-select .selected img,
+  .custom-lang-select .options img {
+    width: 20px;
+  }
+}
+/* Only show this version on small screens */
+@media (max-width: 768px) {
+  .lang-flags-mobile {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin: 10px 0;
+  }
+
+  .lang-flags-mobile .lang-flag {
+    width: 32px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    filter: saturate(80%);
+    transform: scale(0.9);
+    padding:2px;
+    border-radius: 3px;
+  }
+
+  .lang-flags-mobile .lang-flag.active {
+    filter: saturate(100%);
+    transform: scale(1.1);
+    border: solid 2px black;
+  }
+}
 
 
 
@@ -501,22 +630,32 @@
 
     <!-- Header -->
     <header>
-        <a href="#home" class="logo">RALPH HALKETT</a>
+        <a href="/ralph/home" class="logo">RALPH HALKETT</a>
         <div class="desktop-nav">
              <nav>
                 <ul>
-                    <li><a href="/ralph/home" data-lang-key="nav_home">Home</a></li>
-                    <li><a href="/ralph/gallery" data-lang-key="nav_gallery">Gallery</a></li>
+                   
+                    <li><a href="/ralph/gallery" data-lang-key="nav_gallery"><u>Gallery</u></a></li>
                     <li><a href="/ralph/music" data-lang-key="nav_music">Music</a></li>
-                    <li><a href="/ralph/contact" data-lang-key="nav_contact">Contact / EPK</a></li>
+                    <li><a href="/ralph/contact" data-lang-key="nav_contact">Contact</a></li>
                 </ul>
             </nav>
-            <div class="lang-switcher">
-                <select id="languageSelector">
-                    <option value="en">EN</option>
-                    <option value="es">ES</option>
-                </select>
-            </div>
+            <div class="custom-lang-select" id="languageSelector">
+  <div class="selected">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_the_United_Kingdom_%282-3%29.svg/2560px-Flag_of_the_United_Kingdom_%282-3%29.svg.png" alt="English">
+  <span class="arrow"></span>
+</div>
+
+  <ul class="options">
+    <li data-lang="en">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_the_United_Kingdom_%282-3%29.svg/2560px-Flag_of_the_United_Kingdom_%282-3%29.svg.png" alt="English">
+    </li>
+    <li data-lang="es">
+      <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" alt="Español">
+    </li>
+  </ul>
+</div>
+
         </div>
         
         <div id="mobile-menu-icon">
@@ -531,9 +670,20 @@
     <nav class="mobile-nav" id="mobileNavMenu">
          <ul>
             <li><a href="/ralph/home" data-lang-key="nav_home">Home</a></li>
-            <li><a href="/ralph/gallery" data-lang-key="nav_gallery"><u>Gallery</u></a></li>
+            <li><a href="/ralph/gallery" data-lang-key="nav_gallery"><u><Gallery</u></u></a></li>
             <li><a href="/ralph/music" data-lang-key="nav_music">Music</a></li>
-            <li><a href="/ralph/contact" data-lang-key="nav_contact">Contact / EPK</a></li>
+            <li><a href="/ralph/contact" data-lang-key="nav_contact">Contact</a></li>
+              <div class="lang-flags-mobile" id="mobileLangFlags">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_the_United_Kingdom_%282-3%29.svg/2560px-Flag_of_the_United_Kingdom_%282-3%29.svg.png" 
+       alt="English" 
+       data-lang="en" 
+       class="lang-flag active">
+
+  <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" 
+       alt="Español" 
+       data-lang="es" 
+       class="lang-flag">
+</div>
         </ul>
     </nav>
 
@@ -548,7 +698,7 @@
    
     <!-- Gallery Section -->
     <section id="gallery">
-        <h3 style="padding-bottom:20px;">Gallery</h3>
+        <h3 style="padding-bottom:20px;" data-lang-key="gallery_title">Gallery</h3>
        
         <div class="instagram-grid">
             <!-- POST 1 -->
@@ -670,15 +820,15 @@
 
         <!-- Contact & EPK -->
     <section id="contact" style="text-align:left; padding-bottom:5px;">
-        <h3>Links</h3>
+        <h3 data-lang-key="music_links">Links</h3>
 
        <div class="contact-content">
   <p data-lang-key="contact_text" class="contact-list">
    
-      <a href="#" class="contact-link">&gt; Backrooms Leeds</a>
-      <a href="#" class="contact-link">&gt; Skye Leeds</a>
-      <a href="#" class="contact-link">&gt; Missing in Action</a>
-      <a href="#" class="contact-link">&gt; Fresh2Death</a>
+     <a href="https://www.fatsoma.com/p/backroomleeds" target="_blank" class="contact-link">&gt; Backrooms Leeds</a>
+      <a href="https://www.fourvenues.com/en/skye-leeds" target="_blank" class="contact-link">&gt; Skye Leeds</a>
+      <a href="https://www.fatsoma.com/p/missinginaction" target="_blank" class="contact-link">&gt; Missing in Action</a>
+      <a href="https://fresh2deathuk.com/" target="_blank" class="contact-link">&gt; Fresh2Death</a>
     
   </p>
 </div>
@@ -723,9 +873,9 @@
 
 
     <!-- Footer -->
-    <footer>
-        <p>&copy; <span id="currentYear"></span> Ralph Halkett. All Rights Reserved.</p>
-    </footer>
+   <footer>
+    <p>&copy; <span id="currentYear"></span> Ralph Halkett. <span data-lang-key="footer_rights">All Rights Reserved.</span></p>
+</footer>
 
 
     <!-- JAVASCRIPT -->
@@ -734,59 +884,48 @@
             
             // Language Translation Data
             const translations = {
-                en: {
-                    meta_title: 'Ralph Halkett | International DJ & Producer',
-                    meta_description: 'Ralph Halkett is an international DJ based in the UK and Spain, available for clubs, festivals, corporate events, and private parties worldwide. Listen to his mixes and get in touch to book.',
-                    
-                    nav_home: 'Home',
-                    nav_gallery: 'Gallery',
-                    nav_music: 'Music',
-                    nav_contact: 'Contact / EPK',
+  en: {
+    meta_title: 'Ralph Halkett | DJ & Producer',
+    meta_description: 'Ralph Halkett is an international DJ based in the UK and Spain, available for clubs, festivals, corporate events, and private parties worldwide. Listen to his mixes and get in touch to book.',
 
-                    home_title: 'Latest Posts',
-                    insta_cap_1: 'Amazing night at sotogrande beach club! 🔥', insta_cap_2: 'Locked in. New mix coming soon.', 
-                    insta_cap_3: 'Leeds festival... what a vibe!', insta_cap_4: 'In the zone.', insta_cap_5: 'New press shots.', 
-                    insta_cap_6: 'What a night this was 🎉 Next up: Essex.',
-                    img_alt_1: 'DJ Ralph Halkett performing at a beach club', img_alt_2: 'DJ setup close up',
-                     img_alt_3: 'Festival crowd', img_alt_4:'DJ pressing a button on the decks',
-                    img_alt_5: 'Portrait black and white of ralph halkett',   img_alt_6: 'People dancing at a live show, lasers',
+    nav_home: 'Home',
+    nav_gallery: '<u>Gallery</u>',
+    nav_music: 'Music',
+    nav_contact: 'Contact',
 
-                    gallery_title: 'Gallery',
-                    music_title: 'Music',
-                    contact_title: 'Contact & Press Kit',
-                    contact_text: 'I am based in both Leeds and Essex in England and Sotogrande in Spain, but I take national/international bookings too. I cater to all event types such as but not limited to clubs, festivals, corporate events, birthdays, proms, and much more.',
-                    contact_btn_epk: 'Download EPK',
-                    contact_btn_email: 'Email for Bookings',
-                    contact_btn_dm: 'Send Instagram DM'
-                },
-                es: {
-                    meta_title: 'Ralph Halkett | DJ Internacional y Productor',
-                    meta_description: 'Ralph Halkett es un DJ internacional con sede en el Reino Unido y España, disponible para discotecas, festivales, eventos corporativos y fiestas privadas en todo el mundo. Escucha sus mezclas y ponte en contacto para reservar.',
-                    
-                    nav_home: 'Inicio',
-                    nav_gallery: 'Galería',
-                    nav_music: 'Música',
-                    nav_contact: 'Contacto / EPK',
-                    
-                     home_title: 'Últimos Posts',
-                    insta_cap_1: '¡Noche increíble en el club de playa de Sotogrande! 🔥', insta_cap_2:'Enfocado. Nueva mezcla próximamente.',
-                    insta_cap_3:'Festival de Leeds... ¡qué ambiente!', insta_cap_4:'En la zona.', insta_cap_5: 'Nuevas fotos de prensa.',
-                    insta_cap_6: '¡Qué noche fue esta! 🎉 Próxima parada: Essex.',
+    gallery_title: 'Gallery',
+    music_title: 'Music',
+    contact_title: 'Contact',
 
-                    img_alt_1: 'DJ Ralph Halkett actuando in un club de playa', img_alt_2: 'Primer plano del equipo de DJ', 
-                    img_alt_3: 'Público del festival',  img_alt_4: 'DJ pulsando un botón en los platos',
-                    img_alt_5: 'Retrato en blanco y negro de Ralph Halkett',   img_alt_6:'Gente bailando en un show en vivo, láseres',
+    // ✅ new ones
+    music_remixes: 'Remixes',
+    music_singles: 'Singles',
+    music_mixes: 'Mixes',
+    music_links: 'Links',
+    footer_rights: 'All Rights Reserved.'
+  },
+  es: {
+    meta_title: 'Ralph Halkett | DJ y Productor',
+    meta_description: 'Ralph Halkett es un DJ internacional con sede en el Reino Unido y España, disponible para discotecas, festivales, eventos corporativos y fiestas privadas en todo el mundo. Escucha sus mezclas y ponte en contacto para reservar.',
 
+    nav_home: 'Inicio',
+    nav_gallery: '<u>Galería</u>',
+    nav_music: 'Música',
+    nav_contact: 'Contacto',
 
-                    gallery_title: 'Galería',
-                    music_title: 'Música',
-                    contact_title: 'Contacto y Kit de Prensa',
-                    contact_text: 'Tengo mi sede tanto en Leeds y Essex en Inglaterra como en Sotogrande en España, pero también acepto reservas nacionales/internacionales. Me adapto a todo tipo de eventos, como discotecas, festivales, eventos corporativos, cumpleaños, bailes de graduación, y mucho más.',
-                    contact_btn_epk: 'Descargar EPK',
-                    contact_btn_email:'Email para Contratar',
-                    contact_btn_dm: 'Enviar DM de Instagram',
-                }
-            };
+    gallery_title: 'Galería',
+    music_title: 'Música',
+    contact_title: 'Contacto',
+
+    // ✅ new ones
+    music_remixes: 'Remixes',
+    music_singles: 'Sencillos',
+    music_mixes: 'Mezclas',
+    music_links: 'Enlaces',
+      footer_rights: 'Todos los derechos reservados.'
+  }
+};
+
             
             // ---------------------------------------------
             // 1. Mobile Menu Toggle
@@ -812,31 +951,173 @@
             // ---------------------------------------------
             // 2. Language Switcher
             // ---------------------------------------------
-            const languageSelector = document.getElementById('languageSelector');
+const langButtons = document.querySelectorAll('.lang-btn');
 
-            function A(lang) {
-                const elements = document.querySelectorAll('[data-lang-key]');
-                elements.forEach(el => {
-                    const key = el.getAttribute('data-lang-key');
-                    if(translations[lang] && translations[lang][key]){
-                         // Check for specific attribute types (like 'alt') versus innerHTML
-                         if(key.startsWith('img_alt')) {
-                            el.alt = translations[lang][key]; 
-                        }
-                       else if (key.startsWith('meta_')){ 
-                            el.content = translations[lang][key]
-                        }
-                        else {
-                            el.innerHTML = translations[lang][key];
-                        }
-                    }
-                });
-                document.documentElement.lang = lang; // update the html lang attribute              
-            };
-            
-            languageSelector.addEventListener('change', (e) => {
-               A(e.target.value)
-            });
+function switchLanguage(lang) {
+    const elements = document.querySelectorAll('[data-lang-key]');
+    elements.forEach(el => {
+        const key = el.getAttribute('data-lang-key');
+        if(translations[lang] && translations[lang][key]){
+            if(key.startsWith('img_alt')) {
+                el.alt = translations[lang][key];
+            } else if (key.startsWith('meta_')) {
+                el.content = translations[lang][key];
+            } else {
+                el.innerHTML = translations[lang][key];
+            }
+        }
+    });
+    document.documentElement.lang = lang;
+}
+
+function initCustomDropdown(selectorId) {
+  const container = document.getElementById(selectorId);
+  if (!container) return;
+
+  const selected = container.querySelector(".selected img");
+  const options = container.querySelector(".options");
+
+  // Toggle dropdown
+  container.querySelector(".selected").addEventListener("click", () => {
+    options.style.display = options.style.display === "block" ? "none" : "block";
+  });
+
+  // Click outside closes it
+  document.addEventListener("click", (e) => {
+    if (!container.contains(e.target)) {
+      options.style.display = "none";
+    }
+  });
+
+  // Handle option selection
+  options.querySelectorAll("li").forEach(li => {
+    li.addEventListener("click", () => {
+      selected.src = li.querySelector("img").src;
+      selected.alt = li.querySelector("img").alt;
+      options.style.display = "none";
+      switchLanguage(li.dataset.lang);
+    });
+  });
+}
+
+initCustomDropdown("languageSelector");
+initCustomDropdown("languageSelectorMobile");
+
+function initMobileFlags(selectorId) {
+  const container = document.getElementById(selectorId);
+  if (!container) return;
+
+  const flags = container.querySelectorAll(".lang-flag");
+
+  flags.forEach(flag => {
+    flag.addEventListener("click", () => {
+      // remove active from all
+      flags.forEach(f => f.classList.remove("active"));
+      // add to clicked one
+      flag.classList.add("active");
+
+      // switch language
+      const lang = flag.dataset.lang;
+      switchLanguage(lang);
+    });
+  });
+}
+
+initMobileFlags("mobileLangFlags");
+
+
+
+function initMobileFlags(selectorId) {
+  const container = document.getElementById(selectorId);
+  if (!container) return;
+
+  const flags = container.querySelectorAll(".lang-flag");
+
+  // Load saved language from localStorage
+  const savedLang = localStorage.getItem("siteLang");
+  if (savedLang) {
+    flags.forEach(f => {
+      if (f.dataset.lang === savedLang) {
+        f.classList.add("active");
+        switchLanguage(savedLang);
+      } else {
+        f.classList.remove("active");
+      }
+    });
+  }
+
+  // On click -> switch language + save preference
+  flags.forEach(flag => {
+    flag.addEventListener("click", () => {
+      flags.forEach(f => f.classList.remove("active"));
+      flag.classList.add("active");
+
+      const lang = flag.dataset.lang;
+      switchLanguage(lang);
+
+      // Save to localStorage
+      localStorage.setItem("siteLang", lang);
+    });
+  });
+}
+initMobileFlags("mobileLangFlags");
+
+
+function initDesktopLanguageSelector(selectorId) {
+  const container = document.getElementById(selectorId);
+  if (!container) return;
+
+  const selected = container.querySelector(".selected");
+  const options = container.querySelectorAll("ul.options li");
+
+  // Load saved language from localStorage
+  const savedLang = localStorage.getItem("siteLang");
+  if (savedLang) {
+    options.forEach(option => {
+      if (option.dataset.lang === savedLang) {
+        // Update selected display
+        const imgSrc = option.querySelector("img").src;
+        selected.querySelector("img").src = imgSrc;
+        selected.querySelector("img").alt = option.querySelector("img").alt;
+        switchLanguage(savedLang);
+      }
+    });
+  }
+
+  // Toggle dropdown visibility
+  selected.addEventListener("click", () => {
+    container.classList.toggle("open");
+  });
+
+  // Handle option click
+  options.forEach(option => {
+    option.addEventListener("click", () => {
+      const lang = option.dataset.lang;
+
+      // Update selected display
+      const img = option.querySelector("img");
+      selected.querySelector("img").src = img.src;
+      selected.querySelector("img").alt = img.alt;
+
+      switchLanguage(lang);
+
+      // Save to localStorage
+      localStorage.setItem("siteLang", lang);
+
+      container.classList.remove("open");
+    });
+  });
+
+  // Close dropdown if clicked outside
+  document.addEventListener("click", (e) => {
+    if (!container.contains(e.target)) {
+      container.classList.remove("open");
+    }
+  });
+}
+
+// Initialize
+initDesktopLanguageSelector("languageSelector");
 
 
              // ---------------------------------------------
