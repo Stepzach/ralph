@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html translate="no">
 <head>
     <meta charset="UTF-8">
@@ -464,7 +464,7 @@
 .prev, .next {
   cursor: pointer;
   position: absolute;
-  top: 50%;
+ 
   padding: 16px;
   font-size: 2rem;
   color: white;
@@ -730,8 +730,8 @@
      <img src="https://github.com/Stepzach/ralph/blob/main/503045397_18506058220049885_4300089605774085051_n.jpeg?raw=true" alt="">
      
       <video controls playsinline 
-  webkit-playsinline  style="aspect-ratio: 1 / 1 !important; object-fit: cover;">
-      <source src="/ralph/SnapInsta.to_AQNqm6rrfsRpk2ThIHcxmoLDF69wLrVc-krUvHgm1-Hbw8rayM6MclZmCWgpEQkak-kRKg6BzgwgN0J-TnmiJzSHRFoWhyHV66Uv_Es.mp4" type="video/mp4">
+  webkit-playsinline  muted style="aspect-ratio: 1 / 1 !important; object-fit: cover;">
+      <source style="aspect-ratio: 1 / 1 !important; object-fit: cover;" src="/ralph/SnapInsta.to_AQNqm6rrfsRpk2ThIHcxmoLDF69wLrVc-krUvHgm1-Hbw8rayM6MclZmCWgpEQkak-kRKg6BzgwgN0J-TnmiJzSHRFoWhyHV66Uv_Es.mp4" type="video/mp4">
     </video>
     
     
@@ -1210,16 +1210,30 @@ lightbox.addEventListener('click', (e) => {
 <div id="lightbox" class="lightbox">
   <span id="lightbox-close" class="close-lightbox">&times;</span>
   <div class="lightbox-inner">
-  <span id="lightbox-prev" class="nav prev">&#10094;</span>
+
+
+
   
-  <!-- Container that will hold either image or video -->
-  <div id="lightbox-content-wrapper" style="max-width:100%; max-height:100%;">
+  <!-- Container for image/video -->
+  <div id="lightbox-content-wrapper">
     <img id="lightbox-img" class="lightbox-content" alt="">
     <video id="lightbox-video" class="lightbox-content" controls style="display:none;"></video>
   </div>
 
-  <span id="lightbox-next" class="nav next">&#10095;</span>
+
 </div>
+
+<div style="
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+"><div class="nav prev" id="lightbox-prev">❮</div><p id="lightbox-caption" class="caption"></p><div class="nav next" id="lightbox-next">❯</div></div>
+
+
+
+<div id="lightbox-thumbnails" class="lightbox-thumbnails"></div>
+
 
   <p id="lightbox-caption" class="caption"></p>
   <div id="lightbox-thumbnails" class="lightbox-thumbnails"></div>
@@ -1227,18 +1241,18 @@ lightbox.addEventListener('click', (e) => {
 </div>
 
 <style>
-lightbox-inner {
-  position: relative;
-  max-width: 90%;
-  max-height: 80%;
+.lightbox-inner {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px; /* spacing between arrows and content */
+  max-width: 90%;
+  max-height: 80%;
 }
 
+
 #lightbox-content-wrapper {
-  max-width: 90vw;   /* viewport width */
-  max-height: 80vh;  /* viewport height */
+  flex: 1; /* fill remaining space */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1266,26 +1280,24 @@ lightbox-inner {
 }
 
 .nav {
-  position: fixed; /* instead of absolute */
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.6rem;
+  position: absolute; /* inline now, not fixed */
+     
+  transform: none;
+  font-size: 1rem;
   color: #fff;
   cursor: pointer;
-  padding: 12px;
-  user-select: none;
- background: #313131b3;
- width:35px;
- height:35px;
-  border-radius: 100%;
-  transition: background 0.3s;
-  z-index: 2100; /* make sure they sit above */
-  line-height:1rem;
-  letter-spacing:0;
+  padding: 8px;
+  background: #313131b3;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.prev { left: 30px; }
-.next { right: 30px; }
+.prev { left: 17px; }
+.next { right: 17px; }
 
 
 .caption {
@@ -1449,7 +1461,8 @@ document.addEventListener('DOMContentLoaded', () => {
       imgEl.src = item.src;
     } else if (item.type === 'video') {
   imgEl.style.display = 'none';
-  videoEl.style.display = 'block';
+  videoEl.style.cssText = 'display: block; aspect-ratio: 1 / 1; object-fit: cover;';
+
   videoEl.pause();
   videoEl.removeAttribute('src'); // Reset previous src
   videoEl.load(); // reset
