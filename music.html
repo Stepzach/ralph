@@ -1305,6 +1305,101 @@ function initMobileFlags(selectorId) {
 
 initMobileFlags("mobileLangFlags");
 
+
+
+function initMobileFlags(selectorId) {
+  const container = document.getElementById(selectorId);
+  if (!container) return;
+
+  const flags = container.querySelectorAll(".lang-flag");
+
+  // Load saved language from localStorage
+  const savedLang = localStorage.getItem("siteLang");
+  if (savedLang) {
+    flags.forEach(f => {
+      if (f.dataset.lang === savedLang) {
+        f.classList.add("active");
+        switchLanguage(savedLang);
+      } else {
+        f.classList.remove("active");
+      }
+    });
+  }
+
+  // On click -> switch language + save preference
+  flags.forEach(flag => {
+    flag.addEventListener("click", () => {
+      flags.forEach(f => f.classList.remove("active"));
+      flag.classList.add("active");
+
+      const lang = flag.dataset.lang;
+      switchLanguage(lang);
+
+      // Save to localStorage
+      localStorage.setItem("siteLang", lang);
+    });
+  });
+}
+initMobileFlags("mobileLangFlags");
+
+
+function initDesktopLanguageSelector(selectorId) {
+  const container = document.getElementById(selectorId);
+  if (!container) return;
+
+  const selected = container.querySelector(".selected");
+  const options = container.querySelectorAll("ul.options li");
+
+  // Load saved language from localStorage
+  const savedLang = localStorage.getItem("siteLang");
+  if (savedLang) {
+    options.forEach(option => {
+      if (option.dataset.lang === savedLang) {
+        // Update selected display
+        const imgSrc = option.querySelector("img").src;
+        selected.querySelector("img").src = imgSrc;
+        selected.querySelector("img").alt = option.querySelector("img").alt;
+        switchLanguage(savedLang);
+      }
+    });
+  }
+
+  // Toggle dropdown visibility
+  selected.addEventListener("click", () => {
+    container.classList.toggle("open");
+  });
+
+  // Handle option click
+  options.forEach(option => {
+    option.addEventListener("click", () => {
+      const lang = option.dataset.lang;
+
+      // Update selected display
+      const img = option.querySelector("img");
+      selected.querySelector("img").src = img.src;
+      selected.querySelector("img").alt = img.alt;
+
+      switchLanguage(lang);
+
+      // Save to localStorage
+      localStorage.setItem("siteLang", lang);
+
+      container.classList.remove("open");
+    });
+  });
+
+  // Close dropdown if clicked outside
+  document.addEventListener("click", (e) => {
+    if (!container.contains(e.target)) {
+      container.classList.remove("open");
+    }
+  });
+}
+
+// Initialize
+initDesktopLanguageSelector("languageSelector");
+
+
              // ---------------------------------------------
             // 3. Gallery Lightbox
             // ---------------------------------------------
