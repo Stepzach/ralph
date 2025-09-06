@@ -728,6 +728,12 @@
   <div class="gallery-images" style="display:none;">
     <img src="https://github.com/Stepzach/ralph/blob/main/@betterdaysfestival%2010%20!@buckland_visuals%20and%20@ksvm__%20on%20camera.jpg?raw=true" alt="">
      <img src="https://github.com/Stepzach/ralph/blob/main/503045397_18506058220049885_4300089605774085051_n.jpeg?raw=true" alt="">
+     
+      <video controls>
+      <source src="https://github.com/Stepzach/ralph/blob/main/SnapInsta.to_AQNqm6rrfsRpk2ThIHcxmoLDF69wLrVc-krUvHgm1-Hbw8rayM6MclZmCWgpEQkak-kRKg6BzgwgN0J-TnmiJzSHRFoWhyHV66Uv_Es.mp4?raw=true" type="video/mp4">
+    </video>
+    
+    
     <img src="https://github.com/Stepzach/ralph/blob/main/503144232_18506058238049885_741058905654998247_n.jpeg?raw=true" alt="">
     <img src="https://github.com/Stepzach/ralph/blob/main/@betterdaysfestival%2010%20!@buckland_visuals%20and%20@ksvm__%20on%20camera%20(1).jpg?raw=true" alt="">
      <img src="https://github.com/Stepzach/ralph/blob/main/@betterdaysfestival%2010%20!@buckland_visuals%20and%20@ksvm__%20on%20camera%20(2).jpg?raw=true" alt="">
@@ -1203,10 +1209,17 @@ lightbox.addEventListener('click', (e) => {
 <div id="lightbox" class="lightbox">
   <span id="lightbox-close" class="close-lightbox">&times;</span>
   <div class="lightbox-inner">
-    <span id="lightbox-prev" class="nav prev">&#10094;</span>
+  <span id="lightbox-prev" class="nav prev">&#10094;</span>
+  
+  <!-- Container that will hold either image or video -->
+  <div id="lightbox-content-wrapper" style="max-width:100%; max-height:100%;">
     <img id="lightbox-img" class="lightbox-content" alt="">
-    <span id="lightbox-next" class="nav next">&#10095;</span>
+    <video id="lightbox-video" class="lightbox-content" controls style="display:none;"></video>
   </div>
+
+  <span id="lightbox-next" class="nav next">&#10095;</span>
+</div>
+
   <p id="lightbox-caption" class="caption"></p>
   <div id="lightbox-thumbnails" class="lightbox-thumbnails"></div>
 
@@ -1222,20 +1235,24 @@ lightbox-inner {
   justify-content: center;
 }
 
+#lightbox-content-wrapper {
+  max-width: 90vw;   /* viewport width */
+  max-height: 80vh;  /* viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
 .lightbox-content {
   max-width: 100%;
   max-height: 100%;
-  border-radius: 8px;
+  width: auto;
+  height: auto;
   object-fit: contain;
+  border-radius: 8px;
 }
 
-
-.lightbox-content {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 8px;
-  object-fit: contain;
-}
 
 .close-lightbox {
   position: absolute;
@@ -1301,7 +1318,24 @@ lightbox-inner {
 
 .prev { left: 40px; }
 .next { right: 40px; }
- }
+
+ 
+ .lightbox-content {
+
+  
+   max-height: 70vh !important;
+   width:auto;
+  object-fit: contain;
+  border-radius: 8px;
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
+
+}
  
  .lightbox-thumbnails {
   display: flex;
@@ -1321,6 +1355,8 @@ lightbox-inner {
   cursor: pointer;
   transition: opacity 0.3s, transform 0.2s;
 }
+
+
 
 .lightbox-thumbnails img.active {
   opacity: 1;
@@ -1359,6 +1395,7 @@ lightbox-inner {
 document.addEventListener('DOMContentLoaded', () => {
   const lightbox = document.getElementById('lightbox');
   const imgEl = document.getElementById('lightbox-img');
+  const videoEl = document.getElementById('lightbox-video'); // <-- ADD THIS
   const captionEl = document.getElementById('lightbox-caption');
   const closeBtn = document.getElementById('lightbox-close');
   const prevBtn = document.getElementById('lightbox-prev');
@@ -1370,10 +1407,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.insta-post').forEach(post => {
     post.addEventListener('click', () => {
-      const hiddenImgs = post.querySelectorAll('.gallery-images img');
-      images = hiddenImgs.length > 0 
-        ? Array.from(hiddenImgs).map(img => img.src) 
-        : [post.querySelector('img').src];
+      const hiddenItems = post.querySelectorAll('.gallery-images img, .gallery-images video');
+     images = Array.from(hiddenItems).map(el => {
+  if (el.tagName.toLowerCase() === 'img') {
+    return { type: 'img', src: el.src };
+  } else if (el.tagName.toLowerCase() === 'video') {
+    const source = el.querySelector('source');
+    return { type: 'video', src: source ? source.src : '' };
+  }
+});
+
 
       captionEl.textContent = post.dataset.caption 
         || post.querySelector('.insta-caption')?.textContent 
@@ -1389,32 +1432,60 @@ document.addEventListener('DOMContentLoaded', () => {
     generateThumbnails();
     showImage(currentIndex);
   }
-  function closeLightbox() { lightbox.style.display = 'none'; }
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+    videoEl.pause();   // Stop video when lightbox closes
+    videoEl.currentTime = 0;
+  }
+
   function showImage(i) {
-    imgEl.src = images[i];
+    const item = images[i];
+    if (item.type === 'img') {
+      imgEl.style.display = 'block';
+      videoEl.style.display = 'none';
+      videoEl.pause();
+      imgEl.src = item.src;
+    } else if (item.type === 'video') {
+      imgEl.style.display = 'none';
+      videoEl.style.display = 'block';
+      videoEl.src = item.src;
+      videoEl.pause(); // Comment this if you want autoplay
+    }
     highlightThumbnail(i);
   }
+
   function nextImage() { currentIndex = (currentIndex + 1) % images.length; showImage(currentIndex); }
   function prevImage() { currentIndex = (currentIndex - 1 + images.length) % images.length; showImage(currentIndex); }
 
   function generateThumbnails() {
     thumbnailsEl.innerHTML = '';
-    images.forEach((src, i) => {
+    images.forEach((item, i) => {
       const thumb = document.createElement('img');
-      thumb.src = src;
-      thumb.addEventListener('click', () => {
-        currentIndex = i;
-        showImage(i);
-      });
+      thumb.src = item.src;
+      if (item.type === 'video') thumb.style.border = '2px solid #FFD700';
+      thumb.addEventListener('click', () => { currentIndex = i; showImage(i); });
       thumbnailsEl.appendChild(thumb);
     });
   }
 
-  function highlightThumbnail(i) {
-    thumbnailsEl.querySelectorAll('img').forEach((thumb, idx) => {
-      thumb.classList.toggle('active', idx === i);
-    });
-  }
+ function highlightThumbnail(i) {
+  thumbnailsEl.querySelectorAll('img').forEach((thumb, idx) => {
+    thumb.classList.toggle('active', idx === i);
+
+    // Highlight video with border only if active
+    if (images[idx].type === 'video') {
+      if (idx === i) {
+        thumb.style.border = '2px solid #FFD700'; 
+      } else {
+        thumb.style.border = 'none';
+      }
+    } else {
+      thumb.style.border = 'none';
+    }
+  });
+}
+
 
   closeBtn.addEventListener('click', closeLightbox);
   nextBtn.addEventListener('click', nextImage);
@@ -1428,10 +1499,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
 function setLanguage(langCode) {
   document.documentElement.lang = langCode; // Update <html lang="...">
   // Then load content for the chosen language...
 }
+
 
 </script>
 
