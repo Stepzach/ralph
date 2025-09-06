@@ -1,4 +1,5 @@
  <!DOCTYPE html>
+<html translate="no">
 
 <head>
     <meta charset="UTF-8">
@@ -1118,6 +1119,10 @@ window.addEventListener('load', () => {
   homeSection.style.minHeight = (viewportHeight - headerHeight) + "px";
 });
 
+     function setLanguage(langCode) {
+  document.documentElement.lang = langCode; // Update <html lang="...">
+  // Then load content for the chosen language...
+}
     </script>
     
 </body>
