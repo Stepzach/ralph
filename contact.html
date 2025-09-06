@@ -1,5 +1,5 @@
  <!DOCTYPE html>
-
+<html translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1374,6 +1374,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+function setLanguage(langCode) {
+  document.documentElement.lang = langCode; // Update <html lang="...">
+  // Then load content for the chosen language...
+}
+
 
 </script>
 
