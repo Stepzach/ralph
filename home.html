@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <!-- Replace old FA4 link with FA6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <!-- SEO Meta Tags -->
     <title data-lang-key="meta_title">Ralph Halkett | DJ & Producer</title>
     <meta name="description" content="Ralph Halkett is an international DJ based in the UK and Spain, available for clubs, festivals, corporate events, and private parties worldwide. Listen to his mixes and get in touch to book." data-lang-key="meta_description">
@@ -511,7 +513,7 @@
   /* Background image with black gradient fade */
   background: 
     linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%),
-    url("https://github.com/Stepzach/ralph/blob/main/503045397_18506058220049885_4300089605774085051_n.jpeg?raw=true")
+    
     center/cover no-repeat;
 }
 
@@ -759,6 +761,54 @@ font-family: "archivo-expanded", sans-serif;
 font-weight: 300;
 font-style: normal;
 }
+
+
+
+#home video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* makes it behave like background-image: cover */
+  z-index: -1; /* put behind content */
+}
+
+#muteToggle {
+  position: absolute;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #f7f7f7b5;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.3s ease;
+  z-index: 10;
+}
+
+#muteToggle:hover {
+   color: white;
+}
+
+/* Position: desktop bottom-right */
+@media (min-width: 768px) {
+  #muteToggle {
+    bottom: 15px;
+    right: 15px;
+           padding-bottom: 2%;
+        padding-right: 3%;
+  }
+}
+
+/* Position: mobile top-left */
+@media (max-width: 767px) {
+  #muteToggle {
+    top: 15px;
+    left: 15px;
+  }
+}
+
     </style>
    <link rel="stylesheet" href="https://use.typekit.net/vkx0egt.css">
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -828,6 +878,15 @@ font-style: normal;
     </nav>
     <!-- Home Section (Instagram) -->
    <section id="home">
+   <video id="heroVideo" autoplay muted loop playsinline>
+    <source src="/ralph/What a weekend 🤩 @betterdaysfestival @connekt.mp4" type="video/mp4">
+    
+  </video>
+
+  <!-- Unmute Button -->
+  <button id="muteToggle" aria-label="Unmute video">
+    <i class="fa-solid fa-volume-high"></i>
+  </button>
    <div class="home-content">
       <p data-lang-key="introduct_text">
          I am based in both Leeds and Essex in England and Sotogrande in Spain, but I take national/international bookings too. I cater to all event types such as but not limited to clubs, festivals, corporate events, birthdays, proms, and much more.
@@ -1242,6 +1301,27 @@ window.addEventListener('load', () => {
   // Then load content for the chosen language...
 }
     </script>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const video = document.getElementById('heroVideo');
+  const muteBtn = document.getElementById('muteToggle');
+
+  function updateIcon() {
+  muteBtn.innerHTML = video.muted 
+  ? '<i class="fa-solid fa-volume-xmark"></i>' 
+  : '<i class="fa-solid fa-volume-high"></i>';
+
+  }
+
+  muteBtn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    updateIcon();
+  });
+
+  updateIcon(); // set initial icon
+});
+</script>
+
     
 </body>
 </html>
