@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <!-- Replace old FA4 link with FA6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <!-- SEO Meta Tags -->
     <title data-lang-key="meta_title">Ralph Halkett | DJ & Producer</title>
     <meta name="description" content="Ralph Halkett is an international DJ based in the UK and Spain, available for clubs, festivals, corporate events, and private parties worldwide. Listen to his mixes and get in touch to book." data-lang-key="meta_description">
@@ -703,12 +705,12 @@ padding-bottom: calc(3%);
     
   .logo {
   font-family: "organetto-variable",sans-serif;
-  font-variation-settings: 'wdth' 83, 'wght' 75;
+  font-variation-settings: 'wdth' 83, 'wght' 50;
 }
 
 nav ul li a {
-  font-family: "organetto-variable",sans-serif;
-  font-variation-settings: 'wdth' 72, 'wght' 70;
+  font-family: "organetto-variable",sans-serif !important;
+  font-variation-settings: 'wdth' 72, 'wght' 55;
 }
 
 
@@ -759,6 +761,61 @@ font-family: "archivo-expanded", sans-serif;
 font-weight: 300;
 font-style: normal;
 }
+
+#home {
+  position: relative;
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: flex-end;
+  padding: 0 5% 5% 5%;
+  margin-top: var(--header-height) !important;
+  color: #fff;
+  overflow: hidden; /* keeps video contained */
+}
+
+#home video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* makes it behave like background-image: cover */
+  z-index: -1; /* put behind content */
+}
+
+#muteToggle {
+  position: absolute;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.3s ease;
+  z-index: 10;
+}
+
+#muteToggle:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+/* Position: desktop bottom-right */
+@media (min-width: 768px) {
+  #muteToggle {
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+/* Position: mobile top-left */
+@media (max-width: 767px) {
+  #muteToggle {
+    top: 15px;
+    left: 15px;
+  }
+}
+
     </style>
    <link rel="stylesheet" href="https://use.typekit.net/vkx0egt.css">
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -828,6 +885,15 @@ font-style: normal;
     </nav>
     <!-- Home Section (Instagram) -->
    <section id="home">
+   <video id="heroVideo" autoplay muted loop playsinline>
+    <source src="/ralph/0eda5fa8ff7f3d69a9ebbd068d67e6c65ee19297/What%20a%20weekend%20🤩%20%40betterdaysfestival%20%40connekt.mp4" type="video/mp4">
+    
+  </video>
+
+  <!-- Unmute Button -->
+  <button id="muteToggle" aria-label="Unmute video">
+    <i class="fa-solid fa-volume-high"></i>
+  </button>
    <div class="home-content">
       <p data-lang-key="introduct_text">
          I am based in both Leeds and Essex in England and Sotogrande in Spain, but I take national/international bookings too. I cater to all event types such as but not limited to clubs, festivals, corporate events, birthdays, proms, and much more.
@@ -904,7 +970,7 @@ font-style: normal;
 
     <!-- Footer -->
     <footer>
-    <p>&copy; <span id="currentYear"></span> Ralph Halkett. <span data-lang-key="footer_rights" style="font-family: 'Poppins', sans-serif; font-weight: 300;">All Rights Reserved.</span></p>
+    <p>&copy; <span id="currentYear"></span> Ralph Halkett. <span data-lang-key="footer_rights" style="font-family: 'archivo-expanded', sans-serif; font-weight: 300; font-style: normal;">All Rights Reserved.</span></p>
 </footer>
 
 
@@ -1242,6 +1308,27 @@ window.addEventListener('load', () => {
   // Then load content for the chosen language...
 }
     </script>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const video = document.getElementById('heroVideo');
+  const muteBtn = document.getElementById('muteToggle');
+
+  function updateIcon() {
+  muteBtn.innerHTML = video.muted 
+  ? '<i class="fa-solid fa-volume-xmark"></i>' 
+  : '<i class="fa-solid fa-volume-high"></i>';
+
+  }
+
+  muteBtn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    updateIcon();
+  });
+
+  updateIcon(); // set initial icon
+});
+</script>
+
     
 </body>
 </html>
