@@ -1,0 +1,1226 @@
+ <!DOCTYPE html>
+<html translate="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+   <title data-lang-key="meta_title">Ambroise &amp; Co Electrical</title>
+<meta name="description" content="Ambroise &amp; Co Electrical provides professional electrical services for homes and businesses. Reliable, safe, and certified electricians you can trust." data-lang-key="meta_description">
+<meta name="keywords" content="Ambroise &amp; Co Electrical, electricians, electrical services, home electrical, business electrical, electrical installation, electrical repair, certified electricians, UK electrical services">
+
+ <link rel="stylesheet" href="https://use.typekit.net/vkx0egt.css">
+    <link rel="stylesheet" href="https://use.typekit.net/vkx0egt.css">
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+
+    <!-- Apple touch icons -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="any">
+    
+    
+    <!-- Android and Chrome icons -->
+    <link rel="icon" href="android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" href="android-chrome-512x512.png" sizes="512x512">
+
+
+    <!-- Icons for specific use cases -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+   
+
+ 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- CSS (Internal Stylesheet) -->
+    <style>
+        /* 1. General & Root Styles */
+        :root {
+            --bg-color: #f4f4f4;
+            --main-color: #ffffff;
+            --text-color: #1a1a1a;
+            --accent-color: #888888;
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "organetto-variable",sans-serif;
+  font-variation-settings: 'wdth' 92, 'wght' 40;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2_ {
+            font-weight: 600;
+        }
+
+        p {
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        section {
+            padding: 5% 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--text-color);
+            color: var(--main-color);
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* 2. Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--text-color);
+            transition: width 0.3s ease-in-out;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .lang-switcher {
+           position: relative;
+        }
+        
+        .lang-switcher select {
+            background: transparent;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 30px;
+            font-weight:500;
+        }
+
+        #mobile-menu-icon {
+            display: none;
+            cursor: pointer;
+        }
+        
+        #mobile-menu-icon .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--text-color);
+            transition: all 0.3s ease-in-out;
+        }
+
+        #mobile-menu-icon.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        #mobile-menu-icon.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        #mobile-menu-icon.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .mobile-nav {
+            display: none; /* gets activated by JS */
+            position: fixed;
+            top: var(--header-height);
+            left: 100%; /* Start off-screen */
+            width: 100%;
+            height: calc(100vh - var(--header-height));
+            background: var(--main-color);
+            z-index: 999;
+            transition: left 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+        .mobile-nav.active {
+            left: 0; /* Slide in */
+        }
+        
+        .mobile-nav ul {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            padding-left: 5%;
+            justify-content: start;
+            height: 100%;
+        }
+
+        .mobile-nav ul li {
+            margin: 16px 0;
+        }
+
+        .mobile-nav ul li a {
+            font-size: 1.55rem;
+            text-decoration: none;
+            color: var(--text-color);
+      
+        }
+        
+        .desktop-nav {
+            display:flex; 
+            align-items: center;
+        }
+
+        /* 3. Hero Section (Instagram) */
+        #home {
+            background: var(--main-color);
+        }
+        
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .insta-post {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+            
+        .insta-post img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            transition: transform 0.4s ease-in-out;
+        }
+            
+       
+
+        .insta-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+            
+       
+        
+        .insta-caption {
+            font-size: 0.9rem;
+            margin-bottom:10px;
+        }
+
+        .insta-likes {
+             font-weight: 600;
+        }
+            
+        .insta-likes svg {
+            width: 16px;
+            height: 16px;
+            fill: #fff;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+.insta-title {
+           background-color: #ffffffa1;
+    padding: 2px 3px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom:0;
+        }
+
+       
+      .lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; /* makes caption go below */
+}
+
+.lightbox-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 90%;
+  max-height: 80%;
+}
+
+.lightbox-content {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 5px;
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 1100;
+}
+.close-lightbox:hover { color: #bbb; }
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  font-size: 2rem;
+  color: white;
+  user-select: none;
+  transition: 0.3s;
+  background: rgba(0,0,0,0.3);
+  border-radius: 50%;
+}
+
+.prev { left: -60px; }
+.next { right: -60px; }
+
+.prev:hover, .next:hover { color: #bbb; }
+
+.caption {
+  color: #fff;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 1rem;
+  padding: 0 20px;
+  max-width: 80%;
+}
+
+
+        /* 5. Music Section */
+        #music { background: var(--main-color); }
+
+        .music-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 50px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .music-embed iframe {
+            width: 100%;
+            border-radius: 12px;
+            border: 0;
+        }
+
+        /* 6. Contact & EPK Section */
+        #contact {
+             background: var(--bg-color);
+             text-align: center;
+        }
+            
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+         
+        .contact-content p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: #444;
+        }
+
+        .contact-buttons > a {
+            margin: 10px;
+        }
+        
+         .button-secondary {
+            background: #fff;
+            color: var(--text-color);
+            border: 1px solid #ccc;
+        }
+
+         .button-secondary:hover {
+            background-color: #f0f0f0;
+        }
+        
+
+        /* 7. Footer */
+        footer {
+            padding: 12px 5%;
+             text-align: center;
+            border-top: solid 1.5px #e0e0e0;
+        }
+        
+        footer p {
+             font-size: 0.85rem;
+        }
+
+        /* 8. Responsiveness */
+        @media screen and (max-width: 992px) {
+            .gallery-item.item-wide { grid-column: span 1; }
+            .gallery-item.item-tall { grid-row: span 1; }
+        
+        }
+        @media screen and (max-width: 768px) {
+            .section-title { font-size: 2rem; }
+            .desktop-nav { display: none; }
+            .mobile-nav { display: block; }
+            #mobile-menu-icon { display: block; }
+            .instagram-grid { grid-template-columns: repeat(2, 1fr);  gap: 15px;}
+        }
+}
+}
+}
+}
+       
+       .insta-title {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.lightbox-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  font-size: 2rem;
+  color: white;
+  user-select: none;
+  transition: 0.3s;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+.prev:hover, .next:hover {
+  color: #bbb;
+}
+
+.caption {
+  color: #fff;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
+#home {
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: flex-end; /* keeps text near bottom */
+  padding: 0 5% 5% 5%;
+  margin-top: var(--header-height) !important;
+  color: #fff;
+  position: relative;
+
+  /* Background image with black gradient fade */
+  background: 
+    linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%),
+    url("https://github.com/Stepzach/ralph/blob/main/4C411006-133C-47DB-A4CE-01D74EF37124.jpeg?raw=true")
+    left/cover no-repeat;
+}
+
+
+#home p {
+  line-height:1.1rem;
+  max-width:500px;
+}
+
+
+
+#home img {
+  max-height: calc(70vh) !important;
+  object-fit: cover;
+ }
+
+@media screen and (min-width: 679px) {
+#home {
+padding-top: calc(2% + var(--header-height));
+padding-bottom: calc(3%);
+}
+}
+.lang-select {
+  margin-left: 20px;      /* keeps space from "Contact" */
+  width: 50px;            /* just enough for a flag + arrow */
+  height: 32px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  background-size: 22px auto;
+  padding-left: 35px;     /* space so arrow doesn’t overlap flag */
+  font-size: 0;           /* hide text */
+  
+  /* ✅ keep default arrows */
+  appearance: auto;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+}
+
+.lang-select option {
+  font-size: 0; /* ensures no text shows in dropdown */
+  padding-left: 30px;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  background-size: 22px auto;
+}
+
+
+.custom-lang-select {
+  position: relative;
+  width: 60px;        /* give enough room for flag + arrow */
+  margin-left: 20px;  /* keeps spacing from "Contact" */
+  cursor: pointer;
+  font-size: 0;       /* hide stray text spacing */
+}
+
+.custom-lang-select .selected {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 4px 8px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* flag on left, arrow on right */
+}
+
+.custom-lang-select .selected img {
+  width: 24px;
+  height: auto;
+}
+
+.custom-lang-select .arrow {
+  width: 0; 
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #333; /* little ▼ arrow */
+  margin-left: 6px;
+}
+.custom-lang-select .options {
+  display: none;
+  position: absolute;
+  top: 100%;      /* sits just under selected */
+  left: 0;
+  width: 100%;    /* match button width */
+  min-width: 60px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  list-style: none;
+  padding: 5px 0;
+  margin: 4px 0 0;
+  z-index: 100;
+}
+
+.custom-lang-select .options li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0;
+  cursor: pointer;
+}
+
+.custom-lang-select .options li:hover {
+  background: #f0f0f0;
+}
+
+.custom-lang-select .options img {
+  width: 24px;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  .custom-lang-select {
+    width: 50px;
+  }
+  .custom-lang-select .selected img,
+  .custom-lang-select .options img {
+    width: 20px;
+  }
+}
+/* Only show this version on small screens */
+@media (max-width: 768px) {
+  .lang-flags-mobile {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin: 10px 0;
+  }
+
+  .lang-flags-mobile .lang-flag {
+    width: 32px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    filter: saturate(80%);
+    transform: scale(0.9);
+    padding:2px;
+    border-radius: 3px;
+  }
+
+  .lang-flags-mobile .lang-flag.active {
+    filter: saturate(100%);
+    transform: scale(1.1);
+    border: solid 2px black;
+  }
+}
+
+.logo {
+    
+
+    font-size: 1.5em;
+  }
+  
+  @media (max-width: 870px) {
+   .logo {
+    
+
+    font-size: 1.3em;
+    
+  }
+    }
+    
+    
+     @media (max-width: 470px) {
+   .logo {
+    
+
+   font-size: 1.2em;
+
+    
+  }
+    }
+    
+    @media (max-width: 387px) {
+   .logo {
+    
+
+   font-size: 1.2em;
+   padding-right:25px;
+    
+  }
+    }
+    
+    
+  .logo {
+  font-family: "organetto-variable",sans-serif;
+  font-variation-settings: 'wdth' 83, 'wght' 50;
+}
+
+nav ul li a {
+  font-family: "organetto-variable",sans-serif !important;
+  font-variation-settings: 'wdth' 72, 'wght' 55;
+}
+
+
+ .mobile-nav ul li a {
+            font-size: 1.3rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-family: "organetto-variable",sans-serif;
+  font-variation-settings: 'wdth' 92, 'wght' 40;
+  margin-left:2px;
+      
+        }
+
+
+.contact-list a {
+  font-family: "organetto-variable",sans-serif;
+  font-variation-settings: 'wdth' 72, 'wght' 24;
+  font-size:0.95em;
+}
+.contact-content {
+  max-width:900px;
+  margin-top:15px;
+}
+ @media (min-width: 768px) {
+.contact-content {
+  text-align: center;
+  margin-top:10px;
+}
+
+nav ul li a {
+  font-size:1.2em;
+}
+.home-content p {
+ font-size:1.2em;
+ line-height:1em !important;
+}
+}
+
+
+footer p {
+  font-family: "organetto-variable",sans-serif;
+  font-variation-settings: 'wdth' 72, 'wght' 24;
+}
+
+
+.home-content p {
+font-family: "archivo-expanded", sans-serif;
+font-weight: 300;
+font-style: normal;
+}
+    </style>
+   <link rel="stylesheet" href="https://use.typekit.net/vkx0egt.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pathway+Extreme:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="/ralph/home" class="logo" >Ambroise <span style="font-family:Helvetica; font-weight:400">&</span> Co</a>
+        <div class="desktop-nav">
+             <nav>
+                <ul>
+                   
+                    <li><a href="/ralph/abouta" data-lang-key="nav_about">About</a></li>
+                    <li><a href="/ralph/services" data-lang-key="nav_services">Services</a></li>
+                         <li><a href="/ralph/estimates" data-lang-key="nav_estimates">Estimates</a></li>
+                    <li><a href="/ralph/contacta" data-lang-key="nav_contact">Contact</a></li>
+                </ul>
+            </nav>
+           
+
+        </div>
+        
+        <div id="mobile-menu-icon">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNavMenu">
+         <ul>
+            <li><a href="/ralph/homea" data-lang-key="nav_home"><u>Home</u></a></li>
+            <li><a href="/ralph/abouta" data-lang-key="nav_about">About</a></li>
+            <li><a href="/ralph/services" data-lang-key="nav_services">Services</a></li>
+            <li><a href="/ralph/estimates" data-lang-key="nav_estimates">Estimates</a></li>
+            <li><a href="/ralph/contacta" data-lang-key="nav_contact">Contact</a></li>
+            
+        </ul>
+    </nav>
+    <!-- Home Section (Instagram) -->
+   <section id="home">
+   <div class="home-content">
+      <p data-lang-key="introduct_text">
+       Ambroise and Co provides licensed and insured electrical services for homes and small businesses.<br><br>• Emergency response <br>• Quality workmanship<br>
+      </p>
+     <div style="margin-top:10px;">
+  <a href="mailto:ambroisemitchell@gmail.com" target="_blank" style="text-decoration: none; color: inherit;">
+   
+    <span style="  text-decoration: underline; font-family: organetto-variable, sans-serif;
+  font-variation-settings: 'wdth' 70, 'wght' 55; line-height: .7;">GET A FREE ESTIMATE</span>
+  </a>
+</div>
+
+   </div>
+</section>
+
+
+
+   
+
+
+        <!-- Contact & EPK -->
+    <section id="contact" style="text-align:left; padding-bottom:5px;">
+      <h3 data-lang-key="music_links">Links</h3>
+
+       <div class="contact-content">
+  <p data-lang-key="contact_text" class="contact-list">
+   
+     <a href="https://www.fatsoma.com/p/backroomleeds" target="_blank" class="contact-link">&gt; Licences</a>
+      <a href="https://www.fourvenues.com/en/skye-leeds" target="_blank" class="contact-link">&gt; Testimonies</a>
+      <a href="https://www.fatsoma.com/p/missinginaction" target="_blank" class="contact-link">&gt; Case Studies</a>
+     
+    
+  </p>
+</div>
+
+<style>
+  .contact-list {
+    margin: 0;
+    padding: 0;
+  }
+
+  .contact-link {
+    text-decoration: none;
+    color: inherit;
+    margin-right: 1.5rem;
+  }
+
+  /* Small screens: stacked */
+  .contact-list a {
+    display: block;
+    padding: 0;
+    margin: 0;
+    text-decoration: underline;
+  }
+
+  /* Large screens: inline */
+  @media (min-width: 768px) {
+    .contact-list a {
+      display: inline;
+      padding: 1px 10px;
+    }
+    .contact-list br {
+      display: none;
+    }
+    #contact {
+    padding-top:2%;
+    
+  }
+  }
+</style>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+    <p>&copy; <span id="currentYear"></span> Ambroise & Co. <span data-lang-key="footer_rights" style="font-family: 'archivo-expanded', sans-serif; font-weight: 300; font-style: normal;">All Rights Reserved.</span></p>
+</footer>
+
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Language Translation Data
+             const translations = {
+  en: {
+    meta_title: 'Ralph Halkett | DJ & Producer',
+    meta_description: 'Ralph Halkett is an international DJ based in the UK and Spain, available for clubs, festivals, corporate events, and private parties worldwide. Listen to his mixes and get in touch to book.',
+
+    nav_home: '<u>Home</u>',
+    nav_gallery: 'Gallery',
+    nav_music: 'Music',
+    nav_contact: 'Contact',
+
+    gallery_title: 'Gallery',
+    music_title: 'Music',
+    contact_title: 'Contact',
+   contact_text1: ' If you have any enquiries about who I am and what I do, feel free to contact me', 
+
+    // ✅ new ones
+    music_remixes: 'Remixes',
+    music_singles: 'Singles',
+    music_mixes: 'Mixes',
+    music_links: 'Links',
+    footer_rights: 'All Rights Reserved.',
+    contact_btn_email: '  <i class="fa fa-envelope"></i>Email for Bookings',
+    contact_btn_dm: '  <i class="fa fa-instagram"></i>Send Instagram DM',
+    contact_btn_epk: '  <i class="fa fa-file"></i>Download Press Kit',
+    introduct_text: 'I am based in both Leeds and Essex in England and Sotogrande in Spain, but I take national/international bookings too. I cater to all event types such as but not limited to clubs, festivals, corporate events, birthdays, proms, and much more.'
+         
+  },
+  es: {
+    meta_title: 'Ralph Halkett | DJ y Productor',
+    meta_description: 'Ralph Halkett es un DJ internacional con sede en el Reino Unido y España, disponible para discotecas, festivales, eventos corporativos y fiestas privadas en todo el mundo. Escucha sus mezclas y ponte en contacto para reservar.',
+
+    nav_home: '<u>Inicio</u>',
+    nav_gallery: 'Galería',
+    nav_music: 'Música',
+    nav_contact: 'Contacto',
+
+    gallery_title: 'Galería',
+    music_title: 'Música',
+    contact_title: 'Contacto',
+    contact_text1: 'Si tienes alguna consulta sobre quién soy y a qué me dedico, no dudes en contactarme.',
+
+    // ✅ new ones
+    music_remixes: 'Remixes',
+    music_singles: 'Sencillos',
+    music_mixes: 'Mezclas',
+    music_links: 'Enlaces',
+      footer_rights: 'Todos los derechos reservados.',
+       contact_btn_email: '  <i class="fa fa-envelope"></i>Correo para Reservas',
+    contact_btn_dm: '  <i class="fa fa-instagram"></i>Enviar DM por Instagram',
+    contact_btn_epk: '  <i class="fa fa-file"></i>Descargar Kit de Prensa',
+   introduct_text: 'Estoy basado tanto en Leeds y Essex en Inglaterra como en Sotogrande en España, pero también acepto reservas nacionales e internacionales. Me adapto a todo tipo de eventos, tales como, pero no limitados a, clubes, festivales, eventos corporativos, cumpleaños, graduaciones y mucho más.'
+
+  }
+};
+            // ---------------------------------------------
+            // 1. Mobile Menu Toggle
+            // ---------------------------------------------
+            const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+            const mobileNav = document.getElementById('mobileNavMenu');
+            
+            mobileMenuIcon.addEventListener('click', () => {
+                mobileMenuIcon.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+            });
+            
+            // Close mobile menu when a link is clicked
+             const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuIcon.classList.remove('active');
+                     mobileNav.classList.remove('active');
+                })
+            });
+
+
+            // ---------------------------------------------
+            // 2. Language Switcher
+            // ---------------------------------------------
+           const langButtons = document.querySelectorAll('.lang-btn');
+
+function switchLanguage(lang) {
+    const elements = document.querySelectorAll('[data-lang-key]');
+    elements.forEach(el => {
+        const key = el.getAttribute('data-lang-key');
+        if(translations[lang] && translations[lang][key]){
+            if(key.startsWith('img_alt')) {
+                el.alt = translations[lang][key];
+            } else if (key.startsWith('meta_')) {
+                el.content = translations[lang][key];
+            } else {
+                el.innerHTML = translations[lang][key];
+            }
+        }
+    });
+    document.documentElement.lang = lang;
+}
+
+function initCustomDropdown(selectorId) {
+  const container = document.getElementById(selectorId);
+  if (!container) return;
+
+  const selected = container.querySelector(".selected img");
+  const options = container.querySelector(".options");
+
+  // Toggle dropdown
+  container.querySelector(".selected").addEventListener("click", () => {
+    options.style.display = options.style.display === "block" ? "none" : "block";
+  });
+
+  // Click outside closes it
+  document.addEventListener("click", (e) => {
+    if (!container.contains(e.target)) {
+      options.style.display = "none";
+    }
+  });
+
+  // Handle option selection
+  options.querySelectorAll("li").forEach(li => {
+    li.addEventListener("click", () => {
+      selected.src = li.querySelector("img").src;
+      selected.alt = li.querySelector("img").alt;
+      options.style.display = "none";
+      switchLanguage(li.dataset.lang);
+    });
+  });
+}
+
+initCustomDropdown("languageSelector");
+initCustomDropdown("languageSelectorMobile");
+
+function initMobileFlags(selectorId) {
+  const container = document.getElementById(selectorId);
+  if (!container) return;
+
+  const flags = container.querySelectorAll(".lang-flag");
+
+  flags.forEach(flag => {
+    flag.addEventListener("click", () => {
+      // remove active from all
+      flags.forEach(f => f.classList.remove("active"));
+      // add to clicked one
+      flag.classList.add("active");
+
+      // switch language
+      const lang = flag.dataset.lang;
+      switchLanguage(lang);
+    });
+  });
+}
+
+initMobileFlags("mobileLangFlags");
+
+
+
+function initMobileFlags(selectorId) {
+  const container = document.getElementById(selectorId);
+  if (!container) return;
+
+  const flags = container.querySelectorAll(".lang-flag");
+
+  // Load saved language from localStorage
+  const savedLang = localStorage.getItem("siteLang");
+  if (savedLang) {
+    flags.forEach(f => {
+      if (f.dataset.lang === savedLang) {
+        f.classList.add("active");
+        switchLanguage(savedLang);
+      } else {
+        f.classList.remove("active");
+      }
+    });
+  }
+
+  // On click -> switch language + save preference
+  flags.forEach(flag => {
+    flag.addEventListener("click", () => {
+      flags.forEach(f => f.classList.remove("active"));
+      flag.classList.add("active");
+
+      const lang = flag.dataset.lang;
+      switchLanguage(lang);
+
+      // Save to localStorage
+      localStorage.setItem("siteLang", lang);
+    });
+  });
+}
+initMobileFlags("mobileLangFlags");
+
+
+function initDesktopLanguageSelector(selectorId) {
+  const container = document.getElementById(selectorId);
+  if (!container) return;
+
+  const selected = container.querySelector(".selected");
+  const options = container.querySelectorAll("ul.options li");
+
+  // Load saved language from localStorage
+  const savedLang = localStorage.getItem("siteLang");
+  if (savedLang) {
+    options.forEach(option => {
+      if (option.dataset.lang === savedLang) {
+        // Update selected display
+        const imgSrc = option.querySelector("img").src;
+        selected.querySelector("img").src = imgSrc;
+        selected.querySelector("img").alt = option.querySelector("img").alt;
+        switchLanguage(savedLang);
+      }
+    });
+  }
+
+  // Toggle dropdown visibility
+  selected.addEventListener("click", () => {
+    container.classList.toggle("open");
+  });
+
+  // Handle option click
+  options.forEach(option => {
+    option.addEventListener("click", () => {
+      const lang = option.dataset.lang;
+
+      // Update selected display
+      const img = option.querySelector("img");
+      selected.querySelector("img").src = img.src;
+      selected.querySelector("img").alt = img.alt;
+
+      switchLanguage(lang);
+
+      // Save to localStorage
+      localStorage.setItem("siteLang", lang);
+
+      container.classList.remove("open");
+    });
+  });
+
+  // Close dropdown if clicked outside
+  document.addEventListener("click", (e) => {
+    if (!container.contains(e.target)) {
+      container.classList.remove("open");
+    }
+  });
+}
+
+// Initialize
+initDesktopLanguageSelector("languageSelector");
+
+
+             // ---------------------------------------------
+            // 3. Gallery Lightbox
+            // ---------------------------------------------
+           const lightbox = document.getElementById('lightbox-modal');
+const lightboxImg = document.getElementById('lightbox-image');
+const captionText = document.getElementById('lightbox-caption');
+const closeBtn = document.getElementById('close-btn');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+
+let currentIndex = 0;
+let images = [];
+
+// Attach to posts
+document.querySelectorAll('.insta-post').forEach(post => {
+  post.addEventListener('click', () => {
+    images = post.dataset.images.split(","); // get array of 6 images
+    captionText.textContent = post.dataset.caption || "";
+    currentIndex = 0;
+    openLightbox();
+  });
+});
+
+function openLightbox() {
+  lightbox.style.display = 'flex';
+  showImage(currentIndex);
+}
+
+function closeLightbox() {
+  lightbox.style.display = 'none';
+}
+
+function showImage(index) {
+  lightboxImg.src = images[index];
+}
+
+function nextImage() {
+  currentIndex = (currentIndex + 1) % images.length;
+  showImage(currentIndex);
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  showImage(currentIndex);
+}
+
+// Events
+closeBtn.addEventListener('click', closeLightbox);
+nextBtn.addEventListener('click', nextImage);
+prevBtn.addEventListener('click', prevImage);
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) closeLightbox();
+});
+
+
+
+            // ---------------------------------------------
+            // 4. Update Copyright Year Dynamically
+            // ---------------------------------------------
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        })
+        
+        
+        // ---------------------------------------------
+// 5. Adjust #home height on page load
+// ---------------------------------------------
+window.addEventListener('load', () => {
+  const homeSection = document.getElementById('home');
+  const viewportHeight = window.innerHeight; // excludes browser chrome
+  const headerHeight = document.querySelector('header').offsetHeight;
+
+  // Force home to fill viewport (minus header)
+  homeSection.style.minHeight = (viewportHeight - headerHeight) + "px";
+});
+
+     function setLanguage(langCode) {
+  document.documentElement.lang = langCode; // Update <html lang="...">
+  // Then load content for the chosen language...
+}
+    </script>
+    
+</body>
+</html>
