@@ -136,6 +136,7 @@ a {
     justify-content: space-between;
     align-items: center;
     height: 60px;
+      padding: 0 15px;
 }
 
 .hamburger-menu {
@@ -165,7 +166,7 @@ a {
 
 .main-nav {
  font-family: var(--serif-font);
-    border-top: 1px solid #9f9320;
+    border-top: 0.001px solid #9f9320;
 }
 
 .main-nav ul {
@@ -281,7 +282,7 @@ a {
 /* Responsive Design */
 @media (max-width: 768px) {
     .main-header {
-        padding: 0 15px;
+        padding: 0 0px;
     }
 
     .hamburger-menu {
@@ -315,9 +316,14 @@ a {
     
     .main-nav a {
         display: block;
-        padding: 8px;
+        padding-bottom: 9px;
+        padding-top:6px;
     }
 
+.main-nav {
+          padding: 0 5px;
+    }
+    
     .top-story .story-content h1 {
         font-size: 32px;
     }
