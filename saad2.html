@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Chronicle | News</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Custom font for headlines */
+        h1, h2, h3, h4, h5, h6, .font-headline {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+        }
+
+        /* Custom accent color */
+        .text-accent, .border-accent {
+            color: #A91101; /* Deep red inspired by news branding */
+            border-color: #A91101;
+        }
+        .bg-accent {
+            background-color: #A91101;
+        }
+        .hover\:bg-accent-dark:hover {
+            background-color: #8B0000;
+        }
+
+        /* Border styles */
+        .top-border {
+            border-top: 4px solid #111;
+        }
+        .section-border {
+            border-top: 1px solid #e5e5e5;
+        }
+
+        /* Mobile Menu Transitions */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        /* Subtle animation for articles on hover */
+        .article-card {
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+        .article-card:hover {
+           
+        }
+
+        /* Fade-in animation for elements */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInAnimation 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Staggered fade-in */
+        .fade-in-delay-1 { animation-delay: 0.1s; }
+        .fade-in-delay-2 { animation-delay: 0.2s; }
+        .fade-in-delay-3 { animation-delay: 0.3s; }
+        .fade-in-delay-4 { animation-delay: 0.4s; }
+        
+        
+      @media (max-width: 1023px) {
+      .space-y-6 {
+      display:none;
+       }
+        }
+        
+        
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+    <!-- Header -->
+    <header class="border-b border-gray-200">
+        <!-- Top Bar -->
+        <div class="bg-gray-50 py-2 text-xs text-gray-600 hidden md:block">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                <div id="current-date">October 26, 2025</div>
+                <div>
+                   
+                    <a href="#" class="bg-accent text-white py-1 px-3 rounded-full text-xs font-semibold hover:bg-accent-dark transition-colors">Subscribe</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="bg-white shadow-sm sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <!-- Mobile Menu Button -->
+                    <div class="flex md:hidden">
+                        <button id="menu-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-accent hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent" aria-controls="mobile-menu" aria-expanded="false">
+                            <span class="sr-only">Open main menu</span>
+                            <!-- Hamburger icon -->
+                            <svg id="hamburger-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                            <!-- Close icon (hidden by default) -->
+                            <svg id="close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="#" class="font-headline text-2xl font-black text-gray-900" style="line-height:1em;">
+                           MIDDLE EAST <br> WORLD VIEW
+                        </a>
+                    </div>
+
+                    <!-- Desktop Nav Links -->
+                    <div class="hidden md:flex md:items-center md:space-x-8">
+                        <a href="#" class="font-semibold text-gray-700 hover:text-accent border-b-2 border-transparent hover:border-accent transition-all">News</a>
+                        <a href="#" class="font-semibold text-gray-700 hover:text-accent border-b-2 border-transparent hover:border-accent transition-all">Opinion</a>
+                        <a href="#" class="font-semibold text-gray-700 hover:text-accent border-b-2 border-transparent hover:border-accent transition-all">Business</a>
+                        <a href="#" class="font-semibold text-gray-700 hover:text-accent border-b-2 border-transparent hover:border-accent transition-all">Sport</a>
+                        <a href="#" class="font-semibold text-gray-700 hover:text-accent border-b-2 border-transparent hover:border-accent transition-all">Culture</a>
+                        <a href="#" class="font-semibold text-gray-700 hover:text-accent border-b-2 border-transparent hover:border-accent transition-all">Lifestyle</a>
+                    </div>
+
+                    <!-- Search Icon -->
+                   
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden bg-white shadow-lg fixed top-16 left-0 w-full h-full -translate-x-full z-40">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50">News</a>
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50">Opinion</a>
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50">Business</a>
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50">Sport</a>
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50">Culture</a>
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50">Lifestyle</a>
+                </div>
+                <div class="border-t border-gray-200 pt-4 pb-3">
+                    
+                     <a href="#" class="block w-full text-left mt-2 px-4 py-3 bg-accent text-white font-semibold hover:bg-accent-dark">Subscribe Now</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Hero Section -->
+        <section class="mb-8 fade-in">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Main Story -->
+                <div class="lg:col-span-2 article-card rounded-lg overflow-hidden">
+                    <a href="#">
+                        <img src="https://placehold.co/800x500/111/fff?text=Main+Story" alt="Main story image" class="w-full h-auto object-cover">
+                        <div class="p-4 bg-gray-50">
+                            <h1 class="font-headline text-2xl md:text-4xl text-gray-900 mb-4 hover:text-accent transition-colors">Global Markets React to Unexpected Economic Summit Outcome</h1>
+                            <p class="text-md text-gray-700 mb-2">Leaders announced a surprising new trade pact that experts say could reshape international commerce for decades.</p>
+                            <span class="text-sm font-semibold text-accent uppercase">World News</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Sidebar Stories -->
+                <div class="space-y-6">
+                    <div class="article-card rounded-lg overflow-hidden fade-in-delay-1">
+                        <a href="#" class="block">
+                            <img src="https://placehold.co/400x250/333/fff?text=Tech" alt="Tech story" class="w-full h-auto object-cover">
+                            <div class="p-4">
+                                <span class="text-sm font-semibold text-accent uppercase">Technology</span>
+                                <h2 class="font-headline text-2xl mt-1 hover:text-accent transition-colors">New AI Model Achieves Human-Level Language Understanding</h2>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="article-card rounded-lg overflow-hidden fade-in-delay-2">
+                         <a href="#" class="block">
+                            <img src="https://placehold.co/400x250/555/fff?text=Politics" alt="Politics story" class="w-full h-auto object-cover">
+                            <div class="p-4">
+                                <span class="text-sm font-semibold text-accent uppercase">Politics</span>
+                                <h2 class="font-headline text-2xl mt-1 hover:text-accent transition-colors">Analysis: How the New Bill Will Impact Local Governments</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Stories Section -->
+        <section class="section-border pt-8 mb-8">
+            <h3 class="font-headline text-3xl mb-6 fade-in">Top Stories</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Story 1 -->
+                <div class="article-card rounded-lg overflow-hidden fade-in-delay-1">
+                    <a href="#">
+                        <img src="https://placehold.co/300x200/eee/111?text=Story+1" alt="Story 1" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-headline text-xl font-bold hover:text-accent transition-colors">Groundbreaking Cancer Treatment Shows Promise in Early Trials</h4>
+                            <p class="text-gray-600 text-sm mt-2">Scientists are hopeful after a new drug targets specific mutations with minimal side effects.</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Story 2 -->
+                <div class="article-card rounded-lg overflow-hidden fade-in-delay-2">
+                    <a href="#">
+                        <img src="https://placehold.co/300x200/ddd/111?text=Story+2" alt="Story 2" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-headline text-xl font-bold hover:text-accent transition-colors">"The Crown's Final Season": A Look at the Cast and Controversies</h4>
+                            <p class="text-gray-600 text-sm mt-2">The hit series prepares for its last act, promising to cover recent royal history.</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Story 3 -->
+                <div class="article-card rounded-lg overflow-hidden fade-in-delay-3">
+                    <a href="#">
+                        <img src="https://placehold.co/300x200/ccc/111?text=Story+3" alt="Story 3" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-headline text-xl font-bold hover:text-accent transition-colors">Is Remote Work Here to Stay? CEOs Are Still Divided</h4>
+                            <p class="text-gray-600 text-sm mt-2">A new survey reveals a growing rift between executive mandates and employee desires.</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Story 4 -->
+                <div class="article-card rounded-lg overflow-hidden fade-in-delay-4">
+                    <a href="#">
+                        <img src="https://placehold.co/300x200/bbb/111?text=Story+4" alt="Story 4" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-headline text-xl font-bold hover:text-accent transition-colors">City Guide: Rediscovering the Hidden Gems of Paris</h4>
+                            <p class="text-gray-600 text-sm mt-2">Beyond the Eiffel Tower: A travel guide to the spots only locals know about.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Opinion Section -->
+        <section class="section-border pt-8 mb-8">
+            <h3 class="font-headline text-3xl mb-6 fade-in">Opinion</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="fade-in-delay-1">
+                    <a href="#" class="group">
+                        <h4 class="font-headline text-2xl group-hover:text-accent transition-colors">The Case for a Four-Day Work Week Is Stronger Than Ever</h4>
+                        <p class="text-gray-700 mt-2">Productivity is not about hours logged, but about energy managed. It's time we embraced the future of work.</p>
+                        <div class="flex items-center mt-4">
+                            <img src="https://placehold.co/40x40/aaa/fff?text=A" alt="Author 1" class="w-10 h-10 rounded-full mr-3">
+                            <span class="font-semibold text-sm">By Anna Smith</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="fade-in-delay-2">
+                    <a href="#" class="group">
+                        <h4 class="font-headline text-2xl group-hover:text-accent transition-colors">Our Political Discourse is Broken. Here's How We Can Fix It.</h4>
+                        <p class="text-gray-700 mt-2">We've forgotten how to listen. The first step to healing our divisions is genuine, active listening.</p>
+                        <div class="flex items-center mt-4">
+                            <img src="https://placehold.co/40x40/999/fff?text=B" alt="Author 2" class="w-10 h-10 rounded-full mr-3">
+                            <span class="font-semibold text-sm">By David Chen</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="fade-in-delay-3">
+                    <a href="#" class="group">
+                        <h4 class="font-headline text-2xl group-hover:text-accent transition-colors">The Banning of Classic Books is a Betrayal of Education</h4>
+                        <p class="text-gray-700 mt-2">Literature is meant to challenge us, not comfort us. Shielding students from difficult ideas is a disservice.</p>
+                        <div class="flex items-center mt-4">
+                            <img src="https://placehold.co/40x40/888/fff?text=C" alt="Author 3" class="w-10 h-10 rounded-full mr-3">
+                            <span class="font-semibold text-sm">By Maria Garcia</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 top-border mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                <!-- Links Column 1 -->
+                <div class="col-span-2 md:col-span-4 lg:col-span-2 mb-6 lg:mb-0">
+                    <a href="#" class="font-headline text-3xl font-black text-white">
+                       MIDDLE EAST <br> WORLD VIEW
+                    </a>
+                    <p class="mt-4 text-sm">Your trusted source for news and analysis. © 2025 MEWV Media Group.</p>
+                </div>
+
+                <!-- Links Column 2 -->
+                <div>
+                    <h5 class="font-semibold text-white uppercase tracking-wider">News</h5>
+                    <ul class="mt-4 space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">World</a></li>
+                        <li><a href="#" class="hover:text-white">UK</a></li>
+                        <li><a href="#" class="hover:text-white">Politics</a></li>
+                        <li><a href="#" class="hover:text-white">Science</a></li>
+                        <li><a href="#" class="hover:text-white">Health</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Links Column 3 -->
+                <div>
+                    <h5 class="font-semibold text-white uppercase tracking-wider">Business</h5>
+                    <ul class="mt-4 space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Markets</a></li>
+                        <li><a href="#" class="hover:text-white">Technology</a></li>
+                        <li><a href="#" class="hover:text-white">Economics</a></li>
+                        <li><a href="#" class="hover:text-white">Companies</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links Column 4 -->
+                <div>
+                    <h5 class="font-semibold text-white uppercase tracking-wider">Sport</h5>
+                    <ul class="mt-4 space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Football</a></li>
+                        <li><a href="#" class="hover:text-white">Cricket</a></li>
+                        <li><a href="#" class="hover:text-white">Tennis</a></li>
+                        <li><a href="#" class="hover:text-white">Golf</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links Column 5 -->
+                <div>
+                    <h5 class="font-semibold text-white uppercase tracking-wider">Legal</h5>
+                    <ul class="mt-4 space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms of Use</a></li>
+                        <li><a href="#" class="hover:text-white">Advertise</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+                <p>&copy; 2025 MEWV. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <!-- Social Icons (placeholders) -->
+                    <a href="#" class="hover:text-white" aria-label="Facebook">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+                    </a>
+                    <a href="#" class="hover:text-white" aria-label="Twitter">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                    </a>
+                    <a href="#" class="hover:text-white" aria-label="Instagram">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.646-.07-4.849s.012-3.584.07-4.85c.148-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.668.072 4.948c.2 4.358 2.618 6.78 6.98 6.98 1.281.059 1.689.073 4.948.073s3.668-.014 4.948-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Mobile Menu Toggle ---
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const closeIcon = document.getElementById('close-icon');
+
+            menuBtn.addEventListener('click', () => {
+                const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+                menuBtn.setAttribute('aria-expanded', !isExpanded);
+                
+                // Toggle icons
+                hamburgerIcon.classList.toggle('hidden');
+                hamburgerIcon.classList.toggle('block');
+                closeIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('block');
+                
+                // Toggle menu visibility
+                mobileMenu.classList.toggle('-translate-x-full');
+                
+                // Prevent body scroll when menu is open
+                document.body.classList.toggle('overflow-hidden');
+            });
+
+            // --- Set Current Date ---
+            const dateElement = document.getElementById('current-date');
+            if (dateElement) {
+                const today = new Date();
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                dateElement.textContent = today.toLocaleDateString('en-US', options);
+            }
+
+            // --- Fade-in Animations on Scroll ---
+            const fadeInElements = document.querySelectorAll('.fade-in, .fade-in-delay-1, .fade-in-delay-2, .fade-in-delay-3, .fade-in-delay-4');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            fadeInElements.forEach(el => {
+                el.style.animationPlayState = 'paused'; // Pause animation until in view
+                observer.observe(el);
+            });
+
+        });
+    </script>
+
+</body>
+</html>
