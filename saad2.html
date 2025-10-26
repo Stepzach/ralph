@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Chronicle | News</title>
+    <title>MEWV | News</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -44,7 +44,7 @@
             border-top: 4px solid #111;
         }
         .section-border {
-            border-top: 1px solid #e5e5e5;
+            border-top: 1.5px solid black;
         }
 
         /* Mobile Menu Transitions */
@@ -54,6 +54,7 @@
         
         /* Subtle animation for articles on hover */
         .article-card {
+      
             transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
         }
         .article-card:hover {
@@ -85,11 +86,21 @@
         .fade-in-delay-4 { animation-delay: 0.4s; }
         
         
+          #ambo {
+     max-height:580px;
+         border-radius:6px;
+        }
+     
       @media (max-width: 1023px) {
       .space-y-6 {
       display:none;
        }
+        #ambo {
+     max-height:200px;
+     overflow: hidden;
+     border-radius:6px;
         }
+         }
         
         
     </style>
@@ -97,7 +108,7 @@
 <body class="bg-white text-gray-900">
 
     <!-- Header -->
-    <header class="border-b border-gray-200">
+    <header class="border-b border-black" >
         <!-- Top Bar -->
         <div class="bg-gray-50 py-2 text-xs text-gray-600 hidden md:block">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
@@ -177,8 +188,8 @@
                 <!-- Main Story -->
                 <div class="lg:col-span-2 article-card rounded-lg overflow-hidden">
                     <a href="#">
-                        <img src="https://placehold.co/800x500/111/fff?text=Main+Story" alt="Main story image" class="w-full h-auto object-cover">
-                        <div class="p-4 bg-gray-50">
+                        <img src="https://github.com/Stepzach/ralph/blob/main/IMG_6626.jpeg?raw=true" alt="Main story image" class="w-full h-auto object-cover" id="ambo">
+                        <div class="p-4 ">
                             <h1 class="font-headline text-2xl md:text-4xl text-gray-900 mb-4 hover:text-accent transition-colors">Global Markets React to Unexpected Economic Summit Outcome</h1>
                             <p class="text-md text-gray-700 mb-2">Leaders announced a surprising new trade pact that experts say could reshape international commerce for decades.</p>
                             <span class="text-sm font-semibold text-accent uppercase">World News</span>
@@ -211,7 +222,7 @@
         </section>
 
         <!-- Top Stories Section -->
-        <section class="section-border pt-8 mb-8">
+        <section class="section-border pt-8 mb-8" >
             <h3 class="font-headline text-3xl mb-6 fade-in">Top Stories</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Story 1 -->
