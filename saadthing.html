@@ -227,219 +227,219 @@ header h1 {
     color: #555;
 }
 </style>
+<script type="module">
 
-<script>
-
-
-// --- START: FIREBASE CONFIG ---
-// Paste your copied Firebase config object here
- const firebaseConfig = {
-    apiKey: "AIzaSyB-ng2xK0mHS2-KUxRgomlRE15VZv4yvWE",
-    authDomain: "syria-7a55b.firebaseapp.com",
-    projectId: "syria-7a55b",
-    storageBucket: "syria-7a55b.firebasestorage.app",
-    messagingSenderId: "893580984437",
-    appId: "1:893580984437:web:0ae5db19c7f3bf5750f83c",
-    measurementId: "G-B59E4WVXLY"
-  };
-// --- END: FIREBASE CONFIG ---
+      // --- START: FIREBASE CONFIG ---
+      // Your config is correct
+      const firebaseConfig = {
+        apiKey: "AIzaSyB-ng2xK0mHS2-KUxRgomlRE15VZv4yvWE",
+        authDomain: "syria-7a55b.firebaseapp.com",
+        projectId: "syria-7a55b",
+        storageBucket: "syria-7a55b.firebasestorage.app",
+        messagingSenderId: "893580984437",
+        appId: "1:893580984437:web:0ae5db19c7f3bf5750f83c",
+        measurementId: "G-B59E4WVXLY"
+      };
+      // --- END: FIREBASE CONFIG ---
 
 
-// --- Firebase v9 Modular SDK ---
-// (These functions are available globally from the scripts in index.html)
-const { initializeApp } = firebase.app;
-const { 
-    getFirestore, collection, addDoc, serverTimestamp, 
-    query, orderBy, limit, onSnapshot, doc, updateDoc, increment 
-} = firebase.firestore;
+      // --- Firebase v9 Modular SDK ---
+      // **THIS IS THE FIX:** Import the v9 functions directly from the CDN
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+      import { 
+          getFirestore, collection, addDoc, serverTimestamp, 
+          query, orderBy, limit, onSnapshot, doc, updateDoc, increment 
+      } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-// Initialize Firebase and Firestore
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+      // Initialize Firebase and Firestore
+      // (This code was already correct)
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
 
-// Get reference to the 'posts' collection
-const postsCol = collection(db, 'posts');
+      // Get reference to the 'posts' collection
+      const postsCol = collection(db, 'posts');
 
-// --- DOM Element References ---
-const postForm = document.getElementById('post-form');
-const displayNameInput = document.getElementById('display-name');
-const messageInput = document.getElementById('post-message');
-const imageUrlInput = document.getElementById('image-url');
-const linkUrlInput = document.getElementById('link-url');
-const postsFeed = document.getElementById('posts-feed');
-const filterNewestBtn = document.getElementById('filter-newest');
-const filterLikesBtn = document.getElementById('filter-likes');
+      // --- DOM Element References ---
+      const postForm = document.getElementById('post-form');
+      const displayNameInput = document.getElementById('display-name');
+      const messageInput = document.getElementById('post-message');
+      const imageUrlInput = document.getElementById('image-url');
+      const linkUrlInput = document.getElementById('link-url');
+      const postsFeed = document.getElementById('posts-feed');
+      const filterNewestBtn = document.getElementById('filter-newest');
+      const filterLikesBtn = document.getElementById('filter-likes');
 
-// --- State Variables ---
-let currentQuery = query(postsCol, orderBy('createdAt', 'desc'), limit(50));
-let unsubscribe; // To store the onSnapshot listener
+      // --- State Variables ---
+      let currentQuery = query(postsCol, orderBy('createdAt', 'desc'), limit(50));
+      let unsubscribe; // To store the onSnapshot listener
 
-// --- Functions ---
+      // --- Functions ---
 
-/**
- * Handles the submission of the new post form.
- */
-async function handlePostSubmit(e) {
-    e.preventDefault(); // Prevent page reload
+      /**
+       * Handles the submission of the new post form.
+       */
+      async function handlePostSubmit(e) {
+          e.preventDefault(); // Prevent page reload
 
-    const displayName = displayNameInput.value || 'Anonymous';
-    const message = messageInput.value;
-    const imageUrl = imageUrlInput.value;
-    const linkUrl = linkUrlInput.value;
+          const displayName = displayNameInput.value || 'Anonymous';
+          const message = messageInput.value;
+          const imageUrl = imageUrlInput.value;
+          const linkUrl = linkUrlInput.value;
 
-    if (!message) {
-        alert('Message is required!');
-        return;
-    }
+          if (!message) {
+              alert('Message is required!');
+              return;
+          }
 
-    try {
-        // Add a new document to the 'posts' collection
-        await addDoc(postsCol, {
-            displayName: displayName,
-            message: message,
-            imageUrl: imageUrl,
-            linkUrl: linkUrl,
-            likes: 0,
-            createdAt: serverTimestamp() // Firebase handles the timestamp
-        });
+          try {
+              // Add a new document to the 'posts' collection
+              await addDoc(postsCol, {
+                  displayName: displayName,
+                  message: message,
+                  imageUrl: imageUrl,
+                  linkUrl: linkUrl,
+                  likes: 0,
+                  createdAt: serverTimestamp() // Firebase handles the timestamp
+              });
 
-        // Reset the form
-        postForm.reset();
+              // Reset the form
+              postForm.reset();
 
-    } catch (error) {
-        console.error("Error adding document: ", error);
-        alert("There was an error posting. Please try again.");
-    }
-}
+          } catch (error) {
+              console.error("Error adding document: ", error);
+              alert("There was an error posting. Please try again.");
+          }
+      }
 
-/**
- * Formats a Firebase Timestamp object into a readable string.
- */
-function formatTimestamp(timestamp) {
-    if (!timestamp) {
-        return 'Just now';
-    }
-    // Convert Firebase timestamp to JS Date object
-    const date = timestamp.toDate();
-    return date.toLocaleString(); // e.g., "11/8/2025, 11:30:00 AM"
-}
+      /**
+       * Formats a Firebase Timestamp object into a readable string.
+       */
+      function formatTimestamp(timestamp) {
+          if (!timestamp) {
+              return 'Just now';
+          }
+          // Convert Firebase timestamp to JS Date object
+          const date = timestamp.toDate();
+          return date.toLocaleString(); // e.g., "11/8/2025, 11:30:00 AM"
+      }
 
-/**
- * Handles clicking the 'like' button on a post.
- */
-async function handleLikeClick(postId) {
-    try {
-        const postRef = doc(db, 'posts', postId);
-        // Atomically increment the 'likes' field
-        await updateDoc(postRef, {
-            likes: increment(1)
-        });
-    } catch (error) {
-        console.error("Error updating likes: ", error);
-    }
-}
+      /**
+       * Handles clicking the 'like' button on a post.
+       */
+      async function handleLikeClick(postId) {
+          try {
+              const postRef = doc(db, 'posts', postId);
+              // Atomically increment the 'likes' field
+              await updateDoc(postRef, {
+                  likes: increment(1)
+              });
+          } catch (error) {
+              console.error("Error updating likes: ", error);
+          }
+      }
 
-/**
- * Renders a single post object into the DOM.
- */
-function renderPost(postDoc) {
-    const postData = postDoc.data();
-    const postId = postDoc.id;
+      /**
+       * Renders a single post object into the DOM.
+       */
+      function renderPost(postDoc) {
+          const postData = postDoc.data();
+          const postId = postDoc.id;
 
-    // Create the main post card element
-    const postCard = document.createElement('article');
-    postCard.className = 'post-card';
+          // Create the main post card element
+          const postCard = document.createElement('article');
+          postCard.className = 'post-card';
 
-    // Sanitize message to prevent XSS (simple text-only)
-    const messageP = document.createElement('p');
-    messageP.textContent = postData.message;
+          // Sanitize message to prevent XSS (simple text-only)
+          const messageP = document.createElement('p');
+          messageP.textContent = postData.message;
 
-    // Build the inner HTML for the post
-    postCard.innerHTML = `
-        <div class="post-header">
-            <strong>${postData.displayName}</strong>
-            <small>${formatTimestamp(postData.createdAt)}</small>
-        </div>
-        <div class="post-body">
-            <p>${messageP.innerHTML.replace(/\n/g, '<br>')}</p>
-            ${postData.imageUrl ? `<img src="${postData.imageUrl}" alt="Post image">` : ''}
-            ${postData.linkUrl ? `<a href="${postData.linkUrl}" target="_blank" rel="noopener noreferrer">${postData.linkUrl}</a>` : ''}
-        </div>
-        <div class="post-footer">
-            <button class="like-button" data-id="${postId}">❤️ Like</button>
-            <span class="like-count">${postData.likes}</span>
-        </div>
-    `;
+          // Build the inner HTML for the post
+          // Your method here is safe and works!
+          postCard.innerHTML = `
+              <div class="post-header">
+                  <strong>${postData.displayName}</strong>
+                  <small>${formatTimestamp(postData.createdAt)}</small>
+              </div>
+              <div class="post-body">
+                  <p>${messageP.innerHTML.replace(/\n/g, '<br>')}</p>
+                  ${postData.imageUrl ? `<img src="${postData.imageUrl}" alt="Post image">` : ''}
+                  ${postData.linkUrl ? `<a href="${postData.linkUrl}" target="_blank" rel="noopener noreferrer">${postData.linkUrl}</a>` : ''}
+              </div>
+              <div class="post-footer">
+                  <button class="like-button" data-id="${postId}">❤️ Like</button>
+                  <span class="like-count">${postData.likes}</span>
+              </div>
+          `;
 
-    // Add event listener to the like button
-    const likeButton = postCard.querySelector('.like-button');
-    likeButton.addEventListener('click', () => handleLikeClick(postId));
+          // Add event listener to the like button
+          const likeButton = postCard.querySelector('.like-button');
+          likeButton.addEventListener('click', () => handleLikeClick(postId));
 
-    // Append the new post card to the feed
-    postsFeed.appendChild(postCard);
-}
+          // Append the new post card to the feed
+          postsFeed.appendChild(postCard);
+      }
 
-/**
- * Listens for real-time updates to the posts collection
- * based on the currently active query.
- */
-function listenForPosts() {
-    // If we have an active listener, unsubscribe from it
-    if (unsubscribe) {
-        unsubscribe();
-    }
+      /**
+       * Listens for real-time updates to the posts collection
+       * based on the currently active query.
+       */
+      function listenForPosts() {
+          // If we have an active listener, unsubscribe from it
+          if (unsubscribe) {
+              unsubscribe();
+          }
 
-    // Clear the feed
-    postsFeed.innerHTML = '';
+          // Clear the feed
+          postsFeed.innerHTML = '';
 
-    // Start a new real-time listener with the current query
-    unsubscribe = onSnapshot(currentQuery, (snapshot) => {
-        // Clear the feed again (in case of updates)
-        postsFeed.innerHTML = '';
+          // Start a new real-time listener with the current query
+          unsubscribe = onSnapshot(currentQuery, (snapshot) => {
+              // Clear the feed again (in case of updates)
+              postsFeed.innerHTML = '';
 
-        if (snapshot.empty) {
-            postsFeed.innerHTML = '<p>No posts yet. Be the first!</p>';
-            return;
-        }
-        
-        // Loop through each document and render it
-        snapshot.docs.forEach(doc => {
-            renderPost(doc);
-        });
+              if (snapshot.empty) {
+                  postsFeed.innerHTML = '<p>No posts yet. Be the first!</p>';
+                  return;
+              }
+              
+              // Loop through each document and render it
+              snapshot.docs.forEach(doc => {
+                  renderPost(doc);
+              });
 
-    }, (error) => {
-        console.error("Error fetching posts: ", error);
-        postsFeed.innerHTML = '<p>Could not load posts.</p>';
-    });
-}
+          }, (error) => {
+              console.error("Error fetching posts: ", error);
+              postsFeed.innerHTML = '<p>Could not load posts.</p>';
+          });
+      }
 
-// --- Event Listeners ---
+      // --- Event Listeners ---
 
-// Listen for new post submissions
-postForm.addEventListener('submit', handlePostSubmit);
+      // Listen for new post submissions
+      postForm.addEventListener('submit', handlePostSubmit);
 
-// Listen for filter button clicks
-filterNewestBtn.addEventListener('click', () => {
-    // Set query to order by time
-    currentQuery = query(postsCol, orderBy('createdAt', 'desc'), limit(50));
-    // Re-run the listener
-    listenForPosts();
-    // Update button styles
-    filterNewestBtn.classList.add('active');
-    filterLikesBtn.classList.remove('active');
-});
+      // Listen for filter button clicks
+      filterNewestBtn.addEventListener('click', () => {
+          // Set query to order by time
+          currentQuery = query(postsCol, orderBy('createdAt', 'desc'), limit(50));
+          // Re-run the listener
+          listenForPosts();
+          // Update button styles
+          filterNewestBtn.classList.add('active');
+          filterLikesBtn.classList.remove('active');
+      });
 
-filterLikesBtn.addEventListener('click', () => {
-    // Set query to order by likes
-    currentQuery = query(postsCol, orderBy('likes', 'desc'), limit(50));
-    // Re-run the listener
-    listenForPosts();
-    // Update button styles
-    filterLikesBtn.classList.add('active');
-    filterNewestBtn.classList.remove('active');
-});
+      filterLikesBtn.addEventListener('click', () => {
+          // Set query to order by likes
+          currentQuery = query(postsCol, orderBy('likes', 'desc'), limit(50));
+          // Re-run the listener
+          listenForPosts();
+          // Update button styles
+          filterLikesBtn.classList.add('active');
+          filterNewestBtn.classList.remove('active');
+      });
 
-// --- Initial Load ---
-// Start listening for posts when the page loads
-listenForPosts();
-</script>
+      // --- Initial Load ---
+      // Start listening for posts when the page loads
+      listenForPosts();
+    </script>
