@@ -226,6 +226,27 @@ header h1 {
     font-weight: bold;
     color: #555;
 }
+.like-button:hover {
+    background-color: #f0f2f5;
+}
+
+/* --- ADD THESE NEW STYLES --- */
+.like-button.liked {
+    background-color: #007bff;  /* Blue background */
+    color: #fff;               /* White text */
+    border-color: #007bff;     /* Blue border */
+}
+
+.like-button.liked:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    border-color: #0056b3;
+}
+/* --- END OF NEW STYLES --- */
+
+.like-count {
+    font-weight: bold;
+    color: #555;
+}
 </style>
 <script type="module">
 
@@ -269,9 +290,44 @@ header h1 {
       const filterNewestBtn = document.getElementById('filter-newest');
       const filterLikesBtn = document.getElementById('filter-likes');
 
+// --- DOM Element References ---
+// ... (your existing references) ...
+
+// --- START: NEW LOCALSTORAGE HELPERS ---
+const LIKED_POSTS_KEY = 'syrianVoicesLikedPosts';
+
+/**
+ * Gets the set of liked post IDs from localStorage.
+ */
+function getLikedPosts() {
+    const liked = localStorage.getItem(LIKED_POSTS_KEY);
+    // Parse the JSON string from storage, or create a new empty Set
+    return liked ? new Set(JSON.parse(liked)) : new Set();
+}
+
+/**
+ * Saves the set of liked post IDs to localStorage.
+ */
+function saveLikedPosts(likedSet) {
+    // Convert the Set to an Array (which can be JSON stringified)
+    localStorage.setItem(LIKED_POSTS_KEY, JSON.stringify(Array.from(likedSet)));
+}
+
+/**
+ * Checks if a specific post ID is in our 'liked' set.
+ */
+function isPostLiked(postId) {
+    return getLikedPosts().has(postId);
+}
+// --- END: NEW LOCALSTORAGE HELPERS ---
+
+
+// --- State Variables ---
+
       // --- State Variables ---
       let currentQuery = query(postsCol, orderBy('createdAt', 'desc'), limit(50));
       let unsubscribe; // To store the onSnapshot listener
+
 
       // --- Functions ---
 
@@ -323,61 +379,95 @@ header h1 {
           return date.toLocaleString(); // e.g., "11/8/2025, 11:30:00 AM"
       }
 
-      /**
-       * Handles clicking the 'like' button on a post.
-       */
-      async function handleLikeClick(postId) {
-          try {
-              const postRef = doc(db, 'posts', postId);
-              // Atomically increment the 'likes' field
-              await updateDoc(postRef, {
-                  likes: increment(1)
-              });
-          } catch (error) {
-              console.error("Error updating likes: ", error);
-          }
-      }
+  /**
+ * Handles clicking the 'like' button on a post.
+ * Toggles the like status, fixing the race condition.
+ */
+async function handleLikeClick(postId) {
+    const likedSet = getLikedPosts();
+    const postRef = doc(db, 'posts', postId);
 
-      /**
-       * Renders a single post object into the DOM.
-       */
-      function renderPost(postDoc) {
-          const postData = postDoc.data();
-          const postId = postDoc.id;
+    try {
+        if (likedSet.has(postId)) {
+            // --- Post is ALREADY LIKED, so UNLIKE it ---
+            
+            likedSet.delete(postId);    // 1. Remove from our local set
+            saveLikedPosts(likedSet);   // 2. Save to localStorage IMMEDIATELY
+            
+            // 3. Now, tell Firebase (this can be slow, it's fine)
+            await updateDoc(postRef, {
+                likes: increment(-1) 
+            });
 
-          // Create the main post card element
-          const postCard = document.createElement('article');
-          postCard.className = 'post-card';
+        } else {
+            // --- Post is NOT LIKED, so LIKE it ---
+            
+            likedSet.add(postId);       // 1. Add to our local set
+            saveLikedPosts(likedSet);   // 2. Save to localStorage IMMEDIATELY
 
-          // Sanitize message to prevent XSS (simple text-only)
-          const messageP = document.createElement('p');
-          messageP.textContent = postData.message;
+            // 3. Now, tell Firebase
+            await updateDoc(postRef, {
+                likes: increment(1)
+            });
+        }
+        
+        // This line is no longer needed here
+        // saveLikedPosts(likedSet);
 
-          // Build the inner HTML for the post
-          // Your method here is safe and works!
-          postCard.innerHTML = `
-              <div class="post-header">
-                  <strong>${postData.displayName}</strong>
-                  <small>${formatTimestamp(postData.createdAt)}</small>
-              </div>
-              <div class="post-body">
-                  <p>${messageP.innerHTML.replace(/\n/g, '<br>')}</p>
-                  ${postData.imageUrl ? `<img src="${postData.imageUrl}" alt="Post image">` : ''}
-                  ${postData.linkUrl ? `<a href="${postData.linkUrl}" target="_blank" rel="noopener noreferrer">${postData.linkUrl}</a>` : ''}
-              </div>
-              <div class="post-footer">
-                  <button class="like-button" data-id="${postId}">❤️ Like</button>
-                  <span class="like-count">${postData.likes}</span>
-              </div>
-          `;
+    } catch (error) {
+        console.error("Error updating likes: ", error);
+    }
+}
 
-          // Add event listener to the like button
-          const likeButton = postCard.querySelector('.like-button');
-          likeButton.addEventListener('click', () => handleLikeClick(postId));
+     /**
+ * Renders a single post object into the DOM.
+ */
+function renderPost(postDoc) {
+    const postData = postDoc.data();
+    const postId = postDoc.id;
 
-          // Append the new post card to the feed
-          postsFeed.appendChild(postCard);
-      }
+    // Create the main post card element
+    const postCard = document.createElement('article');
+    postCard.className = 'post-card';
+
+    // Sanitize message to prevent XSS (simple text-only)
+    const messageP = document.createElement('p');
+    messageP.textContent = postData.message;
+
+    // --- 1. ADD THIS LINE ---
+    // Check if the current user has liked this post
+    const isLiked = isPostLiked(postId);
+
+    // Build the inner HTML for the post
+    postCard.innerHTML = `
+        <div class="post-header">
+            <strong>${postData.displayName}</strong>
+            <small>${formatTimestamp(postData.createdAt)}</small>
+        </div>
+        <div class="post-body">
+            <p>${messageP.innerHTML.replace(/\n/g, '<br>')}</p>
+            ${postData.imageUrl ? `<img src="${postData.imageUrl}" alt="Post image">` : ''}
+            ${postData.linkUrl ? `<a href="${postData.linkUrl}" target="_blank" rel="noopener noreferrer">${postData.linkUrl}</a>` : ''}
+        </div>
+        <div class="post-footer">
+            
+            <button class="like-button ${isLiked ? 'liked' : ''}" data-id="${postId}">
+                ${isLiked ? '❤️ Liked' : '❤️ Like'}
+            </button>
+            
+            <span class="like-count">${postData.likes}</span>
+        </div>
+    `;
+
+    // Add event listener to the like button
+    // (This part is unchanged and correct)
+    const likeButton = postCard.querySelector('.like-button');
+    likeButton.addEventListener('click', () => handleLikeClick(postId));
+
+    // Append the new post card to the feed
+    postsFeed.appendChild(postCard);
+}
+
 
       /**
        * Listens for real-time updates to the posts collection
