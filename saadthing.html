@@ -479,8 +479,7 @@ function renderPost(postDoc) {
               unsubscribe();
           }
 
-          // Clear the feed
-          postsFeed.innerHTML = '';
+        
 
           // Start a new real-time listener with the current query
           unsubscribe = onSnapshot(currentQuery, (snapshot) => {
